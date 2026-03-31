@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index Fund Intelligence Tracker · Q1 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --bg: #0d0f10;
+  --bg2: #131618;
+  --bg3: #1a1d20;
+  --bg4: #222629;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #e8e6e1;
+  --text2: #9a9690;
+  --text3: #5c5a56;
+  --green: #00c97b;
+  --green2: #005c3a;
+  --green3: rgba(0,201,123,0.1);
+  --red: #ff4d4d;
+  --red2: #5c0000;
+  --red3: rgba(255,77,77,0.1);
+  --amber: #f0a500;
+  --amber3: rgba(240,165,0,0.12);
+  --blue: #4da6ff;
+  --blue3: rgba(77,166,255,0.12);
+  --teal: #00d4c8;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.5;min-height:100vh;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.015) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,0.015) 40px)}
+
+/* Header */
+.site-header{padding:28px 32px 24px;border-bottom:1px solid var(--border2);background:var(--bg2);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.brand h1{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0;color:var(--text)}
+.brand p{font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:2px;letter-spacing:.5px}
+.header-meta{display:flex;gap:20px;align-items:center}
+.meta-stat{text-align:right}
+.meta-stat .val{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--green)}
+.meta-stat .lbl{font-size:10px;color:var(--text3);letter-spacing:.5px}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Controls */
+.controls{max-width:1400px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.search-wrap{position:relative;flex:0 0 200px}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.4;pointer-events:none}
+#search{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:7px 10px 7px 32px;font-size:12px;color:var(--text);font-family:var(--mono);outline:none;transition:border-color .2s}
+#search:focus{border-color:rgba(0,201,123,0.5)}
+#search::placeholder{color:var(--text3)}
+.sep{width:1px;height:20px;background:var(--border2)}
+.cat-btn{background:transparent;border:1px solid var(--border);border-radius:3px;color:var(--text2);font-size:11px;font-family:var(--mono);padding:5px 12px;cursor:pointer;transition:all .15s;letter-spacing:.3px;white-space:nowrap}
+.cat-btn:hover{border-color:var(--border2);color:var(--text)}
+.cat-btn.active{background:var(--green2);border-color:var(--green);color:var(--green);font-weight:500}
+.controls-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.sort-select{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:11px;font-family:var(--mono);padding:6px 10px;border-radius:4px;outline:none;cursor:pointer}
+.sort-select option{background:var(--bg2)}
+.count-badge{font-family:var(--mono);font-size:11px;color:var(--text3);padding:5px 10px;background:var(--bg3);border-radius:3px;border:1px solid var(--border)}
+
+/* Main */
+main{max-width:1400px;margin:0 auto;padding:0 32px 48px}
+
+/* Table header */
+.table-wrap{border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.th-row{display:grid;grid-template-columns:72px 1fr 64px 80px 88px 110px 120px 24px;gap:0;background:var(--bg2);border-bottom:1px solid var(--border2)}
+.th{padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.6px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:5px;transition:color .15s;white-space:nowrap}
+.th:hover{color:var(--text2)}
+.th.sorted{color:var(--green)}
+.th .sort-icon{font-size:9px;opacity:.5;transition:opacity .15s}
+.th.sorted .sort-icon{opacity:1;color:var(--green)}
+.th.text-right{justify-content:flex-end}
+.th.text-center{justify-content:center}
+
+/* Fund rows */
+.fund-row{border-bottom:1px solid var(--border)}
+.fund-row:last-child{border-bottom:none}
+.fund-row.hidden{display:none}
+.fund-main{display:grid;grid-template-columns:72px 1fr 64px 80px 88px 110px 120px 24px;gap:0;cursor:pointer;transition:background .15s}
+.fund-main:hover{background:var(--bg3)}
+.cell{padding:11px 12px;display:flex;align-items:center}
+.cell.text-right{justify-content:flex-end}
+.cell.text-center{justify-content:center}
+.ticker{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--teal)}
+.fund-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.3}
+.fund-sub{font-size:10px;color:var(--text3);margin-top:1px;font-family:var(--mono)}
+.exp-val{font-family:var(--mono);font-size:12px;font-weight:500}
+.exp-free{color:var(--green)}
+.exp-low{color:var(--text2)}
+.exp-high{color:var(--red)}
+.ret-val{font-family:var(--mono);font-size:12px;font-weight:500}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+.neu{color:var(--text2)}
+.badges{display:flex;flex-wrap:wrap;gap:3px}
+.badge{font-size:9px;font-family:var(--mono);padding:2px 6px;border-radius:2px;letter-spacing:.3px;white-space:nowrap;line-height:1.4}
+.badge-warn{background:var(--amber3);color:var(--amber);border:1px solid rgba(240,165,0,0.25)}
+.badge-risk{background:var(--red3);color:var(--red);border:1px solid rgba(255,77,77,0.2)}
+.badge-ok{background:var(--green3);color:var(--green);border:1px solid rgba(0,201,123,0.2)}
+.badge-info{background:var(--blue3);color:var(--blue);border:1px solid rgba(77,166,255,0.2)}
+.expand-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:3px;transition:all .15s;line-height:1}
+.expand-btn:hover{background:var(--bg4);color:var(--text)}
+.expand-btn.open{color:var(--green)}
+
+/* Detail panel */
+.fund-detail{display:none;border-top:1px solid var(--border);background:var(--bg2);padding:24px;animation:fadeIn .2s ease}
+.fund-detail.open{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.detail-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.detail-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px}
+.detail-label{font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--text3);margin-bottom:10px;text-transform:uppercase}
+.detail-text{font-size:11px;color:var(--text2);line-height:1.7}
+.index-name{font-size:12px;font-weight:500;color:var(--teal);margin-bottom:8px;font-family:var(--mono)}
+.kv-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-size:11px}
+.kv-row:last-child{border-bottom:none}
+.kv-row .k{color:var(--text3);font-family:var(--mono)}
+.kv-row .v{font-family:var(--mono);font-weight:500}
+
+/* Holdings bars */
+.holding-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.h-name{font-size:10px;color:var(--text2);width:140px;flex-shrink:0;font-family:var(--mono)}
+.h-bar-wrap{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.h-bar{height:100%;background:var(--teal);border-radius:2px}
+.h-pct{font-family:var(--mono);font-size:10px;color:var(--text3);width:32px;text-align:right;flex-shrink:0}
+
+/* Alloc bar */
+.alloc-bar{display:flex;height:8px;border-radius:3px;overflow:hidden;margin:8px 0}
+.alloc-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:10px;color:var(--text3)}
+.alloc-dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+
+/* Broker pills */
+.broker-pill{display:inline-block;background:var(--bg4);border:1px solid var(--border2);border-radius:3px;font-size:10px;font-family:var(--mono);color:var(--text2);padding:3px 8px;margin:2px 2px 2px 0}
+.broker-pill.primary{border-color:rgba(0,212,200,0.3);color:var(--teal);background:rgba(0,212,200,0.07)}
+
+/* Sparkline */
+.sparkline-wrap{display:flex;align-items:center;justify-content:center}
+
+/* Chart canvas */
+.chart-canvas-wrap{position:relative;width:100%;height:140px;margin-top:8px}
+
+/* Empty state */
+.empty-state{padding:60px 32px;text-align:center;color:var(--text3)}
+.empty-state p{font-family:var(--mono);font-size:13px}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--border2)}
+
+/* Footer */
+.site-footer{max-width:1400px;margin:0 auto;padding:24px 32px;border-top:1px solid var(--border);color:var(--text3);font-size:10px;font-family:var(--mono);line-height:1.8}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1>Index Fund Intelligence</h1>
+      <p><span class="live-dot"></span>Q1 2026 · Trailing 12M · 10 funds tracked</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-stat">
+        <div class="val">+22.4%</div>
+        <div class="lbl">Best 1Y return</div>
+      </div>
+      <div class="meta-stat">
+        <div class="val">FREE–0.37%</div>
+        <div class="lbl">Expense range</div>
+      </div>
+      <div class="meta-stat">
+        <div class="val" style="color:var(--amber)">ELEVATED</div>
+        <div class="lbl">Bond risk flag</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search funds, indexes…" oninput="tracker.filter()">
+  </div>
+  <div class="sep"></div>
+  <button class="cat-btn active" data-cat="all" onclick="tracker.setCategory(this)">All funds</button>
+  <button class="cat-btn" data-cat="US Total Market" onclick="tracker.setCategory(this)">US total mkt</button>
+  <button class="cat-btn" data-cat="US Large Cap" onclick="tracker.setCategory(this)">Large cap</button>
+  <button class="cat-btn" data-cat="Global" onclick="tracker.setCategory(this)">Global</button>
+  <button class="cat-btn" data-cat="International" onclick="tracker.setCategory(this)">International</button>
+  <button class="cat-btn" data-cat="Bond" onclick="tracker.setCategory(this)">Bonds</button>
+  <button class="cat-btn" data-cat="Target Date" onclick="tracker.setCategory(this)">Target date</button>
+  <button class="cat-btn" data-cat="Tech" onclick="tracker.setCategory(this)">Tech</button>
+  <div class="controls-right">
+    <span class="count-badge" id="count-badge">10 funds</span>
+  </div>
+</div>
+
+<main>
+  <div class="table-wrap">
+    <div class="th-row">
+      <div class="th" onclick="tracker.sort('ticker')">TICKER <span class="sort-icon" id="si-ticker">↕</span></div>
+      <div class="th" onclick="tracker.sort('name')">FUND <span class="sort-icon" id="si-name">↕</span></div>
+      <div class="th text-right" onclick="tracker.sort('exp')">EXP % <span class="sort-icon" id="si-exp">↕</span></div>
+      <div class="th text-right" onclick="tracker.sort('ret1')">1Y RETURN <span class="sort-icon" id="si-ret1">↕</span></div>
+      <div class="th text-right" onclick="tracker.sort('vs')">VS BENCHMARK <span class="sort-icon" id="si-vs">↕</span></div>
+      <div class="th text-center">3Y TREND</div>
+      <div class="th">RISK FLAGS</div>
+      <div class="th"></div>
+    </div>
+    <div id="fund-list"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  † Available at this broker but may incur transaction fees. &nbsp;|&nbsp; Data: trailing 12 months through Q1 2026. Sparklines: Apr 2023 – Mar 2026 (normalized to 100). Past performance does not guarantee future results. This tracker is for informational purposes only and does not constitute investment advice. Expense ratios and AUM figures approximate as of Q1 2026.
+</footer>
+
+<script>
+const FUNDS = [
+  {
+    ticker: 'VTSAX',
+    name: 'Vanguard Total Stock Market Index',
+    sub: 'Admiral Shares · $3,000 min',
+    cat: 'US Total Market',
+    tracks: 'CRSP US Total Market Index',
+    exp: 0.04, min: '$3,000', aum: '$1.4T',
+    ret1: 19.2, bmark: 'S&P 500', bret: 24.5, catAvg: 20.1,
+    us: 100, intl: 0, bond: 0,
+    brokers: [['Vanguard', true], ['Fidelity †', false], ['Schwab †', false], ['Merrill †', false]],
+    holdings: [['Apple (AAPL)', 6.8], ['Microsoft (MSFT)', 6.1], ['NVIDIA (NVDA)', 5.9], ['Amazon (AMZN)', 3.8], ['Meta (META)', 2.9]],
+    principles: 'Passive, market-cap-weighted ownership of the entire US equity universe — roughly 3,700 stocks from mega- to micro-cap. The canonical "own the whole market" fund. Built on efficient market hypothesis: active managers rarely beat the market after fees, so minimize cost and capture everything. The natural complement to international funds like VTIAX for global coverage.',
+    badges: [['warn', 'Tech heavy'], ['warn', 'US only'], ['ok', '0.04% cost']],
+    riskDetail: 'Top 10 holdings ≈ 30% of the fund — nearly all Magnificent Seven AI plays at elevated multiples. A valuation mean-reversion in AI, antitrust action, or a rotation into value/small-cap could create years of underperformance. No international or bond exposure means full equity drawdown risk during crises. USD strength headwind vs. international peers.',
+    prospects: 'Long-term case remains solid, but elevated S&P 500 forward PE (~22x) implies 10-year expected returns of 6–8% vs. the historical ~10.5%. USD structural weakness (2025–26 trend from rising debt and Fed easing) paradoxically benefits international funds more. Still the cleanest core US equity holding for long-horizon investors. Best paired with VTIAX for full global coverage at ultra-low cost.',
+    spark: [100,102,107,112,108,104,101,109,113,112,116,122,119,124,128,127,128,133,130,142,145,143,141,145,136,143,148,150,149,155,157,162,165,160,163,165]
+  },
+  {
+    ticker: 'FZROX',
+    name: 'Fidelity ZERO Total Market Index',
+    sub: 'No minimum · Fidelity only · truly free',
+    cat: 'US Total Market',
+    tracks: 'Fidelity US Total Investable Market Index (proprietary)',
+    exp: 0.00, min: '$0', aum: '$18B',
+    ret1: 19.3, bmark: 'S&P 500', bret: 24.5, catAvg: 20.1,
+    us: 100, intl: 0, bond: 0,
+    brokers: [['Fidelity only', true]],
+    holdings: [['Apple (AAPL)', 6.9], ['Microsoft (MSFT)', 6.2], ['NVIDIA (NVDA)', 6.0], ['Amazon (AMZN)', 3.9], ['Meta (META)', 3.0]],
+    principles: 'Radical democratization of indexing: zero expense ratio, zero minimum investment. Fidelity absorbs operating costs as a customer acquisition tool. Uses a proprietary index — composition is near-identical to VTSAX in practice but technically distinct. No share classes, no minimums, fractional shares available. The democratization of passive investing taken to its logical conclusion.',
+    badges: [['warn', 'Fidelity lock-in'], ['warn', 'Proprietary index'], ['ok', 'FREE']],
+    riskDetail: 'FZROX cannot be transferred in-kind to another broker — moving requires selling, creating a taxable event in non-retirement accounts. Fidelity controls the proprietary index (governance risk, though minor in practice). The fund tracks near-identically to VTSAX. Primary risk is Fidelity platform concentration — your entire position is tied to one institution. Not an issue inside 401(k)s where portability is already limited.',
+    prospects: 'The fee advantage compounds powerfully over decades. 0.00% vs 0.04% (VTSAX) saves $40/year per $100K — seemingly small but real at scale. Same 6–8% forward return expectation as VTSAX given current valuations. Best-in-class for Fidelity account holders in accumulation phase. The platform lock-in risk is the only genuine trade-off vs. VTSAX.',
+    spark: [100,102,107,112,108,104,101,110,114,113,117,123,120,125,129,128,129,134,131,143,146,144,142,146,137,144,149,151,150,156,158,163,166,161,164,166]
+  },
+  {
+    ticker: 'VFIAX',
+    name: 'Vanguard 500 Index Fund',
+    sub: 'Admiral Shares · the original index fund',
+    cat: 'US Large Cap',
+    tracks: 'S&P 500 Index (500 largest US companies by market cap)',
+    exp: 0.04, min: '$3,000', aum: '$900B',
+    ret1: 24.5, bmark: 'S&P 500', bret: 24.5, catAvg: 23.1,
+    us: 100, intl: 0, bond: 0,
+    brokers: [['Vanguard', true], ['Fidelity †', false], ['Schwab †', false], ['TD Ameritrade †', false]],
+    holdings: [['Apple (AAPL)', 7.0], ['Microsoft (MSFT)', 6.5], ['NVIDIA (NVDA)', 6.1], ['Alphabet (GOOG)', 4.2], ['Amazon (AMZN)', 4.0]],
+    principles: 'The grandfather of retail index investing — Vanguard launched the first S&P 500 index fund in 1976. Tracks 500 of the largest US companies, selected by committee for size, liquidity, and profitability. Excludes smaller companies (unlike VTSAX). The institutional gold standard; forms the basis of virtually all "just buy the index" retirement advice. The world\'s most replicated investment product.',
+    badges: [['warn', 'Mega-cap heavy'], ['warn', 'No small cap'], ['info', 'Max liquidity']],
+    riskDetail: 'Top 10 holdings ≈ 35% of the fund, concentrated in AI-infrastructure plays at elevated multiples (NVIDIA ~28x forward PE). No small/mid-cap exposure means missing the historical small-cap premium. Domestic-only with zero international or bond diversification. S&P 500 membership is determined by committee — survivorship bias is structural. Foreign revenue exposure (~40% of S&P 500 earnings) provides some implicit international hedge.',
+    prospects: 'S&P 500 has compounded at ~10.5% annualized since 1928. Forward 10-year returns are likely 6–7% at current ~22x forward PE valuations — below the historical average. Structural demand from institutional index funds, target-date funds, and 401(k) default options provides persistent bid. The most liquid and widely-held equity index product globally. Still the safest default for US-focused investors despite premium valuation.',
+    spark: [100,103,108,114,109,105,102,111,116,115,120,126,123,128,133,131,132,137,134,147,150,148,146,150,141,149,155,157,156,162,165,170,173,167,171,173]
+  },
+  {
+    ticker: 'FXAIX',
+    name: 'Fidelity 500 Index Fund',
+    sub: 'No minimum · cheapest S&P 500 fund available',
+    cat: 'US Large Cap',
+    tracks: 'S&P 500 Index',
+    exp: 0.015, min: '$0', aum: '$600B',
+    ret1: 24.5, bmark: 'S&P 500', bret: 24.5, catAvg: 23.1,
+    us: 100, intl: 0, bond: 0,
+    brokers: [['Fidelity', true], ['Some 401(k) plans', false]],
+    holdings: [['Apple (AAPL)', 7.0], ['Microsoft (MSFT)', 6.5], ['NVIDIA (NVDA)', 6.1], ['Alphabet (GOOG)', 4.2], ['Amazon (AMZN)', 4.0]],
+    principles: 'Functionally identical to VFIAX but structurally cheaper and with no minimum. Fidelity undercut Vanguard on price (0.015% vs 0.04%) while tracking the same S&P 500 index. The optimal S&P 500 vehicle for Fidelity customers: no transaction fee, no minimum, fractional shares available. One of the most cost-efficient S&P 500 products at any major broker alongside Schwab\'s SWPPX.',
+    badges: [['warn', 'Mega-cap heavy'], ['warn', 'No small cap'], ['ok', 'Cheapest S&P']],
+    riskDetail: 'Virtually identical risk profile to VFIAX — same index, same concentration risks, same domestic-only exposure. The 0.015% vs 0.04% cost difference is $2.50 per year on $10K but compounds to meaningful savings on large portfolios over decades. Unlike FZROX, FXAIX tracks a public index and can be transferred in-kind to other brokers — a meaningful advantage in taxable accounts. No proprietary index or lock-in risk.',
+    prospects: 'The cheapest standard S&P 500 fund at a major broker. Same 6–7% forward return expectation as VFIAX given current valuations. The fee advantage vs. VFIAX is modest but real at scale — on a $1M portfolio over 30 years, the 0.025% difference compounds to tens of thousands of dollars. Best-positioned S&P 500 fund for Fidelity account holders in both taxable and retirement accounts.',
+    spark: [100,103,108,114,109,105,102,111,116,115,120,126,123,128,133,131,132,137,134,147,150,148,146,150,141,149,155,157,156,162,165,170,173,167,171,173]
+  },
+  {
+    ticker: 'VTWAX',
+    name: 'Vanguard Total World Stock Index',
+    sub: 'Admiral Shares · Morningstar Gold Medalist',
+    cat: 'Global',
+    tracks: 'FTSE Global All Cap Index (~9,900 stocks, ~50 countries)',
+    exp: 0.09, min: '$3,000', aum: '$83.5B',
+    ret1: 22.4, bmark: 'FTSE Global All Cap', bret: 22.4, catAvg: 19.1,
+    us: 61, intl: 30, bond: 0,
+    brokers: [['Vanguard', true], ['Fidelity †', false], ['Schwab †', false]],
+    holdings: [['Apple (AAPL)', 4.2], ['Microsoft (MSFT)', 3.8], ['NVIDIA (NVDA)', 3.6], ['Amazon (AMZN)', 2.4], ["Int'l names ~50%", 0.5]],
+    principles: 'The theoretical pinnacle of passive investing: own the entire investable global equity universe in market-cap proportion. US dominates (~61%) because US companies are most valuable globally — not artificial US bias. If markets are globally efficient, owning the world at minimal cost is mathematically optimal. Nearly 10,000 stocks; top 10 positions = less than 22% of assets. Morningstar Gold Medalist as of Feb 2026.',
+    badges: [['ok', 'Max diversification'], ['warn', 'Currency risk'], ['warn', 'EM tail risk']],
+    riskDetail: '~39% international exposure means USD fluctuation directly impacts returns — structural USD weakness (2025–2026 trend from rising US debt and Fed easing) is a tailwind; USD strengthening is a headwind. ~9% emerging market allocation adds geopolitical, regulatory, and currency tail risk. At 0.09%, it\'s only twice as expensive as pure US index funds, a modest premium for genuinely global diversification. Exceptional concentration diversification: less than 22% in top 10.',
+    prospects: 'Morningstar Gold Medalist. Strongly positioned: European and EM equities trade at 14–17x forward PE vs US ~22x — the widest valuation gap in 20+ years. USD weakness trend amplifies international returns further for US-based investors. 2025 international equity outperformed US funds significantly; the trend appears structural. 10-year expected return: 7–9%, likely slightly ahead of pure US on a risk-adjusted basis. The ideal single-fund equity holding for globally-minded investors.',
+    spark: [100,101,105,109,106,102,99,107,110,109,113,118,116,121,124,123,124,128,126,136,139,137,136,140,132,140,145,147,147,152,155,160,163,158,161,164]
+  },
+  {
+    ticker: 'VTIAX',
+    name: 'Vanguard Total International Stock Index',
+    sub: 'Admiral Shares · 100% ex-US equity',
+    cat: 'International',
+    tracks: 'FTSE Global All Cap ex US Index (~8,500 stocks)',
+    exp: 0.11, min: '$3,000', aum: '$450B',
+    ret1: 20.8, bmark: 'FTSE Dev. ex US', bret: 18.5, catAvg: 17.9,
+    us: 0, intl: 100, bond: 0,
+    brokers: [['Vanguard', true], ['Fidelity †', false], ['Schwab †', false]],
+    holdings: [['Novo Nordisk (DK)', 1.1], ['ASML (NL)', 1.0], ['LVMH (FR)', 0.8], ['Samsung (KR)', 0.7], ['Toyota (JP)', 0.7]],
+    principles: 'Pure international equity — zero US stocks. Used by investors who want to set their own US/international ratio alongside a US index fund (e.g., 60/40 VTSAX/VTIAX). Covers ~8,500 stocks across developed markets (Europe, Japan, Australia ~77%) and emerging markets (China, India, Korea ~23%). The optimal tool for macro-driven tilts toward or away from international exposure.',
+    badges: [['warn', 'Currency risk'], ['warn', 'China ~9%'], ['ok', 'Best PE value'], ['ok', 'Beating benchmark']],
+    riskDetail: 'China represents ~8–10% of the fund via Hong Kong and mainland-listed shares — political and regulatory tail risk is structurally elevated. Japan (~16%) carries yen exposure and structural deflation history (though BoJ normalization is a new tailwind). European names face US tariff headwinds on exports. Currency is the primary short-term noise driver for USD-based investors. All these risks cut both ways — international valuations have been compressing relative to US for a decade, creating a coiled spring.',
+    prospects: 'The strongest macro setup of any major equity index category right now. MSCI EAFE trades at ~14x forward PE vs US ~22x — the widest gap in 20+ years. MSCI Emerging Markets returned ~27% in 2025. Continued USD structural weakness (from rising US debt, Moody\'s downgrade, Fed easing trajectory) amplifies returns further for US investors. 10-year expected return: 8–11%, the best risk/reward case on a pure valuation basis of any asset class discussed here.',
+    spark: [100,100,103,106,104,100,97,104,107,106,109,113,111,115,118,117,119,122,120,128,131,129,129,132,128,136,142,145,145,151,155,161,164,160,163,166]
+  },
+  {
+    ticker: 'VBTLX',
+    name: 'Vanguard Total Bond Market Index',
+    sub: 'Admiral Shares · intermediate duration',
+    cat: 'Bond',
+    tracks: 'Bloomberg US Aggregate Float Adjusted Index',
+    exp: 0.05, min: '$3,000', aum: '$320B',
+    ret1: 5.2, bmark: 'Bloomberg US Agg', bret: 5.2, catAvg: 4.8,
+    us: 0, intl: 0, bond: 100,
+    brokers: [['Vanguard', true], ['Fidelity †', false], ['Schwab †', false]],
+    holdings: [['US Treasuries', 42.0], ['Mortgage-backed (MBS)', 26.0], ['Corp. bonds (IG)', 26.0], ['Agency bonds', 5.0], ['Other / CMBS', 1.0]],
+    principles: 'Broad investment-grade US fixed income — the "complete" US bond market including Treasuries, agencies, MBS, and investment-grade corporates. Intermediate duration (~6.5 years). Designed as the stabilizing ballast in a stock/bond portfolio, providing income and hedging equity drawdowns when inflation is low. The canonical 40% of the 60/40 portfolio. Now finally offering real income after a decade of near-zero yields.',
+    badges: [['risk', 'Duration risk'], ['risk', 'Broken hedge 2022–24'], ['risk', 'Fiscal headwinds'], ['warn', 'Inflation erosion']],
+    riskDetail: 'The most impacted fund in this tracker by current macro dynamics. (1) Duration risk: a 1% rise in rates = ~6.5% price decline. (2) Stock-bond correlation was positive for much of 2022–2024, breaking the traditional hedge. (3) US fiscal deterioration — Moody\'s downgrade, 30-year yields briefly above 5% — structurally pressures the long end. (4) Inflation above 2.4% historically destroys the stock-bond negative correlation that makes bonds useful as portfolio ballast. That said: at 4.5%+ on 10Y Treasuries, bonds now offer real income for the first time since 2008.',
+    prospects: 'Base case (growth slowdown dominates): Fed cuts, yields fall, bond prices rise — potential 7–9% total return. Stagflation scenario (tariff + deficit): yields stay elevated, minimal price appreciation but ~5% income yield locks in real return. Long-end remains structurally pressured by fiscal deterioration. Optimal positioning within bonds: favor short-to-intermediate duration (1–5Y) and TIPS. Use VBTLX as a partial — not full — bond allocation. Short-term TIPS and I-bonds are better inflation hedges for the current environment.',
+    spark: [100,99,98,99,100,99,98,99,101,100,101,102,101,102,103,104,104,105,104,106,107,106,105,106,105,107,108,109,109,110,111,112,112,111,112,113]
+  },
+  {
+    ticker: 'VTTSX',
+    name: 'Vanguard Target Retirement 2060',
+    sub: 'Fund of 4 index funds · Morningstar Silver',
+    cat: 'Target Date',
+    tracks: 'Glide path — 90/10 global equity/bond allocation converging to 2060',
+    exp: 0.09, min: '$1,000', aum: '$42.9B',
+    ret1: 18.9, bmark: 'Target Date 2060 avg', bret: 20.0, catAvg: 20.0,
+    us: 53, intl: 37, bond: 10,
+    brokers: [['Vanguard', true], ['Most 401(k) plans', false], ['Merrill Edge', false]],
+    holdings: [['Vanguard Total Stock Mkt', 53.0], ['Vanguard Total Intl Stock', 37.0], ['Vanguard Total Bond Mkt II', 7.5], ['Vanguard Total Intl Bond', 2.5]],
+    principles: 'Lifecycle investing in one fund: starts at 90% global equity / 10% bonds and automatically de-risks as 2060 approaches. You never need to rebalance — the glide path does it. All underlying funds are low-cost Vanguard index funds. The product is the engineering of behavioral risk removal over 35 years. Morningstar Silver Medalist. Best single-fund solution for investors with a 2058–2062 retirement target who want zero maintenance.',
+    badges: [['ok', 'Auto-rebalances'], ['warn', 'Bond drag now'], ['warn', 'Tech concentration'], ['info', 'Set and forget']],
+    riskDetail: 'Currently 90% equity / 10% bonds. The bond component carries all the risks discussed for VBTLX — inflation erosion, rate sensitivity, broken hedge during inflationary periods. The ~37% international allocation is well-positioned for current macro but adds currency risk. The "set it and forget it" simplicity is a genuine feature for most investors but means zero customization — you take the glide path as engineered. At 0.09%, only slightly more expensive than VTWAX.',
+    prospects: 'For a genuine 2060 retirement horizon, VTTSX remains the cleanest single-fund solution available. Automatic rebalancing eliminates behavioral risk over 35 years — the primary destroyer of retail investor returns. The ~37% international tilt is well-aligned with the current macro setup favoring international valuation re-rating vs. the overvalued US market. 10-year blended expected return: 7–9%. Long-term question: will the 2055–2065 heavy-bond glide path serve investors in a potentially structurally higher-inflation world?',
+    spark: [100,102,106,110,107,103,100,108,112,111,114,120,117,122,126,125,125,130,128,139,142,140,139,142,134,141,146,148,148,153,156,161,163,158,161,163]
+  },
+  {
+    ticker: 'QQQM',
+    name: 'Invesco Nasdaq-100 ETF',
+    sub: 'Retail share class of QQQ · all brokers',
+    cat: 'Tech',
+    tracks: 'Nasdaq-100 Index (100 largest non-financial Nasdaq companies)',
+    exp: 0.15, min: '$0 (ETF)', aum: '$40B',
+    ret1: 23.1, bmark: 'Nasdaq-100', bret: 23.1, catAvg: 21.5,
+    us: 97, intl: 3, bond: 0,
+    brokers: [['Vanguard', false], ['Fidelity', false], ['Schwab', false], ['Robinhood', false], ['Interactive Brokers', false]],
+    holdings: [['Microsoft (MSFT)', 9.0], ['Apple (AAPL)', 8.6], ['NVIDIA (NVDA)', 8.2], ['Alphabet (GOOG)', 5.3], ['Amazon (AMZN)', 5.1]],
+    principles: 'A concentrated bet on innovation-economy leadership: the 100 largest non-financial Nasdaq companies, overwhelmingly US tech and growth stocks. Not diversified in the traditional sense — top 10 positions ≈ 55% of the fund. The thesis: largest technology platforms will compound earnings faster than the rest of the economy through AI, cloud, and network effects. Launched as a cheaper alternative to QQQ specifically for retail long-term holders.',
+    badges: [['risk', 'Extreme concentration'], ['risk', 'AI valuation risk'], ['warn', 'No value/dividend'], ['warn', 'No international']],
+    riskDetail: 'Top 10 stocks ≈ 55% of the fund. NVIDIA alone ~8%+ depending on AI capex cycle. This is a leveraged bet on continued AI multiple expansion and tech platform dominance. No financials, real estate, or energy. No international diversification. Fell 33% in 2022 — maximum drawdown risk in a rate-shock or AI-disappointment scenario. 0.15% expense ratio is 4–10x more expensive than broad index funds without offering diversification to compensate. EU AI Act and US antitrust pressure are structural risks.',
+    prospects: 'Near-term bull case: continued AI capex cycle and strong Magnificent Seven earnings. McKinsey estimates $5.2T in AI datacenter investment by 2030 — the Nasdaq-100 is the primary beneficiary. However, at ~28x forward PE, upside is constrained by valuation. Any AI monetization disappointment, antitrust action, or rate spike creates outsized downside vs. broad index funds. Best used as a satellite position (10–20% of equity allocation) rather than a core holding. The risk/reward profile at current valuations is less favorable than 5 years ago.',
+    spark: [100,103,111,119,114,108,103,116,122,121,127,135,131,138,145,143,145,152,148,163,168,165,162,168,155,167,175,178,177,185,189,197,201,192,196,200]
+  },
+  {
+    ticker: 'CREF Stock',
+    name: 'TIAA-CREF Stock Account',
+    sub: 'Employer plans only · university / nonprofit',
+    cat: 'US Large Cap',
+    tracks: 'Russell 3000 + MSCI All World blend (quantitative active overlay)',
+    exp: 0.37, min: 'Employer plan only', aum: '$280B',
+    ret1: 18.5, bmark: 'Russell 3000', bret: 19.8, catAvg: 22.0,
+    us: 79, intl: 21, bond: 0,
+    brokers: [['TIAA plans only', true]],
+    holdings: [['Apple (AAPL)', 5.4], ['Microsoft (MSFT)', 5.0], ['NVIDIA (NVDA)', 4.8], ['Amazon (AMZN)', 3.1], ['Alphabet (GOOG)', 2.9]],
+    principles: 'The dominant retirement vehicle for US academic and nonprofit employees since 1918. CREF Stock is not a pure index fund — it uses a quantitative active overlay on a broad equity benchmark, introducing slight active risk vs. passive. Available only through TIAA-sponsored employer plans. Structured as a variable annuity, which uniquely offers optional lifetime income guarantees. The annuity structure and income feature are the genuine differentiators no passive index fund can replicate.',
+    badges: [['risk', 'High fees (0.37%)'], ['warn', 'Plan lock-in'], ['warn', 'Active drift'], ['info', 'Lifetime income option']],
+    riskDetail: 'The 0.37% expense ratio is 5–25x more expensive than comparable passive funds. On a $500K portfolio, this is $1,850/year in fees — compounding over 30 years represents dramatic drag: roughly $180K in forgone returns vs. VTSAX on a $500K starting balance. TIAA plans often restrict transfers while employed. The quantitative active overlay has historically underperformed vs. passive (18.5% vs 22.0% category avg this year). The lifetime income annuity option is genuinely valuable but must be weighed against cumulative fee cost.',
+    prospects: 'CREF Stock is the de facto option for tens of millions of TIAA participants who cannot access VTSAX or FXAIX in their employer plan. If your plan offers a low-cost index fund alternative alongside CREF Stock, the index fund is generally preferable during accumulation. The TIAA Traditional fixed annuity (not CREF Stock) is where the real value lies — consider using both in combination. Net of fees, 10-year expected return: 6–8%. The fee drag is the primary risk, not the market exposure.',
+    spark: [100,101,105,109,107,103,100,107,111,110,113,119,116,121,124,124,125,129,127,138,141,139,138,142,134,141,146,148,148,153,156,161,163,158,161,163]
+  }
+];
+
+const tracker = (() => {
+  let sortCol = null, sortDir = 1, activeCategory = 'all', searchQuery = '';
+  const charts = {};
+
+  function sparklineSVG(data, w=106, h=34) {
+    const mn = Math.min(...data), mx = Math.max(...data), r = mx - mn || 1;
+    const pts = data.map((v, i) => {
+      const x = (i / (data.length - 1)) * w;
+      const y = h - ((v - mn) / r) * (h - 4) - 2;
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+    const up = data[data.length - 1] >= data[0];
+    const col = up ? '#00c97b' : '#ff4d4d';
+    const lastX = w.toFixed(1), lastY = (h - ((data[data.length-1] - mn) / r) * (h - 4) - 2).toFixed(1);
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block;overflow:visible">
+      <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+      <circle cx="${lastX}" cy="${lastY}" r="2.5" fill="${col}"/>
+    </svg>`;
+  }
+
+  function retVal(v, showSign=true) {
+    const cls = v > 0 ? 'pos' : v < 0 ? 'neg' : 'neu';
+    const sign = showSign && v > 0 ? '+' : '';
+    return `<span class="ret-val ${cls}">${sign}${v.toFixed(1)}%</span>`;
+  }
+
+  function expVal(v) {
+    if (v === 0) return `<span class="exp-val exp-free">FREE</span>`;
+    if (v > 0.2) return `<span class="exp-val exp-high">${v.toFixed(3)}%</span>`;
+    return `<span class="exp-val exp-low">${v.toFixed(3)}%</span>`;
+  }
+
+  function badges(bs) {
+    const map = { 'warn': 'badge-warn', 'risk': 'badge-risk', 'ok': 'badge-ok', 'info': 'badge-info' };
+    return '<div class="badges">' + bs.map(([type, text]) => `<span class="badge ${map[type]}">${text}</span>`).join('') + '</div>';
+  }
+
+  function holdingBars(hlds) {
+    const mx = Math.max(...hlds.map(h => h[1]));
+    return hlds.map(([n, p]) => `
+      <div class="holding-row">
+        <span class="h-name">${n}</span>
+        <div class="h-bar-wrap"><div class="h-bar" style="width:${((p/mx)*100).toFixed(0)}%"></div></div>
+        <span class="h-pct">${p.toFixed(1)}%</span>
+      </div>`).join('');
+  }
+
+  function allocBar(f) {
+    const segs = [];
+    if (f.us > 0) segs.push([f.us, '#4da6ff', 'US equity']);
+    const devIntl = f.cat === 'International' ? f.intl * 0.77 : f.intl;
+    const emIntl = f.cat === 'International' ? f.intl * 0.23 : 0;
+    if (devIntl > 0) segs.push([devIntl, '#00c97b', 'Intl developed']);
+    if (emIntl > 1) segs.push([Math.round(emIntl), '#f0a500', 'Emerging mkts']);
+    if (f.bond > 0) segs.push([f.bond, '#9a9690', 'Bonds']);
+    const bar = segs.map(([p, c]) => `<div style="flex:${p};background:${c};min-width:2px"></div>`).join('');
+    const leg = segs.map(([p, c, l]) => `<span><span class="alloc-dot" style="background:${c}"></span>${l} ${p.toFixed(0)}%</span>`).join('');
+    return `<div class="alloc-bar">${bar}</div><div class="alloc-legend">${leg}</div>`;
+  }
+
+  function renderDetail(f) {
+    const id = 'fd-' + f.ticker.replace(/\s/g,'_');
+    const delta = (f.ret1 - f.bret);
+    const vscat = (f.ret1 - f.catAvg);
+    const brokerHtml = f.brokers.map(([n, p]) => `<span class="broker-pill ${p ? 'primary' : ''}">${n}</span>`).join('');
+    return `
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-label">Index tracked &amp; investment philosophy</div>
+        <div class="index-name">${f.tracks}</div>
+        <div class="detail-text">${f.principles}</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Top 5 holdings by weight</div>
+        ${holdingBars(f.holdings)}
+        <div style="margin-top:14px"><div class="detail-label">Portfolio allocation</div>${allocBar(f)}</div>
+      </div>
+    </div>
+    <div class="detail-grid-3">
+      <div class="detail-card">
+        <div class="detail-label">Key metrics</div>
+        <div class="kv-row"><span class="k">AUM</span><span class="v" style="color:var(--teal)">${f.aum}</span></div>
+        <div class="kv-row"><span class="k">Min. investment</span><span class="v">${f.min}</span></div>
+        <div class="kv-row"><span class="k">Expense ratio</span><span class="v" style="color:${f.exp===0?'var(--green)':f.exp>0.2?'var(--red)':'var(--text)'}">${f.exp===0?'FREE':f.exp.toFixed(3)+'%'}</span></div>
+        <div class="kv-row"><span class="k">1Y return</span><span class="v" style="color:var(--green)">+${f.ret1.toFixed(1)}%</span></div>
+        <div class="kv-row"><span class="k">vs benchmark</span><span class="v" style="color:${delta>=0?'var(--green)':'var(--red)'}">${delta>=0?'+':''}${delta.toFixed(1)}%</span></div>
+        <div class="kv-row"><span class="k">vs category avg</span><span class="v" style="color:${vscat>=0?'var(--green)':'var(--red)'}">${vscat>=0?'+':''}${vscat.toFixed(1)}%</span></div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Available at</div>
+        <div style="margin-top:4px">${brokerHtml}</div>
+        <div style="margin-top:16px"><div class="detail-label">US vs international exposure</div>${allocBar(f)}</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">1Y performance vs benchmark</div>
+        <div class="chart-canvas-wrap">
+          <canvas id="${id}-chart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-label">Risk analysis — current market context</div>
+        <div style="margin-bottom:10px">${badges(f.badges)}</div>
+        <div class="detail-text">${f.riskDetail}</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Future prospects — macro outlook 2026–2035</div>
+        <div class="detail-text">${f.prospects}</div>
+      </div>
+    </div>`;
+  }
+
+  function initChart(f) {
+    const id = 'fd-' + f.ticker.replace(/\s/g,'_');
+    const canvas = document.getElementById(id + '-chart');
+    if (!canvas || charts[id]) return;
+    const delta = f.ret1 - f.bret;
+    const vscat = f.ret1 - f.catAvg;
+    charts[id] = new Chart(canvas.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['This fund', 'Benchmark', 'Category avg'],
+        datasets: [{
+          data: [f.ret1, f.bret, f.catAvg],
+          backgroundColor: ['rgba(0,201,123,0.85)', 'rgba(77,166,255,0.7)', 'rgba(154,150,144,0.6)'],
+          borderColor: ['#00c97b', '#4da6ff', '#5c5a56'],
+          borderWidth: 1,
+          borderRadius: 3,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#222629',
+            borderColor: 'rgba(255,255,255,0.1)',
+            borderWidth: 1,
+            titleColor: '#9a9690',
+            bodyColor: '#e8e6e1',
+            titleFont: { family: "'IBM Plex Mono', monospace", size: 10 },
+            bodyFont: { family: "'IBM Plex Mono', monospace", size: 12, weight: '500' },
+            callbacks: { label: c => ' ' + c.parsed.y.toFixed(1) + '%' }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: Math.min(f.ret1, f.bret, f.catAvg) * 0.9,
+            ticks: { callback: v => v + '%', font: { family: "'IBM Plex Mono'", size: 9 }, color: '#5c5a56' },
+            grid: { color: 'rgba(255,255,255,0.04)' },
+            border: { color: 'rgba(255,255,255,0.07)' }
+          },
+          x: {
+            ticks: { font: { family: "'IBM Plex Mono'", size: 9 }, color: '#5c5a56' },
+            grid: { display: false },
+            border: { color: 'rgba(255,255,255,0.07)' }
+          }
+        }
+      }
+    });
+  }
+
+  function getFiltered() {
+    let fd = [...FUNDS];
+    if (activeCategory !== 'all') fd = fd.filter(f => f.cat === activeCategory);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      fd = fd.filter(f =>
+        f.ticker.toLowerCase().includes(q) ||
+        f.name.toLowerCase().includes(q) ||
+        f.cat.toLowerCase().includes(q) ||
+        f.tracks.toLowerCase().includes(q) ||
+        f.brokers.some(([n]) => n.toLowerCase().includes(q))
+      );
+    }
+    if (sortCol) {
+      fd.sort((a, b) => {
+        let va, vb;
+        if (sortCol === 'ticker') { va = a.ticker; vb = b.ticker; return sortDir * va.localeCompare(vb); }
+        if (sortCol === 'name') { va = a.name; vb = b.name; return sortDir * va.localeCompare(vb); }
+        if (sortCol === 'exp') { va = a.exp; vb = b.exp; }
+        if (sortCol === 'ret1') { va = a.ret1; vb = b.ret1; }
+        if (sortCol === 'vs') { va = a.ret1 - a.bret; vb = b.ret1 - b.bret; }
+        return sortDir * (va - vb);
+      });
+    }
+    return fd;
+  }
+
+  function render() {
+    Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} });
+    for (const k in charts) delete charts[k];
+
+    const fd = getFiltered();
+    const list = document.getElementById('fund-list');
+
+    if (fd.length === 0) {
+      list.innerHTML = '<div class="empty-state"><p>No funds match your filter.</p></div>';
+      document.getElementById('count-badge').textContent = '0 funds';
+      return;
+    }
+
+    document.getElementById('count-badge').textContent = `${fd.length} of ${FUNDS.length} funds`;
+
+    list.innerHTML = fd.map((f, i) => {
+      const id = 'fd-' + f.ticker.replace(/\s/g,'_');
+      const delta = f.ret1 - f.bret;
+      return `
+      <div class="fund-row" id="${id}-row" style="animation:fadeIn .15s ease ${i * 0.03}s both">
+        <div class="fund-main" onclick="tracker.toggle('${id}', '${f.ticker}')">
+          <div class="cell"><span class="ticker">${f.ticker}</span></div>
+          <div class="cell" style="flex-direction:column;align-items:flex-start;gap:1px">
+            <span class="fund-name">${f.name}</span>
+            <span class="fund-sub">${f.sub}</span>
+          </div>
+          <div class="cell text-right">${expVal(f.exp)}</div>
+          <div class="cell text-right">${retVal(f.ret1)}</div>
+          <div class="cell text-right">${retVal(delta)}</div>
+          <div class="cell text-center sparkline-wrap">${sparklineSVG(f.spark)}</div>
+          <div class="cell">${badges(f.badges)}</div>
+          <div class="cell text-center"><button class="expand-btn" id="${id}-btn" aria-label="Expand">▾</button></div>
+        </div>
+        <div class="fund-detail" id="${id}-det">
+          ${renderDetail(f)}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function updateSortUI() {
+    document.querySelectorAll('.th').forEach(th => th.classList.remove('sorted'));
+    document.querySelectorAll('.sort-icon').forEach(si => si.textContent = '↕');
+    if (sortCol) {
+      const th = document.querySelector(`.th[data-col="${sortCol}"]`);
+      const si = document.getElementById('si-' + sortCol);
+      if (th) th.classList.add('sorted');
+      if (si) si.textContent = sortDir === 1 ? '↑' : '↓';
+    }
+  }
+
+  return {
+    init() {
+      document.querySelectorAll('.th[onclick]').forEach(th => {
+        const m = th.getAttribute('onclick').match(/'(\w+)'/);
+        if (m) th.setAttribute('data-col', m[1]);
+      });
+      render();
+    },
+    sort(col) {
+      if (sortCol === col) { sortDir *= -1; }
+      else { sortCol = col; sortDir = 1; }
+      updateSortUI();
+      render();
+    },
+    setCategory(btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      render();
+    },
+    filter() {
+      searchQuery = document.getElementById('search').value;
+      render();
+    },
+    toggle(id, ticker) {
+      const det = document.getElementById(id + '-det');
+      const btn = document.getElementById(id + '-btn');
+      if (!det) return;
+      const isOpen = det.classList.contains('open');
+      document.querySelectorAll('.fund-detail').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.expand-btn').forEach(b => { b.classList.remove('open'); b.textContent = '▾'; });
+      if (!isOpen) {
+        det.classList.add('open');
+        btn.classList.add('open');
+        btn.textContent = '▴';
+        const f = FUNDS.find(f => f.ticker === ticker);
+        if (f) setTimeout(() => initChart(f), 80);
+        setTimeout(() => det.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+      }
+    }
+  };
+})();
+
+document.addEventListener('DOMContentLoaded', () => tracker.init());
+</script>
+</body>
+</html>
