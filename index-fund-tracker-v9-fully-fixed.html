@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index Fund Intelligence · Macro-Aware Tracker · Q1 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>:root{--bg:#0c0e10;--bg2:#131618;--bg3:#191c1f;--bg4:#21262b;--bg5:#2a2f35;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--border3:rgba(255,255,255,0.2);--text:#ddd9d2;--text2:#8a8680;--text3:#4e4c49;--text4:#3a3835;--green:#00c97b;--green2:rgba(0,201,123,0.12);--red:#ff5252;--red2:rgba(255,82,82,0.12);--amber:#f0a500;--amber2:rgba(240,165,0,0.12);--blue:#4da6ff;--blue2:rgba(77,166,255,0.12);--teal:#00d4c8;--teal2:rgba(0,212,200,0.1);--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;--goldilocks:#00c97b;--goldilocks2:rgba(0,201,123,0.18);--overheat:#f0a500;--overheat2:rgba(240,165,0,0.18);--stagflation:#ff5252;--stagflation2:rgba(255,82,82,0.18);--recession:#4da6ff;--recession2:rgba(77,166,255,0.18);}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.5;min-height:100vh}.site-header{background:var(--bg2);border-bottom:1px solid var(--border2);padding:20px 28px;position:sticky;top:0;z-index:200}.header-inner{max-width:1480px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}.brand h1{font-family:var(--serif);font-size:20px;font-weight:300;font-style:italic;color:var(--text)}.brand p{font-size:10px;color:var(--text3);font-family:var(--mono);margin-top:1px;letter-spacing:.5px}.live-dot{width:6px;height:6px;background:var(--red);border-radius:50%;display:inline-block;margin-right:5px;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}.header-signals{display:flex;gap:1px;margin-left:auto;background:var(--bg3);border:1px solid var(--border);border-radius:4px;overflow:hidden}.hsig{padding:8px 13px;text-align:center;border-right:1px solid var(--border);cursor:help;position:relative}.hsig:last-child{border-right:none}.hsig .val{font-family:var(--mono);font-size:13px;font-weight:500}.hsig .lbl{font-size:9px;color:var(--text3);letter-spacing:.5px;margin-top:1px}#ftip{position:fixed;z-index:9999;pointer-events:none;display:none;background:#1e2428;border:1px solid var(--border2);border-radius:4px;padding:10px 13px;width:250px;box-shadow:0 6px 24px rgba(0,0,0,.6)}#ftip.visible{display:block}#ftip::after{content:'';position:absolute;border:5px solid transparent}#ftip.dir-up::after{top:100%;left:var(--arrow-x,50%);transform:translateX(-50%);border-top-color:#1e2428}#ftip.dir-down::after{bottom:100%;left:var(--arrow-x,50%);transform:translateX(-50%);border-bottom-color:#1e2428}.ftip-title{font-family:var(--mono);font-size:9px;letter-spacing:.5px;color:var(--teal);margin-bottom:5px;display:block}.ftip-body{font-size:10px;color:var(--text2);line-height:1.6;display:block}.macro-dash{background:var(--bg2);border-bottom:1px solid var(--border)}.macro-inner{max-width:1480px;margin:0 auto;padding:20px 28px}.macro-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}.macro-toggle h2{font-family:var(--serif);font-size:15px;font-weight:300;font-style:italic}.tog-hint{font-size:10px;color:var(--text3);font-family:var(--mono)}.tog-icon{font-size:11px;color:var(--text3);transition:transform .25s;margin-left:4px}.tog-icon.open{transform:rotate(180deg)}.macro-body{display:none;margin-top:18px}.macro-body.open{display:block}.macro-grid{display:grid;grid-template-columns:310px 1fr;gap:20px}.quadrant-wrap{position:relative}.quadrant-title{font-size:9px;color:var(--text3);font-family:var(--mono);letter-spacing:.6px;margin-bottom:6px}.quadrant-shell{display:flex;align-items:stretch;gap:0}.q-y-axis{display:flex;flex-direction:column;align-items:center;width:22px;flex-shrink:0;padding-bottom:20px}.q-y-label{font-size:8px;color:var(--text3);font-family:var(--mono);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:.5px;margin-top:auto;margin-bottom:auto}.q-y-arrow{font-size:12px;color:var(--text3);margin-bottom:2px;line-height:1}.q-main{flex:1;display:flex;flex-direction:column;gap:0}.quadrant{width:100%;aspect-ratio:1;border:1px solid var(--border2);border-radius:4px;position:relative;overflow:visible;background:var(--bg3)}.q-cell{position:absolute;width:50%;height:50%;display:flex;flex-direction:column;overflow:hidden;border-radius:0}.q-cell-tl{top:0;left:0;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2);border-radius:4px 0 0 0}.q-cell-tr{top:0;right:0;border-bottom:1px solid var(--border2);border-radius:0 4px 0 0}.q-cell-bl{bottom:0;left:0;border-right:1px solid var(--border2);border-radius:0 0 0 4px}.q-cell-br{bottom:0;right:0;border-radius:0 0 4px 0}.q-cell-bar{height:16px;display:flex;align-items:center;justify-content:space-between;padding:0 7px;flex-shrink:0;font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.5px}.q-cell-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 6px;gap:2px}.q-cell-active .q-cell-body{background:rgba(255,82,82,0.10)}.q-cell-active{box-shadow:0 0 0 4px rgba(255,82,82,0.15),0 0 18px 4px rgba(255,82,82,0.18);z-index:2}.q-cell-name{font-size:9px;font-weight:500;font-family:var(--mono);letter-spacing:.3px}.q-cell-funds{font-size:7px;opacity:.55;text-align:center;line-height:1.5;font-family:var(--mono)}.q-now-badge{background:rgba(0,0,0,.35);border-radius:2px;padding:1px 4px;font-size:7px;letter-spacing:.3px}.q-x-row{display:flex;align-items:center;padding-top:4px;padding-left:0}.q-x-label{font-size:8px;color:var(--text3);font-family:var(--mono);letter-spacing:.4px;text-align:center;flex:1}.q-x-arrow{font-size:11px;color:var(--text3);line-height:1}.signals-section{display:flex;flex-direction:column;gap:12px}.signals-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.signal-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px;cursor:help}.signal-label{font-size:9px;font-family:var(--mono);color:var(--text3);letter-spacing:.5px;margin-bottom:3px;display:flex;align-items:center;gap:4px}.signal-label-q{font-size:8px;color:var(--text3);opacity:.5}.signal-val{font-family:var(--mono);font-size:15px;font-weight:500}.signal-change{font-size:9px;font-family:var(--mono);margin-top:2px}.signal-bar{height:2px;border-radius:2px;background:var(--bg5);margin-top:6px;overflow:hidden}.signal-bar-fill{height:100%;border-radius:2px}.corr-section{margin-top:4px}.corr-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}.corr-title{font-size:9px;font-family:var(--mono);color:var(--text3);letter-spacing:.5px}.corr-legend{display:flex;gap:10px;font-size:8px;font-family:var(--mono)}.cl-item{display:flex;align-items:center;gap:4px}.cl-dot{width:8px;height:8px;border-radius:2px}.corr-wrap{overflow-x:auto}.cheat{border-collapse:collapse;font-family:var(--mono);width:100%}.cheat th{padding:3px 6px;color:var(--text3);white-space:nowrap;text-align:center;font-size:8px}.cheat td{width:34px;height:26px;text-align:center;border:1px solid var(--bg);font-size:9px;font-weight:500;cursor:help}.cheat td.diag{background:var(--bg4);color:var(--text3)}.cheat .rn{text-align:right;padding:2px 6px;color:var(--text3);white-space:nowrap;font-size:8px}.regime-narrative{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:12px 14px}.regime-narrative h3{font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;margin-bottom:6px}.regime-narrative p{font-size:10px;color:var(--text2);line-height:1.7}.triggers{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}.triggers h4{font-size:9px;font-family:var(--mono);color:var(--text3);letter-spacing:.5px;margin-bottom:5px}.trigger-item{font-size:10px;color:var(--text2);margin-bottom:3px;padding-left:12px;position:relative}.trigger-item::before{content:'→';position:absolute;left:0;color:var(--text3)}.controls-wrap{background:var(--bg2);border-bottom:1px solid var(--border)}.controls-bar{max-width:1480px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search-wrap{position:relative;flex:0 0 180px}.search-wrap svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);opacity:.35;pointer-events:none}#search{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:5px 9px 5px 29px;font-size:11px;color:var(--text);font-family:var(--mono);outline:none}#search:focus{border-color:rgba(0,201,123,.4)}#search::placeholder{color:var(--text3)}.vsep{width:1px;height:16px;background:var(--border2);flex-shrink:0}.catbtn{background:transparent;border:1px solid var(--border);border-radius:3px;color:var(--text2);font-size:10px;font-family:var(--mono);padding:4px 9px;cursor:pointer;transition:all .12s;white-space:nowrap;letter-spacing:.3px}.catbtn:hover{border-color:var(--border2);color:var(--text)}.catbtn.on{background:var(--green2);border-color:var(--green);color:var(--green)}.ctrl-right{margin-left:auto;display:flex;align-items:center;gap:8px}.vtog{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:3px;overflow:hidden}.vtbtn{background:none;border:none;color:var(--text3);font-size:10px;font-family:var(--mono);padding:5px 10px;cursor:pointer;transition:all .12s;border-right:1px solid var(--border)}.vtbtn:last-child{border-right:none}.vtbtn.on{background:var(--bg5);color:var(--text)}.count{font-family:var(--mono);font-size:10px;color:var(--text3)}.table-wrap{max-width:1480px;margin:0 auto;padding:0 28px 48px}.table-container{border:1px solid var(--border);border-radius:4px;overflow-x:auto;margin-top:16px}.th-row{display:grid;grid-template-columns:4px 68px 150px 54px 76px 120px 112px 72px 128px 94px 84px 24px;background:var(--bg2);border-bottom:1px solid var(--border)}.th{padding:9px 10px;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.6px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:4px;transition:color .12s;white-space:nowrap}.th:hover{color:var(--text2)}.th.sorted{color:var(--green)}.th.tr{justify-content:flex-end}.th.tc{justify-content:center}.th.no-sort{cursor:default}.si{font-size:8px;opacity:.5}.th.sorted .si{opacity:1;color:var(--green)}.cols-compact .col-sec{display:none}.cols-compact .th-row,.cols-compact .fmain{grid-template-columns:4px 68px 150px 54px 76px 84px 24px}@media(max-width:1200px){#table-panel:not(.cols-expanded) .col-sec{display:none}#table-panel:not(.cols-expanded) .th-row,#table-panel:not(.cols-expanded) .fmain{grid-template-columns:4px 68px 150px 54px 76px 84px 24px}}#coltogbtn{background:transparent;border:1px solid var(--border2);border-radius:3px;color:var(--text2);font-size:10px;font-family:var(--mono);padding:4px 9px;cursor:pointer;transition:all .12s;white-space:nowrap;letter-spacing:.3px;display:flex;align-items:center;gap:5px}#coltogbtn:hover{border-color:var(--border3);color:var(--text)}#coltogbtn.compact{background:var(--blue2);border-color:var(--blue);color:var(--blue)}.spark-toggle-row{display:flex;gap:2px;align-items:center}.sptbtn{background:none;border:1px solid transparent;color:var(--text3);font-size:8px;font-family:var(--mono);padding:1px 4px;cursor:pointer;border-radius:2px;transition:all .12s;line-height:1.2}.sptbtn:hover{color:var(--text2);border-color:var(--border)}.sptbtn.on{background:var(--green2);border-color:var(--green);color:var(--green)}#fund-list{border-bottom:1px solid var(--border)}.fund-row{border-bottom:1px solid var(--border)}.fund-row:last-child{border-bottom:none}.fmain{display:grid;grid-template-columns:4px 68px 150px 54px 76px 120px 112px 72px 128px 94px 84px 24px;cursor:pointer}.fmain:hover{background:var(--bg3)}.fcell{padding:10px 10px;display:flex;align-items:center}.fcell.tr{justify-content:flex-end}.fcell.tc{justify-content:center}.regime-bar{width:4px;align-self:stretch;flex-shrink:0;padding:0;border-radius:0}.ticker{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--teal)}.fn{min-width:0;overflow-wrap:break-word;word-break:break-word}.fn p{font-size:11px;font-weight:500;line-height:1.3;white-space:normal}.fn small{font-size:9px;color:var(--text3);font-family:var(--mono);white-space:normal}.fcell-top{align-items:flex-start;padding-top:12px}.mv{font-family:var(--mono);font-size:11px;font-weight:500}.pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--text2)}.exp-free{color:var(--green)}.exp-lo{color:var(--text2)}.exp-hi{color:var(--red)}.vs-cell{display:flex;flex-direction:column;align-items:flex-end;gap:1px}.vs-bm-label{font-size:8px;color:var(--text3);font-family:var(--mono);letter-spacing:.2px}.badges2{display:flex;flex-wrap:wrap;gap:2px}.badge2{font-size:8px;font-family:var(--mono);padding:1px 5px;border-radius:2px;letter-spacing:.3px;white-space:nowrap}.b-w{background:var(--amber2);color:var(--amber)}.b-r{background:var(--red2);color:var(--red)}.b-g{background:var(--green2);color:var(--green)}.b-b{background:var(--blue2);color:var(--blue)}.regime-score{display:flex;gap:2px;align-items:center}.rs-dot{width:6px;height:6px;border-radius:50%}.rs-empty{background:var(--bg5)}.xbtn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:12px;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:2px;transition:all .12s}.xbtn:hover{background:var(--bg4);color:var(--text)}.xbtn.open{color:var(--green)}.fdet{display:none;background:var(--bg2);border-top:1px solid var(--border2)}.fdet.open{display:block;animation:fadeUp .18s ease}@keyframes fadeUp{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px}.tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);font-size:10px;font-family:var(--mono);padding:10px 14px;cursor:pointer;letter-spacing:.4px;transition:all .12s;margin-bottom:-1px}.tab:hover{color:var(--text)}.tab.on{color:var(--green);border-bottom-color:var(--green)}.tab-panel{display:none;padding:20px}.tab-panel.on{display:block}.dp2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.dp3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}.dp4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:14px}.dc{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px}.dlbl{font-family:var(--mono);font-size:9px;letter-spacing:.7px;color:var(--text3);margin-bottom:8px;text-transform:uppercase}.dtxt{font-size:11px;color:var(--text2);line-height:1.7}.iname{font-size:11px;font-weight:500;color:var(--teal);font-family:var(--mono);margin-bottom:8px}.kv{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-size:10px}.kv:last-child{border-bottom:none}.kv .k{color:var(--text3);font-family:var(--mono)}.kv .v{font-family:var(--mono);font-weight:500}.hrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}.hn{font-size:9px;width:130px;color:var(--text2);font-family:var(--mono);flex-shrink:0}.hbw{flex:1;height:2px;background:var(--bg5);border-radius:2px;overflow:hidden}.hbf{height:100%;background:var(--teal)}.hpc{font-family:var(--mono);font-size:9px;color:var(--text3);width:28px;text-align:right;flex-shrink:0}.abar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:6px 0}.aleg{display:flex;flex-wrap:wrap;gap:10px;font-size:9px;color:var(--text3)}.adot{width:7px;height:7px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}.bpill{display:inline-block;background:var(--bg4);border:1px solid var(--border2);border-radius:2px;font-size:9px;font-family:var(--mono);color:var(--text2);padding:2px 7px;margin:2px 2px 2px 0}.bpill.primary{border-color:rgba(0,212,200,.3);color:var(--teal);background:var(--teal2)}.chw{position:relative;width:100%;height:130px}.val-gauge{text-align:center;padding:6px 0}.val-gauge .big{font-family:var(--mono);font-size:22px;font-weight:500}.val-gauge .sub{font-size:9px;color:var(--text3);font-family:var(--mono);margin-top:2px}.val-hist{height:4px;border-radius:2px;background:var(--bg5);margin:8px 0;position:relative}.val-hist-fill{position:absolute;top:0;left:0;height:100%;border-radius:2px}.val-hist-dot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;border:2px solid var(--bg2);transform:translate(-50%,-50%);z-index:2}.val-hist-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--text3);font-family:var(--mono)}.regime-row{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--border)}.regime-row:last-child{border-bottom:none}.regime-name{font-size:10px;font-family:var(--mono);width:100px;flex-shrink:0}.regime-stars{display:flex;gap:3px;flex:1}.rstar{width:12px;height:12px;border-radius:2px}.regime-note{font-size:9px;color:var(--text3);font-family:var(--mono)}.scenario-table{width:100%;border-collapse:collapse;font-size:10px}.scenario-table th{font-family:var(--mono);font-size:9px;letter-spacing:.4px;color:var(--text3);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3)}.scenario-table th.tr{text-align:right}.scenario-table td{padding:7px 10px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;vertical-align:middle}.scenario-table tr:last-child td{border-bottom:none}.scenario-table td.tr{text-align:right}.prob-bar{width:50px;height:3px;background:var(--bg5);border-radius:2px;display:inline-block;vertical-align:middle;margin-left:5px;overflow:hidden}.prob-fill{height:100%;border-radius:2px}.tax-grade{width:44px;height:44px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:500;flex-shrink:0}.tax-row{display:flex;align-items:flex-start;gap:12px}.rate-impact{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.ri-card{background:var(--bg4);border-radius:3px;padding:8px;text-align:center}.ri-val{font-family:var(--mono);font-size:14px;font-weight:500}.ri-lbl{font-size:8px;color:var(--text3);font-family:var(--mono);margin-top:2px}.cdecomp{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:8px}.cd-seg{flex:1;padding:10px;text-align:center;border-right:1px solid var(--border)}.cd-seg:last-child{border-right:none}.cd-val{font-family:var(--mono);font-size:14px;font-weight:500}.cd-lbl{font-size:8px;color:var(--text3);font-family:var(--mono);margin-top:2px}.mperiod{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:6px}.mp-cell{background:var(--bg3);padding:10px;text-align:center}.mp-val{font-family:var(--mono);font-size:13px;font-weight:500}.mp-lbl{font-size:8px;color:var(--text3);font-family:var(--mono);margin-top:2px}.spark-wrap{display:flex;align-items:center;justify-content:center}.ftype-cell{display:flex;flex-direction:column;gap:4px;align-items:flex-start}.ftype-date{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--teal)}.ftype-none{font-family:var(--mono);font-size:11px;color:var(--text4)}.ftype-tags{display:flex;flex-direction:column;gap:3px}.ftag{font-size:8px;font-family:var(--mono);padding:2px 6px;border-radius:2px;letter-spacing:.3px;white-space:nowrap;display:inline-block}.ftag-lc{background:var(--blue2);color:var(--blue)}.ftag-ar{background:var(--green2);color:var(--green)}.ftag-ai{background:var(--purple2);color:var(--purple)}#compare-panel{display:none;max-width:1480px;margin:16px 28px 48px;overflow-x:auto}.cmp-table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}.cmp-table th{font-family:var(--mono);font-size:9px;letter-spacing:.5px;color:var(--text3);padding:9px 12px;text-align:left;background:var(--bg2);border:1px solid var(--border);white-space:nowrap;position:sticky;top:0}.cmp-table th:first-child{left:0;z-index:2}.cmp-table td{padding:8px 12px;border:1px solid var(--border);vertical-align:middle;font-family:var(--mono);font-size:10px}.cmp-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}.cmp-table td:first-child{color:var(--text3);font-size:9px;letter-spacing:.4px;background:var(--bg2);position:sticky;left:0}.cmp-ticker{color:var(--teal);font-size:11px;font-weight:500}.cmp-bar-wrap{height:3px;background:var(--bg5);border-radius:2px;margin-top:3px;overflow:hidden;min-width:60px}.cmp-bar{height:100%;border-radius:2px}.empty{padding:50px;text-align:center;color:var(--text3);font-family:var(--mono);font-size:12px}.hidden{display:none}.site-footer{max-width:1480px;margin:0 auto;padding:20px 28px;color:var(--text3);font-size:9px;font-family:var(--mono);line-height:1.8;border-top:1px solid var(--border)}::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:3px}.regime-bar{position:sticky;left:0;z-index:3}.col-pin-ticker{position:sticky;left:4px;z-index:3;background:var(--bg2)}.fmain:hover .col-pin-ticker{background:var(--bg3)}.th-row .col-pin-name{position:sticky;left:72px;z-index:3;background:var(--bg2)}.fmain:hover .col-pin-name{background:var(--bg3)}.th-row .col-pin-exp{position:sticky;left:222px;z-index:3;background:var(--bg2)}.fmain:hover .col-pin-exp{background:var(--bg3)}.th-row .col-pin-ret{position:sticky;left:276px;z-index:3;background:var(--bg2)}.fmain:hover .col-pin-ret{background:var(--bg3)}.th-row .col-pin-ret::after{content:"";position:absolute;right:-10px;top:0;bottom:0;width:10px;background:linear-gradient(to right,var(--bg2),transparent);pointer-events:none;opacity:0;transition:opacity .15s}.table-scrolled .col-pin-ret::after{opacity:1}</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="header-inner">
+  <div class="brand">
+    <h1>Index Fund Intelligence</h1>
+    <p><span class="live-dot"></span>MACRO-AWARE TRACKER · Q1 2026 · 30 FUNDS</p>
+  </div>
+  <div class="header-signals" id="header-signals"></div>
+</div>
+</header>
+
+<div class="macro-dash">
+<div class="macro-inner">
+  <div class="macro-toggle" onclick="toggleMacro()">
+    <h2 style="font-family:var(--mono);font-size:13px;font-weight:500;font-style:normal;letter-spacing:.8px">CURRENT MACRO REGIME</h2>
+    <span style="font-size:10px;font-family:var(--mono);padding:3px 10px;border-radius:3px;border:1px solid;margin-left:4px" id="regime-chip"></span>
+    <span class="tog-hint">— click to expand</span>
+    <span class="tog-icon" id="macro-tog">▾</span>
+  </div>
+  <div class="macro-body" id="macro-body">
+    <div class="macro-grid">
+
+      <!-- LEFT: QUADRANT -->
+      <div class="quadrant-wrap">
+        <div class="quadrant-title">GROWTH × INFLATION REGIME QUADRANT</div>
+        <div class="quadrant-shell">
+          <div class="q-y-axis">
+            <div class="q-y-arrow">↑</div>
+            <div class="q-y-label">GROWTH</div>
+          </div>
+          <div class="q-main">
+            <div class="quadrant" id="quadrant">
+              <!-- TL: Goldilocks -->
+              <div class="q-cell q-cell-tl" style="color:var(--goldilocks);cursor:help" data-ttl="Goldilocks regime — strong growth, low inflation" data-tbd="The ideal investment environment: economy expands, inflation is tame, Fed is accommodative. US equities, tech, and growth stocks thrive. Prevailed broadly 2010–2021. Funds that score best here: VTSAX, VFIAX, QQQM." >
+                <div class="q-cell-bar" style="background:rgba(0,201,123,0.15)">
+                  <span data-ttl="Goldilocks regime" data-tbd="Strong growth + low inflation. The ideal environment: the economy expands, inflation is tame, and the Fed is accommodative. US equities, tech, and growth stocks thrive here. This regime broadly prevailed from 2010-2021." style="cursor:help">GOLDILOCKS ⓘ</span>
+                </div>
+                <div class="q-cell-body">
+                  <div class="q-cell-funds">VTSAX · VFIAX · QQQM</div>
+                </div>
+              </div>
+              <!-- TR: Overheating -->
+              <div class="q-cell q-cell-tr" style="color:var(--overheat);cursor:help" data-ttl="Overheating regime — strong growth, rising inflation" data-tbd="Economy runs hot. Commodities, real assets, energy, and international equities with commodity exposure outperform. Bonds suffer as the Fed hikes rates. Funds that score best here: VTIAX, VHYAX, IAU." >
+                <div class="q-cell-bar" style="background:rgba(240,165,0,0.15)">
+                  <span data-ttl="Overheating regime" data-tbd="Strong growth + rising inflation. The economy runs hot. Commodities, real assets, energy stocks, and international equities with commodity exposure tend to outperform. Bonds suffer. The Fed is likely beginning to raise interest rates." style="cursor:help">OVERHEATING ⓘ</span>
+                </div>
+                <div class="q-cell-body">
+                  <div class="q-cell-funds">VTIAX · commodities · TIPS</div>
+                </div>
+              </div>
+              <!-- BL: Recession -->
+              <div class="q-cell q-cell-bl" style="color:var(--recession);cursor:help" data-ttl="Recession regime — weak growth, low or falling inflation" data-tbd="Economy contracts, unemployment rises. Counterintuitively, bonds shine — investors flee to safety. VBTLX scores 5/5 here. Cash and defensive dividend stocks also hold up. Worst for QQQM." >
+                <div class="q-cell-bar" style="background:rgba(77,166,255,0.15)">
+                  <span data-ttl="Recession regime" data-tbd="Weak growth + low/falling inflation. The economy is contracting. Counterintuitively, this is when bonds work best as a hedge — investors flee to safety, driving bond prices up. VBTLX scores 5/5 in this quadrant. Cash and defensives also hold up." style="cursor:help">RECESSION ⓘ</span>
+                </div>
+                <div class="q-cell-body">
+                  <div class="q-cell-funds">VBTLX · cash · defensives</div>
+                </div>
+              </div>
+              <!-- BR: Stagflation — ACTIVE -->
+              <div class="q-cell q-cell-br q-cell-active" id="active-q-cell" style="color:var(--stagflation);cursor:help" data-ttl="Stagflation — weak growth AND high inflation (current regime, Q1 2026)" data-tbd="The worst of both worlds: stocks and bonds both struggle. Gold, TIPS, commodities, and short-duration cash are traditional shelters. VTIAX and IAU score best. QQQM and VBTLX score lowest." >
+                <div class="q-cell-bar" id="active-q-bar" style="background:rgba(255,82,82,0.30)">
+                  <span data-ttl="Stagflation regime" data-tbd="Weak growth + high inflation. The worst of both worlds — neither stocks nor bonds work well. Gold, TIPS, commodities, and short-duration cash are the traditional shelters. Rare but devastating. The current Q1 2026 environment shows characteristics of mild stagflation." style="cursor:help">STAGFLATION ⓘ</span>
+                  <span class="q-now-badge" id="q-now-badge">● NOW</span>
+                </div>
+                <div class="q-cell-body">
+                  <div class="q-cell-funds">gold · TIPS · commodities</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="q-x-row">
+              <div class="q-x-label">INFLATION</div>
+              <div class="q-x-arrow">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIGNALS + NARRATIVE + CORR -->
+      <div class="signals-section">
+        <div class="signals-row" id="signals-grid"></div>
+        <div class="regime-narrative" id="regime-narrative"></div>
+        <div class="corr-section">
+          <div class="corr-header-row">
+            <div class="corr-title" data-ttl="What is correlation?" data-tbd="Correlation measures how similarly two funds move together. Values range from −1.0 to +1.0. Red (0.7–1.0): move together — holding both gives little diversification. Amber (0.3–0.7): moderate relationship. Green (&lt;0.3): low or negative — these funds genuinely hedge each other. In a good portfolio, you want low correlations between major holdings." style="cursor:help">CROSS-ASSET CORRELATION MATRIX (3Y ROLLING) ⓘ</div>
+            <div class="corr-legend">
+              <div class="cl-item"><div class="cl-dot" style="background:rgba(255,82,82,.7)"></div><span style="color:var(--text3)">High (moves together)</span></div>
+              <div class="cl-item"><div class="cl-dot" style="background:rgba(0,201,123,.7)"></div><span style="color:var(--text3)">Low (hedges)</span></div>
+            </div>
+          </div>
+          <div class="corr-wrap"><table class="cheat" id="corr-table"></table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls-wrap">
+<div class="controls-bar">
+  <div class="search-wrap">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search funds…" oninput="T.filter()">
+  </div>
+  <div class="vsep"></div>
+  <button class="catbtn on" data-cat="all" onclick="T.setCat(this)">All</button>
+  <button class="catbtn" data-cat="US Total Market" onclick="T.setCat(this)">US total mkt</button>
+  <button class="catbtn" data-cat="US Large Cap" onclick="T.setCat(this)">Large cap</button>
+  <button class="catbtn" data-cat="US Small/Mid Cap" onclick="T.setCat(this)">Small/Mid cap</button>
+  <button class="catbtn" data-cat="US Value" onclick="T.setCat(this)">Value</button>
+  <button class="catbtn" data-cat="Dividend" onclick="T.setCat(this)">Dividend</button>
+  <button class="catbtn" data-cat="Global" onclick="T.setCat(this)">Global</button>
+  <button class="catbtn" data-cat="International" onclick="T.setCat(this)">International</button>
+  <button class="catbtn" data-cat="Intl Developed" onclick="T.setCat(this)">Intl developed</button>
+  <button class="catbtn" data-cat="Bond" onclick="T.setCat(this)">Bonds</button>
+  <button class="catbtn" data-cat="Real Assets" onclick="T.setCat(this)">Real assets</button>
+  <button class="catbtn" data-cat="Balanced" onclick="T.setCat(this)">Balanced</button>
+  <button class="catbtn" data-cat="Target Date" onclick="T.setCat(this)">Target date</button>
+  <button class="catbtn" data-cat="Tech" onclick="T.setCat(this)">Tech</button>
+  <button class="catbtn" data-cat="Factor" onclick="T.setCat(this)">Factor</button>
+  <div class="ctrl-right">
+    <span class="count" id="count-lbl">10 of 30 funds</span>
+    <button id="coltogbtn" onclick="T.toggleCols(this)" title="Toggle secondary columns">⊟ compact</button>
+    <div class="vtog">
+      <button class="vtbtn on" onclick="T.setView('table',this)">TABLE</button>
+      <button class="vtbtn" onclick="T.setView('compare',this)">COMPARE ↔</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TABLE VIEW -->
+<div class="table-wrap" id="table-panel">
+
+  <!-- Regime legend -->
+  <div style="display:flex;align-items:center;gap:16px;padding:10px 2px 8px;flex-wrap:wrap">
+    <span style="font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.5px;white-space:nowrap">LEFT BAR =</span>
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:4px;height:16px;border-radius:2px;background:var(--green)"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--text2)">Well positioned in current regime (4–5/5)</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:4px;height:16px;border-radius:2px;background:var(--amber)"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--text2)">Neutral (3/5)</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:4px;height:16px;border-radius:2px;background:var(--red)"></div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--text2)">Unfavorable in current regime (1–2/5)</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;margin-left:4px;padding-left:10px;border-left:1px solid var(--border)">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--text3)">Current regime:</span>
+        <span style="font-family:var(--mono);font-size:9px;font-weight:500;color:var(--red)">STAGFLATION / SLOWDOWN</span>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <div class="th-row">
+      <div class="th no-sort"></div>
+      <div class="th col-pin-ticker" onclick="T.sort('ticker')" data-col="ticker">TICKER <span class="si" id="si-ticker">↕</span></div>
+      <div class="th col-pin-name" onclick="T.sort('name')" data-col="name">FUND <span class="si" id="si-name">↕</span></div>
+      <div class="th tr col-pin-exp" onclick="T.sort('exp')" data-col="exp">EXP % <span class="si" id="si-exp">↕</span></div>
+      <div class="th tr col-pin-ret" onclick="T.sort('ret1')" data-col="ret1">1Y RTN <span class="si" id="si-ret1">↕</span></div>
+      <div class="th tr col-sec" onclick="T.sort('vs')" data-col="vs">VS BENCHMARK <span class="si" id="si-vs">↕</span></div>
+      <div class="th tc no-sort col-sec">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <span>TREND</span>
+          <div class="spark-toggle-row">
+            <button class="sptbtn" onclick="T.setSpark('1y',this);event.stopPropagation()">1Y</button>
+            <button class="sptbtn" onclick="T.setSpark('3y',this);event.stopPropagation()">3Y</button>
+            <button class="sptbtn on" onclick="T.setSpark('5y',this);event.stopPropagation()">5Y</button>
+          </div>
+        </div>
+      </div>
+      <div class="th tr col-sec" onclick="T.sort('sharpe')" data-col="sharpe">SHARPE <span class="si" id="si-sharpe">↕</span></div>
+      <div class="th no-sort col-sec">RISK FLAGS</div>
+      <div class="th tc no-sort col-sec">FUND TYPE</div>
+      <div class="th tc no-sort">REGIME NOW</div>
+      <div class="th no-sort"></div>
+    </div>
+    <div id="fund-list"></div>
+  </div>
+  <div class="empty hidden" id="empty-state">No funds match your search.</div>
+</div>
+
+<!-- COMPARE VIEW -->
+<div id="compare-panel">
+  <div style="font-family:var(--mono);font-size:9px;color:var(--text3);margin-bottom:10px;letter-spacing:.5px">SIDE-BY-SIDE COMPARISON — ALL VISIBLE FUNDS · click TABLE to return to detail view</div>
+  <table class="cmp-table" id="cmp-table"></table>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary-section" style="max-width:1480px;margin:0 auto;padding:0 28px 48px">
+  <div id="glossary-toggle" onclick="toggleGlossary()" style="display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;padding:18px 0 14px;border-top:1px solid var(--border)">
+    <span style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.8px;color:var(--text)">GLOSSARY</span>
+    <span style="font-size:10px;font-family:var(--mono);color:var(--text3)">— every term, metric and indicator explained for beginners</span>
+    <span id="gloss-tog" style="font-size:11px;color:var(--text3);margin-left:auto;transition:transform .25s">▾</span>
+  </div>
+  <div id="glossary-body" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+      <div style="position:relative;flex:0 0 260px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:absolute;left:9px;top:50%;transform:translateY(-50%);opacity:.35;pointer-events:none;color:var(--text3)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="gloss-search" type="text" placeholder="Search terms…" oninput="filterGlossary(this.value)"
+          style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:6px 9px 6px 30px;font-size:11px;color:var(--text);font-family:var(--mono);outline:none">
+      </div>
+      <span id="gloss-count" style="font-family:var(--mono);font-size:10px;color:var(--text3)"></span>
+    </div>
+    <div id="gloss-grid"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  † Transaction fees may apply at this broker. NTF = No-Transaction-Fee (subject to broker's current policies — verify before investing). Brokerage availability is approximate; always confirm directly with your broker. Data: trailing 12M through Q1 2026. Sparklines normalized to 100 at period start. Scenario projections are calibrated estimates, not predictions. Sharpe/Sortino on 36M monthly returns. CAPE from trailing 10Y real earnings. Past performance does not guarantee future results. Not investment advice.
+</footer>
+
+<script>
+
+const SIGNAL_TIPS = {
+  'FED FUNDS RATE': { title:'Federal Funds Rate', body:'The interest rate at which banks lend money to each other overnight. Set by the Federal Reserve. When it rises, borrowing costs go up economy-wide — mortgages, car loans, and business credit all get more expensive. High rates hurt growth stocks most. Low/falling rates are generally good for equities.' },
+  '10Y TREASURY': { title:'10-Year Treasury Yield', body:'The annual interest the US government pays to borrow money for 10 years. This is the global benchmark for "risk-free" rates. When it rises, bond prices fall (they move inversely). It also affects mortgage rates and is used to discount future corporate earnings — rising yields hurt growth stocks with distant earnings.' },
+  '2S10S SPREAD': { title:'2s10s Yield Curve Spread', body:'The difference between the 10-year and 2-year Treasury yields. Normal: 10Y > 2Y (positive = upward curve). When inverted (negative), it has historically predicted recessions 12–18 months later with high reliability. Currently +19bps and steepening — the curve just uninverted, which is a lagging recession signal.' },
+  'CORE PCE YoY': { title:'Core PCE Inflation', body:'Personal Consumption Expenditures price index, excluding food and energy. This is the Federal Reserve\'s preferred inflation gauge — they explicitly target 2%. Above 2% = the Fed is likely to keep rates higher for longer, which pressures bond prices and growth stock valuations.' },
+  'DXY DOLLAR': { title:'US Dollar Index (DXY)', body:'Measures the USD against a basket of major currencies (euro, yen, pound, etc.). A falling dollar is a tailwind for international funds (like VTIAX, VTWAX) because their foreign holdings are worth more in USD terms when converted back. A rising dollar is a headwind for international investments.' },
+  'HY CREDIT SPRD': { title:'High-Yield Credit Spread', body:'The extra interest "junk" (below-investment-grade) bonds pay above Treasuries. When this spread rises, it signals investors are demanding more compensation for credit risk — a warning signal for economic stress. Spreads above 500–600bps have historically preceded recessions. Currently at 312bps — elevated but not at crisis levels.' },
+  'GOLD (XAU)': { title:'Gold Price', body:'Gold is the classic "fear trade." When investors lose confidence in currencies, governments, or financial systems, they buy gold. Gold at $3,117 — near all-time highs — signals institutional anxiety about US fiscal sustainability, dollar debasement, and geopolitical instability. Central banks have been buying gold heavily since 2022.' },
+  'MSCI EM vs SPX': { title:'Emerging Markets vs S&P 500 Relative Performance', body:'Compares MSCI Emerging Markets (developing countries like China, India, Brazil, Korea) to the S&P 500. When EM is outperforming (+6.4% YTD), it suggests the international thesis is playing out — lower valuations, USD weakness, and commodity tailwinds benefiting non-US markets. This directly validates the bull case for VTIAX and VTWAX.' },
+};
+
+const MACRO = {
+  regime:'stagflation', regimeLabel:'STAGFLATION / SLOWDOWN',
+  now:{x:.65,y:.32}, history:[{x:.25,y:.72,id:'hd-2023'},{x:.20,y:.65,id:'hd-2024'}],
+  signals:[
+    {label:'FED FUNDS RATE',val:'4.33%',change:'→ PAUSED',changeDir:0,barPct:72,barColor:'#f0a500'},
+    {label:'10Y TREASURY',val:'4.51%',change:'+38bps (3M)',changeDir:-1,barPct:68,barColor:'#ff5252'},
+    {label:'2S10S SPREAD',val:'+19bps',change:'↑ STEEPENING',changeDir:1,barPct:40,barColor:'#00c97b'},
+    {label:'CORE PCE YoY',val:'2.82%',change:'+0.2% (3M)',changeDir:-1,barPct:56,barColor:'#f0a500'},
+    {label:'DXY DOLLAR',val:'101.4',change:'−5.2% (6M)',changeDir:1,barPct:38,barColor:'#00c97b'},
+    {label:'HY CREDIT SPRD',val:'312bps',change:'+48bps (3M)',changeDir:-1,barPct:44,barColor:'#f0a500'},
+    {label:'GOLD (XAU)',val:'$3,117',change:'+21% (6M)',changeDir:1,barPct:82,barColor:'#00c97b'},
+    {label:'MSCI EM vs SPX',val:'+6.4%',change:'EM WINNING',changeDir:1,barPct:65,barColor:'#4da6ff'},
+  ],
+  narrative:`We are in a <strong>Stagflation / Slowdown</strong> quadrant: inflation remains above the Fed's 2% target (Core PCE 2.82%) while GDP has decelerated toward 1.6% on tariff drag and tightening credit. The yield curve just uninverted — a historically lagging recession indicator. Gold at $3,117 signals institutional flight from USD assets. The dollar's 5%+ 6-month decline is the dominant tailwind for international funds right now.`,
+  triggers:['TOWARD GOLDILOCKS: PCE falls below 2.4%, GDP re-accelerates above 2.5%, Fed pivots to rate cuts','DEEPER STAGFLATION: PCE re-accelerates above 3.5%, tariff second-round effects, energy shock','TOWARD RECESSION: Payrolls turn negative, credit spreads exceed 500bps, yield curve steepens sharply','DOLLAR COLLAPSE RISK: Fiscal crisis, Treasury auction failure, 30Y yield breaks 5.5% structurally'],
+  corrTickers:['VTSAX','VFIAX','VTWAX','VTIAX','VBTLX','VTTSX','QQQM','CREF'],
+  corrData:[
+    [1.00,0.98,0.94,0.78,0.14,0.96,0.91,0.95],
+    [0.98,1.00,0.91,0.76,0.11,0.93,0.94,0.93],
+    [0.94,0.91,1.00,0.88,0.17,0.92,0.82,0.90],
+    [0.78,0.76,0.88,1.00,0.13,0.74,0.65,0.76],
+    [0.14,0.11,0.17,0.13,1.00,0.28,0.09,0.16],
+    [0.96,0.93,0.92,0.74,0.28,1.00,0.87,0.94],
+    [0.91,0.94,0.82,0.65,0.09,0.87,1.00,0.88],
+    [0.95,0.93,0.90,0.76,0.16,0.94,0.88,1.00],
+  ]
+};
+
+const FUNDS=[
+{
+  ticker:'VTSAX',name:'Vanguard Total Stock Market',sub:'Admiral Shares · $3,000 min',cat:'US Total Market',
+  tracks:'CRSP US Total Market Index',exp:.04,min:'$3,000',aum:'$1.4T',
+  ret1:19.2,bmark:'CRSP US Total Mkt',bret:19.2,catAvg:20.1,
+  ret3:12.4,ret5:14.2,ret10:12.8,bestYr:'+32.3% (2019)',worstYr:'-19.5% (2022)',
+  sharpe:.82,sortino:1.12,maxDD:-19.8,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:33,fwdPE:21.5,impliedReturn:5.8,capeHist:72,capeNote:'Above 70th pctile — elevated vs history',recentPCT:'72nd'},
+  rateSens:{duration:null,plus50:-2.1,plus100:-4.0,plus200:-7.5,note:'Indirect rate sensitivity via growth stock multiple compression. No direct duration exposure.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:12,prob:35,note:'Inflation cools, growth holds'},{name:'Recession 2026',ret:-20,prob:20,note:'GDP contraction — typical -20 to -25%'},{name:'Stagflation',ret:-8,prob:25,note:'Margin compression + multiple contraction'},{name:'Dollar collapse',ret:-5,prob:10,note:'USD fall hurts vs international funds'},{name:'AI bubble burst',ret:-15,prob:8,note:'Top-10 concentration risk materializes'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Growth multiple compression'}],
+  tax:{grade:'A',turnover:3,divYield:1.4,taxChar:'Qualified dividends',etfEq:'VTI (0.03%)',recommendation:'Excellent for taxable accounts. Low turnover, qualified dividends. VTI is the ETF equivalent at 0.03% and may be marginally more tax-efficient via in-kind redemptions. Hold in either taxable or retirement.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TIAA (NTF eligible)',false],['E*TRADE (NTF)',false],['TD Ameritrade (NTF)',false],['Interactive Brokers',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',6.8],['Microsoft (MSFT)',6.1],['NVIDIA (NVDA)',5.9],['Amazon (AMZN)',3.8],['Meta (META)',2.9]],
+  principles:'Passive, market-cap-weighted ownership of the entire US equity universe — ~3,700 stocks from mega- to micro-cap. The canonical "own the whole market" passive fund. Built on effi...',
+  badges:[['w','Tech heavy'],['w','US only'],['g','0.04% cost']],
+  riskDetail:'Top 10 ≈ 30% of fund at elevated multiples. CAPE ~33x implies 10Y expected returns of ~5.8% real — below historical average. No international or bond exposure means full equity ...',
+  prospects:'Long-term case remains solid but elevated CAPE implies 6–8% nominal 10Y returns. USD structural weakness is a relative headwind vs international funds. Best paired with VTIAX fo...',
+  spark:[100,102,107,112,108,104,101,109,113,112,116,122,119,124,128,127,128,133,130,142,145,143,141,145,136,143,148,150,149,155,157,162,165,160,163,165]
+},
+{
+  ticker:'FZROX',name:'Fidelity ZERO Total Market',sub:'No minimum · Fidelity only · FREE',cat:'US Total Market',
+  tracks:'Fidelity US Total Investable Mkt Index (proprietary)',exp:.00,min:'$0',aum:'$18B',
+  ret1:19.3,bmark:'Fidelity US Total Mkt (prop.)',bret:19.3,catAvg:20.1,
+  ret3:12.5,ret5:14.3,ret10:null,bestYr:'+32.4% (2019)',worstYr:'-19.4% (2022)',
+  sharpe:.83,sortino:1.13,maxDD:-19.7,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:33,fwdPE:21.5,impliedReturn:5.8,capeHist:72,capeNote:'Same as VTSAX — tracks near-identically',recentPCT:'72nd'},
+  rateSens:{duration:null,plus50:-2.1,plus100:-4.0,plus200:-7.5,note:'Same rate sensitivity profile as VTSAX — identical portfolio composition.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:12,prob:35,note:'Inflation cools, growth holds'},{name:'Recession 2026',ret:-20,prob:20,note:'Same profile as VTSAX'},{name:'Stagflation',ret:-8,prob:25,note:'Margin compression'},{name:'Dollar collapse',ret:-5,prob:10,note:'Relative headwind vs intl'},{name:'AI bubble burst',ret:-15,prob:8,note:'Tech concentration risk'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Multiple compression'}],
+  tax:{grade:'A-',turnover:4,divYield:1.4,taxChar:'Qualified dividends',etfEq:'N/A — no ETF share class',recommendation:'Excellent for Fidelity IRAs and 401(k)s where portability is irrelevant. For taxable accounts: FZROX cannot be transferred in-kind — selling triggers capital gains. Consider VTI instead for taxable flexibility.'},
+  brokers:[['Fidelity only',true]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',6.9],['Microsoft (MSFT)',6.2],['NVIDIA (NVDA)',6.0],['Amazon (AMZN)',3.9],['Meta (META)',3.0]],
+  principles:'Zero expense ratio, zero minimum. Fidelity absorbs costs as a customer acquisition tool. Uses a proprietary index near-identical to VTSAX in practice. No share classes, fraction...',
+  badges:[['w','Fidelity lock-in'],['w','Proprietary idx'],['g','FREE']],
+  riskDetail:'Primary risk is Fidelity platform lock-in. Cannot transfer in-kind — moving brokers requires selling and triggers taxable events in non-retirement accounts. Fidelity controls th...',
+  prospects:'Same forward return expectation as VTSAX (~5.8% real implied 10Y). In tax-advantaged accounts, lock-in risk is irrelevant and FZROX wins on cost. In taxable accounts, the exit c...',
+  spark:[100,102,107,112,108,104,101,110,114,113,117,123,120,125,129,128,129,134,131,143,146,144,142,146,137,144,149,151,150,156,158,163,166,161,164,166]
+},
+{
+  ticker:'VFIAX',name:'Vanguard 500 Index Fund',sub:'Admiral · the original index fund',cat:'US Large Cap',
+  tracks:'S&P 500 Index',exp:.04,min:'$3,000',aum:'$900B',
+  ret1:24.5,bmark:'S&P 500',bret:24.5,catAvg:23.1,
+  ret3:13.1,ret5:14.9,ret10:13.2,bestYr:'+31.5% (2019)',worstYr:'-18.2% (2022)',
+  sharpe:.91,sortino:1.24,maxDD:-18.2,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:5,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:35,fwdPE:22.1,impliedReturn:5.2,capeHist:78,capeNote:'Near historical peak territory. Below only dot-com bubble (44x) and 2021 (38x)',recentPCT:'78th'},
+  rateSens:{duration:null,plus50:-2.5,plus100:-4.8,plus200:-8.8,note:'Large-cap growth dominance makes the S&P 500 more rate-sensitive than its historical average.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:13,prob:35,note:'Earnings growth sustains premium'},{name:'Recession 2026',ret:-22,prob:20,note:'Avg recession peak-to-trough -34%'},{name:'Stagflation',ret:-9,prob:25,note:'Worst for growth-heavy large caps'},{name:'Dollar collapse',ret:-6,prob:10,note:'Relative underperformance vs intl'},{name:'AI bubble burst',ret:-17,prob:8,note:'Top 10 = 35% of fund'},{name:'Rate spike +2%',ret:-11,prob:12,note:'Growth stock duration sensitivity'}],
+  tax:{grade:'A',turnover:3,divYield:1.3,taxChar:'Qualified dividends',etfEq:'VOO (0.03%)',recommendation:'Highly tax-efficient. VOO (ETF) is marginally superior in taxable accounts — same index at 0.03% with ETF\'s in-kind redemption advantage. Consider VOO over VFIAX for taxable accounts specifically.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TD Ameritrade (NTF)',false],['TIAA (NTF eligible)',false],['E*TRADE',false],['Merrill Edge',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',7.0],['Microsoft (MSFT)',6.5],['NVIDIA (NVDA)',6.1],['Alphabet (GOOG)',4.2],['Amazon (AMZN)',4.0]],
+  principles:'The grandfather of retail index investing — Vanguard launched the first S&P 500 fund in 1976. Tracks 500 largest US companies by committee selection. Excludes smaller companies ...',
+  badges:[['w','Mega-cap heavy'],['w','No small cap'],['b','Max liquidity']],
+  riskDetail:'Top 10 = ~35% of fund at elevated multiples. CAPE at 35x — near historical peaks. Priced for perfection. Any earnings disappointment or multiple contraction creates outsized dow...',
+  prospects:'CAPE at 35x implies ~5.2% real 10Y returns vs historical 7% real. Structural demand from institutional funds provides persistent bid. Still the safest default for US-focused inv...',
+  spark:[100,103,108,114,109,105,102,111,116,115,120,126,123,128,133,131,132,137,134,147,150,148,146,150,141,149,155,157,156,162,165,170,173,167,171,173]
+},
+{
+  ticker:'FXAIX',name:'Fidelity 500 Index Fund',sub:'No minimum · cheapest S&P 500 fund',cat:'US Large Cap',
+  tracks:'S&P 500 Index',exp:.015,min:'$0',aum:'$600B',
+  ret1:24.5,bmark:'S&P 500',bret:24.5,catAvg:23.1,
+  ret3:13.1,ret5:14.9,ret10:null,bestYr:'+31.6% (2019)',worstYr:'-18.2% (2022)',
+  sharpe:.91,sortino:1.24,maxDD:-18.2,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:5,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:35,fwdPE:22.1,impliedReturn:5.2,capeHist:78,capeNote:'Identical to VFIAX — same index',recentPCT:'78th'},
+  rateSens:{duration:null,plus50:-2.5,plus100:-4.8,plus200:-8.8,note:'Identical to VFIAX — same underlying portfolio.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:13,prob:35,note:'Identical to VFIAX'},{name:'Recession 2026',ret:-22,prob:20,note:'Avg recession -34%'},{name:'Stagflation',ret:-9,prob:25,note:'Margin squeeze + multiple compression'},{name:'Dollar collapse',ret:-6,prob:10,note:'International relative outperformance'},{name:'AI bubble burst',ret:-17,prob:8,note:'Top-10 concentration'},{name:'Rate spike +2%',ret:-11,prob:12,note:'Growth multiple sensitivity'}],
+  tax:{grade:'A',turnover:2,divYield:1.3,taxChar:'Qualified dividends',etfEq:'No direct ETF (use VOO)',recommendation:'Excellent for Fidelity accounts. Unlike FZROX, FXAIX tracks a public index and can be transferred in-kind to most other brokers — significant advantage in taxable accounts. 0.015% vs 0.04% (VFIAX) compounds meaningfully on large portfolios over decades.'},
+  brokers:[['Fidelity',true],['Some 401(k) plans',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',7.0],['Microsoft (MSFT)',6.5],['NVIDIA (NVDA)',6.1],['Alphabet (GOOG)',4.2],['Amazon (AMZN)',4.0]],
+  principles:'Functionally identical to VFIAX but structurally cheaper with no minimum. Fidelity undercut Vanguard on price (0.015% vs 0.04%) while tracking the same S&P 500. The optimal S&P ...',
+  badges:[['w','Mega-cap heavy'],['w','No small cap'],['g','Cheapest S&P']],
+  riskDetail:'Virtually identical risk profile to VFIAX — same index, same concentration, same valuation. The 0.025% cost advantage saves $25/year per $100K. Unlike FZROX, uses a public index...',
+  prospects:'Same ~5.2% real implied 10Y return as VFIAX. Fee advantage is real at scale. Best positioned S&P 500 fund for Fidelity account holders in both taxable and retirement accounts du...',
+  spark:[100,103,108,114,109,105,102,111,116,115,120,126,123,128,133,131,132,137,134,147,150,148,146,150,141,149,155,157,156,162,165,170,173,167,171,173]
+},
+{
+  ticker:'VTWAX',name:'Vanguard Total World Stock Index',sub:'Admiral · Morningstar Gold Medalist',cat:'Global',
+  tracks:'FTSE Global All Cap Index (~9,900 stocks, ~50 countries)',exp:.09,min:'$3,000',aum:'$83.5B',
+  ret1:22.4,bmark:'FTSE Global All Cap',bret:22.4,catAvg:19.1,
+  ret3:11.8,ret5:13.1,ret10:10.4,bestYr:'+28.2% (2019)',worstYr:'-19.1% (2022)',
+  sharpe:.79,sortino:1.08,maxDD:-19.1,
+  us:61,intl:30,bond:0,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:3,recession:2},currentRegimeScore:3,
+  valuation:{cape:25,fwdPE:18.2,impliedReturn:7.1,capeHist:48,capeNote:'Blended global CAPE reflects meaningful international discount to US',recentPCT:'48th'},
+  rateSens:{duration:null,plus50:-1.8,plus100:-3.5,plus200:-6.5,note:'International component partially offsets US rate sensitivity.'},
+  currencyDecomp:{localRet:15.3,fxContrib:7.1,total:22.4,note:'USD weakened ~6% vs DXY over trailing 12M — boosted international returns for US-based investors significantly.'},
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Blended global equity recovery'},{name:'Recession 2026',ret:-17,prob:20,note:'International cushions vs pure US'},{name:'Stagflation',ret:-5,prob:25,note:'International valuation support limits downside'},{name:'Dollar collapse',ret:+10,prob:10,note:'Major beneficiary of USD weakness'},{name:'AI bubble burst',ret:-12,prob:8,note:'Less concentrated than pure US'},{name:'Rate spike +2%',ret:-9,prob:12,note:'Some cushion from intl diversification'}],
+  tax:{grade:'B+',turnover:6,divYield:2.1,taxChar:'Mix qualified/ordinary; foreign tax credit',etfEq:'VT (0.07%)',recommendation:'Better in tax-advantaged accounts. International dividends less reliably qualified; foreign withholding taxes add complexity. VT (ETF) is more tax-efficient for the same exposure. Foreign tax credit partially offsets withholding in taxable accounts.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TIAA (NTF eligible)',false],['TD Ameritrade (NTF)',false],['E*TRADE',false],['Interactive Brokers',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',4.2],['Microsoft (MSFT)',3.8],['NVIDIA (NVDA)',3.6],['Amazon (AMZN)',2.4],["Intl names ~50%",0.5]],
+  principles:'The theoretical pinnacle of passive investing: own the entire investable global equity universe in market-cap proportion. ~61% US because US companies are globally largest. ~10,...',
+  badges:[['g','Max diversification'],['w','Currency risk'],['w','EM tail risk']],
+  riskDetail:'~39% international exposure means USD fluctuation directly impacts returns. ~9% EM allocation adds geopolitical tail risk. Blended CAPE ~25x is meaningfully more attractive than...',
+  prospects:'Morningstar Gold Medalist. Blended CAPE ~25x implies ~7.1% real 10Y returns — nearly 2pp better than pure US. USD structural weakness is a persistent tailwind. International val...',
+  spark:[100,101,105,109,106,102,99,107,110,109,113,118,116,121,124,123,124,128,126,136,139,137,136,140,132,140,145,147,147,152,155,160,163,158,161,164]
+},
+{
+  ticker:'VTIAX',name:'Vanguard Total International Stock',sub:'Admiral · 100% ex-US equity',cat:'International',
+  tracks:'FTSE Global All Cap ex US Index (~8,500 stocks)',exp:.11,min:'$3,000',aum:'$450B',
+  ret1:20.8,bmark:'FTSE Global All Cap ex US',bret:18.5,catAvg:17.9,
+  ret3:9.8,ret5:11.2,ret10:7.4,bestYr:'+27.1% (2017)',worstYr:'-21.3% (2022)',
+  sharpe:.68,sortino:.94,maxDD:-21.3,
+  us:0,intl:100,bond:0,
+  regimeScores:{goldilocks:3,overheat:5,stagflation:4,recession:2},currentRegimeScore:4,
+  valuation:{cape:16,fwdPE:14.2,impliedReturn:9.4,capeHist:28,capeNote:'Deeply undervalued vs history and vs US. MSCI EAFE CAPE ~16x vs US 35x — widest gap in 20+ years.',recentPCT:'28th'},
+  rateSens:{duration:null,plus50:-1.2,plus100:-2.3,plus200:-4.5,note:'European and EM central banks have different rate paths — lower correlation to US Fed policy.'},
+  currencyDecomp:{localRet:12.1,fxContrib:8.7,total:20.8,note:'USD weakness contributed ~8.7% to returns. Local equity markets returned ~12.1% in their own currencies — both tailwinds active simultaneously.'},
+  scenarios:[{name:'Soft landing',ret:9,prob:35,note:'Less upside than US in pure growth scenario'},{name:'Recession 2026',ret:-13,prob:20,note:'Lower valuations cushion drawdown'},{name:'Stagflation',ret:-3,prob:25,note:'Best major equity fund in stagflation — valuation + commodity exposure'},{name:'Dollar collapse',ret:+18,prob:10,note:'Biggest beneficiary — pure FX tailwind + local gains'},{name:'AI bubble burst',ret:-8,prob:8,note:'Much less tech concentration than US funds'},{name:'Rate spike +2%',ret:-7,prob:12,note:'Cushioned by non-US rate environment'}],
+  tax:{grade:'B',turnover:5,divYield:3.2,taxChar:'Mix; foreign withholding tax applies',etfEq:'VXUS (0.07%)',recommendation:'Better held in tax-advantaged accounts. International dividends frequently subject to foreign withholding tax (10–30%). Foreign tax credit available in taxable but creates complexity. VXUS (ETF) is more tax-efficient than VTIAX (mutual fund) for the same exposure.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TIAA (NTF eligible)',false],['E*TRADE',false],['TD Ameritrade (NTF)',false],['Interactive Brokers',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Novo Nordisk (DK)',1.1],['ASML (NL)',1.0],['LVMH (FR)',0.8],['Samsung (KR)',0.7],['Toyota (JP)',0.7]],
+  principles:'Pure international equity — zero US stocks. Used by investors setting their own US/international ratio alongside a US fund. ~8,500 stocks across developed markets (Europe, Japan...',
+  badges:[['w','Currency risk'],['w','China ~9%'],['g','Best PE value'],['g','Beating benchmark']],
+  riskDetail:'China ~8–10% of fund — political/regulatory tail risk. Japan ~16% in BoJ normalization cycle — yen risk. CAPE at ~16x is the most compelling valuation in this tracker. In curren...',
+  prospects:'Strongest macro setup of any fund here right now. CAPE ~16x implies ~9.4% real 10Y returns. USD structural weakness is a persistent multiplier. MSCI EM returned ~27% in 2025. If...',
+  spark:[100,100,103,106,104,100,97,104,107,106,109,113,111,115,118,117,119,122,120,128,131,129,129,132,128,136,142,145,145,151,155,161,164,160,163,166]
+},
+{
+  ticker:'VBTLX',name:'Vanguard Total Bond Market Index',sub:'Admiral · intermediate duration',cat:'Bond',
+  tracks:'Bloomberg US Aggregate Float Adjusted Index',exp:.05,min:'$3,000',aum:'$320B',
+  ret1:5.2,bmark:'Bloomberg US Aggregate',bret:5.2,catAvg:4.8,
+  ret3:1.2,ret5:.8,ret10:1.9,bestYr:'+8.7% (2020)',worstYr:'-13.2% (2022)',
+  sharpe:.31,sortino:.44,maxDD:-16.9,
+  us:0,intl:0,bond:100,
+  regimeScores:{goldilocks:3,overheat:1,stagflation:1,recession:5},currentRegimeScore:1,
+  valuation:{cape:null,fwdPE:null,impliedReturn:4.8,capeHist:null,capeNote:'Yield to maturity ~4.8%. Real yield ~2.0% (after 2.82% core PCE). Duration ~6.5 years.',recentPCT:null},
+  rateSens:{duration:6.5,plus50:-3.2,plus100:-6.5,plus200:-12.8,note:'$100K position loses ~$6,500 for every 100bps rise in rates. Breakeven: yields must fall ~0.74%/yr for price gains to exceed income.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:7,prob:35,note:'Fed cuts → bond prices rise + income'},{name:'Recession 2026',ret:9,prob:20,note:'Flight to safety — classic hedge role restored'},{name:'Stagflation',ret:-4,prob:25,note:'Worst case: inflation erodes real return + price declines'},{name:'Dollar collapse',ret:-2,prob:10,note:'Foreign investors flee USD bonds'},{name:'AI bubble burst',ret:5,prob:8,note:'Modest flight to safety'},{name:'Rate spike +2%',ret:-13,prob:12,note:'Duration × rate move = severe loss'}],
+  tax:{grade:'C',turnover:50,divYield:4.1,taxChar:'Interest income = ordinary income tax rates',etfEq:'BND (0.03%)',recommendation:'Hold ONLY in tax-advantaged accounts (IRA, 401k). Bond interest is taxed as ordinary income — worst tax treatment. A high-income investor in the 37% bracket keeps only 2.6% after tax on a 4.1% yield. BND is the ETF equivalent at lower cost.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TIAA (NTF eligible)',false],['TD Ameritrade (NTF)',false],['E*TRADE',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['US Treasuries',42.0],['Mortgage-backed (MBS)',26.0],['Corp. bonds (IG)',26.0],['Agency bonds',5.0],['Other/CMBS',1.0]],
+  principles:'Broad investment-grade US fixed income. Intermediate duration (~6.5 years). Designed as portfolio ballast providing income and hedging equity drawdowns when inflation is low. Th...',
+  badges:[['r','Duration risk'],['r','Broken hedge 22–24'],['r','Fiscal headwinds'],['w','Inflation erosion']],
+  riskDetail:'(1) Duration risk: a 1% rate rise = ~6.5% price loss. (2) Stock-bond correlation was positive 2022–2024 — the hedge broke when needed most. (3) Moody\'s US credit downgrade + de...',
+  prospects:'Base case (growth slowdown): Fed cuts, yields fall, 7–9% total return. Stagflation: -4% total. Structural long-end pressure from fiscal expansion is the key risk. Short-to-inter...',
+  spark:[100,99,98,99,100,99,98,99,101,100,101,102,101,102,103,104,104,105,104,106,107,106,105,106,105,107,108,109,109,110,111,112,112,111,112,113]
+},
+{
+  ticker:'VTTSX',name:'Vanguard Target Retirement 2060',sub:'Fund of 4 index funds · Silver Medalist',cat:'Target Date',
+  tracks:'Glide path: 90/10 global equity/bond → adjusting to 2060',exp:.09,min:'$1,000',aum:'$42.9B',
+  ret1:18.9,bmark:'Target Date 2060 Category Avg',bret:20.0,catAvg:20.0,
+  ret3:11.2,ret5:12.8,ret10:10.6,bestYr:'+27.8% (2019)',worstYr:'-17.4% (2022)',
+  sharpe:.74,sortino:1.02,maxDD:-17.4,
+  us:53,intl:37,bond:10,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:2,recession:3},currentRegimeScore:2,
+  valuation:{cape:27,fwdPE:19.8,impliedReturn:6.8,capeHist:54,capeNote:'Blended: ~90% global equity (CAPE ~27), 10% bonds (yield 4.8%). Reasonable blended multiple.',recentPCT:'54th'},
+  rateSens:{duration:.65,plus50:-.3,plus100:-.6,plus200:-1.2,note:'Only 10% bond exposure at this glide path stage. Rate sensitivity primarily via bond component plus equity multiple effects.'},
+  currencyDecomp:{localRet:14.2,fxContrib:4.7,total:18.9,note:'~37% international allocation; USD weakness added ~4.7% to total return in trailing 12 months.'},
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Equity gains + modest bond appreciation'},{name:'Recession 2026',ret:-14,prob:20,note:'Bond allocation partially cushions equity drawdown'},{name:'Stagflation',ret:-7,prob:25,note:'Both equity and bond components face headwinds'},{name:'Dollar collapse',ret:+4,prob:10,note:'International equity tilt is a real tailwind'},{name:'AI bubble burst',ret:-10,prob:8,note:'Diversification partially cushions US tech hit'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Bond component amplifies drawdown in rate shock'}],
+  tax:{grade:'B',turnover:1,divYield:1.8,taxChar:'Mix equity and bond income',etfEq:'No direct ETF equivalent',recommendation:'Ideal for tax-advantaged accounts (IRA, 401k). Ultra-low 1% turnover means minimal taxable events from auto-rebalancing. In taxable accounts, the bond income is taxed as ordinary income — better to hold in retirement account.'},
+  brokers:[['Vanguard',true],['Most 401(k) plans',false],['TIAA (eligible plans)',false],['Merrill Edge',false],['TD Ameritrade',false]],
+  targetDate:2060, fundTags:['lifecycle','auto-rebalancing','all-in-one'],
+  holdings:[['Vanguard Total Stock Mkt',53.0],['Vanguard Total Intl Stock',37.0],['Vanguard Total Bond Mkt II',7.5],['Vanguard Total Intl Bond',2.5]],
+  principles:'Lifecycle investing in one fund: starts 90% global equity / 10% bonds and automatically de-risks toward 2060. Never needs rebalancing. All underlying funds are low-cost Vanguard...',
+  badges:[['g','Auto-rebalances'],['w','Bond drag now'],['w','Tech concentration'],['b','Set and forget']],
+  riskDetail:'Currently 90/10 equity/bond. Bond component carries duration, inflation, and fiscal headwinds. ~37% international allocation is well-positioned but adds currency risk. Simplicit...',
+  prospects:'For genuine 2060 horizon, one of the best single-fund solutions available. Auto-rebalancing prevents behavioral errors over 35 years. ~37% international tilt is well-aligned wit...',
+  spark:[100,102,106,110,107,103,100,108,112,111,114,120,117,122,126,125,125,130,128,139,142,140,139,142,134,141,146,148,148,153,156,161,163,158,161,163]
+},
+{
+  ticker:'QQQM',name:'Invesco Nasdaq-100 ETF',sub:'Retail share class · available all brokers',cat:'Tech',
+  tracks:'Nasdaq-100 Index (100 largest non-financial Nasdaq cos.)',exp:.15,min:'$0 (ETF)',aum:'$40B',
+  ret1:23.1,bmark:'Nasdaq-100 Index',bret:23.1,catAvg:21.5,
+  ret3:15.1,ret5:22.3,ret10:null,bestYr:'+48.6% (2023)',worstYr:'-32.6% (2022)',
+  sharpe:.88,sortino:1.18,maxDD:-32.6,
+  us:97,intl:3,bond:0,
+  regimeScores:{goldilocks:5,overheat:2,stagflation:1,recession:1},currentRegimeScore:1,
+  valuation:{cape:42,fwdPE:28.3,impliedReturn:3.8,capeHist:88,capeNote:'Near all-time highs on valuation. Dot-com was 100x+; 2021 was ~40x. Requires sustained AI monetization.',recentPCT:'88th'},
+  rateSens:{duration:null,plus50:-3.5,plus100:-6.8,plus200:-12.5,note:'Long-duration growth stocks are highly rate-sensitive. Nasdaq-100 fell 33% in 2022 largely due to rate shock, not earnings disappointment.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:18,prob:35,note:'AI capex cycle sustains — best upside of all funds'},{name:'Recession 2026',ret:-30,prob:20,note:'Worst drawdown fund; 2022 repeat risk'},{name:'Stagflation',ret:-18,prob:25,note:'High multiples + margin pressure = catastrophic'},{name:'Dollar collapse',ret:-8,prob:10,note:'Relative underperformance vs international'},{name:'AI bubble burst',ret:-45,prob:8,note:'NVDA, MSFT, META, GOOG = 36% of fund'},{name:'Rate spike +2%',ret:-16,prob:12,note:'Maximum rate sensitivity of all funds here'}],
+  tax:{grade:'A-',turnover:9,divYield:.6,taxChar:'Minimal dividends, mostly capital gains',etfEq:'Is an ETF',recommendation:'Good tax efficiency in taxable accounts — minimal dividends, mostly capital appreciation at long-term rates. However, the risk profile (32%+ max drawdown) makes it unsuitable as a core holding regardless of account type. Best as a satellite allocation (10–20% of equity).'},
+  brokers:[['All major brokers',true],['Vanguard',false],['Fidelity',false],['Schwab',false],['Robinhood',false],['Interactive Brokers',false],['Merrill Edge',false]],
+  targetDate:null, fundTags:[],
+  holdings:[['Microsoft (MSFT)',9.0],['Apple (AAPL)',8.6],['NVIDIA (NVDA)',8.2],['Alphabet (GOOG)',5.3],['Amazon (AMZN)',5.1]],
+  principles:'A concentrated bet on innovation-economy leadership. Top 10 positions ≈ 55% of fund. No financials, real estate, or energy. Thesis: largest tech platforms compound earnings fast...',
+  badges:[['r','Extreme concentration'],['r','AI valuation risk'],['w','No value/dividend'],['w','No international']],
+  riskDetail:'CAPE ~42x — highest in this tracker. Top 10 = 55% of fund. Max drawdown -32.6% in 3Y window. In current stagflation regime, scores 1/5 — highest rate sensitivity, highest valuat...',
+  prospects:'McKinsey estimates $5.2T in AI datacenter investment by 2030 — QQQM is the primary beneficiary in a goldilocks scenario. But CAPE at 42x implies only ~3.8% real 10Y return — vs ...',
+  spark:[100,103,111,119,114,108,103,116,122,121,127,135,131,138,145,143,145,152,148,163,168,165,162,168,155,167,175,178,177,185,189,197,201,192,196,200]
+},
+{
+  ticker:'CREF Stock',name:'TIAA-CREF Stock Account',sub:'Employer plans only · university / nonprofit',cat:'US Large Cap',
+  tracks:'Russell 3000 + MSCI All World blend (quant. active overlay)',exp:.37,min:'Plan only',aum:'$280B',
+  ret1:18.5,bmark:'Russell 3000 Index',bret:19.8,catAvg:22.0,
+  ret3:11.0,ret5:13.0,ret10:10.8,bestYr:'+28.4% (2019)',worstYr:'-18.9% (2022)',
+  sharpe:.71,sortino:.98,maxDD:-18.9,
+  us:79,intl:21,bond:0,
+  regimeScores:{goldilocks:3,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:30,fwdPE:20.8,impliedReturn:5.8,capeHist:64,capeNote:'~79% US (CAPE ~32) + ~21% international (CAPE ~18). Slightly better than pure US funds.',recentPCT:'64th'},
+  rateSens:{duration:null,plus50:-2.2,plus100:-4.2,plus200:-7.8,note:'~21% international allocation provides modest rate sensitivity cushion vs pure US funds.'},
+  currencyDecomp:{localRet:15.1,fxContrib:3.4,total:18.5,note:'~21% international; USD weakness contributed ~3.4% to trailing 12M return.'},
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Active overlay may outperform or lag'},{name:'Recession 2026',ret:-19,prob:20,note:'Similar to broad US equity drawdown'},{name:'Stagflation',ret:-8,prob:25,note:'Fee drag amplifies in low-return environment'},{name:'Dollar collapse',ret:-4,prob:10,note:'21% international provides some FX benefit'},{name:'AI bubble burst',ret:-14,prob:8,note:'Less concentrated than QQQM but exposed'},{name:'Rate spike +2%',ret:-9,prob:12,note:'Similar to VTSAX with slight intl cushion'}],
+  tax:{grade:'C+',turnover:null,divYield:null,taxChar:'Variable annuity — always tax-deferred inside plan',etfEq:'N/A — plan only',recommendation:'CREF Stock is only in TIAA employer plans and always held tax-deferred by definition. Distributions taxed as ordinary income (not capital gains). Key decision: use CREF Stock vs. any available low-cost index fund option in your plan — if a cheaper index fund exists, it is likely preferable during accumulation.'},
+  brokers:[['TIAA plans only',true]],
+  targetDate:null, fundTags:[],
+  holdings:[['Apple (AAPL)',5.4],['Microsoft (MSFT)',5.0],['NVIDIA (NVDA)',4.8],['Amazon (AMZN)',3.1],['Alphabet (GOOG)',2.9]],
+  principles:'The dominant retirement vehicle for US academic and nonprofit employees since 1918. Not a pure index fund — uses a quantitative active overlay. Structured as a variable annuity,...',
+  badges:[['r','High fees (0.37%)'],['w','Plan lock-in'],['w','Active drift'],['b','Lifetime income option']],
+  riskDetail:'0.37% expense ratio = 5–25x more expensive than comparable passive funds. On $500K, $1,850/year in fees — compounding over 30 years represents ~$180K in forgone returns vs. VTSA...',
+  prospects:'If your TIAA plan offers a low-cost index fund, consider it for accumulation. CREF Stock is most compelling when: (1) no better index fund option exists, (2) you value the lifet...',
+  spark:[100,101,105,109,107,103,100,107,111,110,113,119,116,121,124,124,125,129,127,138,141,139,138,142,134,141,146,148,148,153,156,161,163,158,161,163]
+},
+
+{
+  ticker:'VSMAX',name:'Vanguard Small-Cap Index Fund',sub:'Admiral Shares · US small cap',cat:'US Small/Mid Cap',
+  tracks:'CRSP US Small Cap Index (~1,400 stocks)',exp:.05,min:'$3,000',aum:'$140B',
+  ret1:12.8,bmark:'CRSP US Small Cap',bret:12.8,catAvg:11.9,
+  ret3:7.2,ret5:11.8,ret10:9.8,bestYr:'+26.7% (2019)',worstYr:'-20.4% (2022)',
+  sharpe:.56,sortino:.78,maxDD:-20.4,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:22,fwdPE:15.8,impliedReturn:8.2,capeHist:45,capeNote:'Small caps trade at significant discount to large caps — CAPE ~22x vs S&P 500 ~35x. The widest valuation gap in over 20 years historically provides a tailwind.',recentPCT:'45th'},
+  rateSens:{duration:null,plus50:-2.3,plus100:-4.5,plus200:-8.5,note:'Small companies are more debt-dependent than large caps and more sensitive to credit tightening. A rate spike hurts their financing costs directly.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:16,prob:35,note:'Small cap outperforms large cap in growth recovery'},{name:'Recession 2026',ret:-25,prob:20,note:'Small caps lead on the way down in recessions'},{name:'Stagflation',ret:-10,prob:25,note:'Credit tightening hits smaller companies harder'},{name:'Dollar collapse',ret:-2,prob:10,note:'More domestically focused than large caps'},{name:'AI bubble burst',ret:-8,prob:8,note:'Less tech concentration than large cap indices'},{name:'Rate spike +2%',ret:-12,prob:12,note:'Small co. debt costs rise more than large cap'}],
+  tax:{grade:'B+',turnover:15,divYield:1.6,taxChar:'Mix of qualified dividends and short-term gains',etfEq:'VB (0.05%)',recommendation:'Reasonably tax-efficient. Turnover is higher than large cap index funds due to stocks migrating in/out of the small cap universe. VB is the ETF equivalent. Fine for either taxable or retirement accounts.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TD Ameritrade (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Various small caps',0.3],['Industrials ~18%',0.2],['Financials ~17%',0.2],['Healthcare ~15%',0.2],['Technology ~14%',0.2]],
+  principles:'Owns ~1,400 small US companies — those ranked roughly 750th to 2,500th by market cap. Academic research (the Fama-French model) identified a historical "small-cap premium" — sma...',
+  badges:[['w','Higher volatility'],['w','Underperformed 2018–24'],['g','Cheapest valuation'],['b','Small-cap premium']],
+  riskDetail:'Small caps are more volatile, less liquid, and more debt-dependent than large caps. They underperformed large caps significantly 2018–2024 as mega-cap tech dominated. In the cur...',
+  prospects:'The long-term small-cap premium argument is real but requires patience — periods of underperformance lasting 5–10 years are normal. At a CAPE discount of ~38% vs the S&P 500, sm...',
+  spark:[96,99,103,107,105,102,99,105,109,108,112,117,115,119,122,121,122,126,124,132,135,133,132,135,128,134,139,141,141,145,147,152,153,149,151,154]
+},
+{
+  ticker:'VIMAX',name:'Vanguard Mid-Cap Index Fund',sub:'Admiral Shares · US mid cap',cat:'US Small/Mid Cap',
+  tracks:'CRSP US Mid Cap Index (~360 stocks)',exp:.05,min:'$3,000',aum:'$180B',
+  ret1:16.5,bmark:'CRSP US Mid Cap',bret:16.5,catAvg:15.8,
+  ret3:9.4,ret5:13.2,ret10:11.1,bestYr:'+30.2% (2019)',worstYr:'-18.3% (2022)',
+  sharpe:.68,sortino:.94,maxDD:-18.3,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:26,fwdPE:18.2,impliedReturn:7.1,capeHist:52,capeNote:'Mid caps trade at ~26x CAPE — meaningfully cheaper than large caps (35x) but pricier than small caps (22x). A reasonable middle ground.',recentPCT:'52nd'},
+  rateSens:{duration:null,plus50:-2.1,plus100:-4.1,plus200:-7.8,note:'Mid caps have moderate rate sensitivity — less debt-dependent than small caps but more sensitive than mega-cap tech.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:14,prob:35,note:'Mid caps typically lead in mid-cycle recoveries'},{name:'Recession 2026',ret:-22,prob:20,note:'More vulnerable than large caps in downturns'},{name:'Stagflation',ret:-9,prob:25,note:'Margin pressure without mega-cap pricing power'},{name:'Dollar collapse',ret:-3,prob:10,note:'More domestic revenue mix than large caps'},{name:'AI bubble burst',ret:-10,prob:8,note:'Less concentrated in AI stocks than large cap'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Higher financing costs vs large cap'}],
+  tax:{grade:'B+',turnover:12,divYield:1.4,taxChar:'Mostly qualified dividends',etfEq:'VO (0.04%)',recommendation:'Tax-efficient, similar to VSMAX. VO is the ETF equivalent. Good complement to large cap index funds for investors who want full US market coverage without buying the total market fund.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Industrials ~19%',0.2],['Technology ~16%',0.2],['Financials ~15%',0.2],['Healthcare ~13%',0.2],['Consumer disc. ~11%',0.2]],
+  principles:'Mid-cap companies are the "sweet spot" — large enough to be stable, small enough to still have meaningful growth potential. The ~360 companies in CRSP\'s mid-cap universe are ro...',
+  badges:[['g','Better valuation than large cap'],['w','Less liquidity than S&P 500'],['b','Sector diversification']],
+  riskDetail:'Mid caps sit between large and small cap in risk profile — more volatile than the S&P 500, less volatile than small caps. In the current stagflation regime, mid caps face margin...',
+  prospects:'Mid caps historically outperform large caps over full market cycles, though with more volatility. Implied 10Y real return of ~7.1% — better than S&P 500 (~5.2%) but below small ...',
+  spark:[99,100,104,108,106,102,99,106,110,109,113,118,116,120,124,123,124,128,126,135,138,136,135,138,131,138,143,146,146,151,154,159,162,157,160,163]
+},
+{
+  ticker:'VVIAX',name:'Vanguard Value Index Fund',sub:'Admiral Shares · US large cap value',cat:'US Value',
+  tracks:'CRSP US Large Cap Value Index (~340 stocks)',exp:.05,min:'$3,000',aum:'$110B',
+  ret1:14.2,bmark:'CRSP US Large Cap Value',bret:14.2,catAvg:13.8,
+  ret3:10.8,ret5:11.9,ret10:10.6,bestYr:'+25.7% (2021)',worstYr:'-5.4% (2022)',
+  sharpe:.72,sortino:1.01,maxDD:-12.8,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:3,overheat:4,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:19,fwdPE:14.8,impliedReturn:8.9,capeHist:38,capeNote:'Value stocks are dramatically cheaper than the broad market — CAPE ~19x vs S&P 500 35x. Value has underperformed growth for 15 years, creating one of the widest valuation gaps in history.',recentPCT:'38th'},
+  rateSens:{duration:null,plus50:-1.2,plus100:-2.3,plus200:-4.2,note:'Value stocks (financials, energy, industrials) are less sensitive to rate increases than growth stocks — banks and energy companies can actually benefit from higher rates.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Value lags in pure growth environments'},{name:'Recession 2026',ret:-14,prob:20,note:'Lower starting valuations cushion drawdown'},{name:'Stagflation',ret:-2,prob:25,note:'Energy, financials hold up better in stagflation'},{name:'Dollar collapse',ret:-1,prob:10,note:'Less affected than international funds'},{name:'AI bubble burst',ret:+3,prob:8,note:'Rotation to value — classic flight from overpriced growth'},{name:'Rate spike +2%',ret:-3,prob:12,note:'Financials benefit; industrials hurt — net moderate'}],
+  tax:{grade:'A-',turnover:10,divYield:2.4,taxChar:'Mostly qualified dividends, higher yield than growth',etfEq:'VTV (0.04%)',recommendation:'Tax-efficient but pays more dividends than growth funds, which creates more annual taxable income in taxable accounts. VTV is the ETF equivalent. Consider holding in tax-advantaged accounts if in a high bracket.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false],['TD Ameritrade (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Berkshire Hathaway',2.8],['JPMorgan Chase',2.4],['ExxonMobil',2.1],['Johnson & Johnson',1.9],['Procter & Gamble',1.8]],
+  principles:'Value investing — owning companies that are cheap relative to their earnings, book value, or dividends — is one of the most academically validated investment approaches. The Fam...', 
+  badges:[['g','Cheapest US large cap'],['g','Stagflation resilience'],['b','Rate-rise beneficiary'],['w','15yr underperformance']],
+  riskDetail:'Value has dramatically underperformed growth since 2007 — primarily because mega-cap tech (which is classified as "growth") dominated returns. A CAPE of ~19x is deeply attractiv...',
+  prospects:'The valuation case for value is the strongest it has been in decades. CAPE at 19x implies ~8.9% real 10Y return — significantly better than the S&P 500. The "value rotation" the...',
+  spark:[112,112,115,118,117,115,113,118,122,121,124,129,127,131,134,133,134,138,136,143,146,144,143,146,140,147,151,153,153,157,159,163,165,161,163,166]
+},
+{
+  ticker:'VHYAX',name:'Vanguard High Dividend Yield Index',sub:'Admiral Shares · high-yield US equity',cat:'Dividend',
+  tracks:'FTSE High Dividend Yield Index (~440 US stocks)',exp:.08,min:'$3,000',aum:'$65B',
+  ret1:13.5,bmark:'FTSE High Dividend Yield',bret:13.5,catAvg:12.9,
+  ret3:10.2,ret5:11.4,ret10:10.8,bestYr:'+28.1% (2021)',worstYr:'-6.3% (2022)',
+  sharpe:.74,sortino:1.04,maxDD:-12.1,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:3,overheat:4,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:20,fwdPE:15.2,impliedReturn:8.5,capeHist:40,capeNote:'Dividend payers tend to be cheaper than the broad market — CAPE ~20x. Higher income component means less reliance on price appreciation for total return.',recentPCT:'40th'},
+  rateSens:{duration:null,plus50:-1.0,plus100:-1.9,plus200:-3.6,note:'High dividend yield stocks (utilities, financials, consumer staples) are modestly rate-sensitive — they compete with bonds for income seekers, but their businesses are often more resilient.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Income provides a floor; less upside than growth'},{name:'Recession 2026',ret:-12,prob:20,note:'Dividends cushion drawdown; some cuts risk'},{name:'Stagflation',ret:-1,prob:25,note:'Income + defensive sectors hold up reasonably'},{name:'Dollar collapse',ret:0,prob:10,note:'Domestically focused companies'},{name:'AI bubble burst',ret:+4,prob:8,note:'Rotation to income — classic defensive move'},{name:'Rate spike +2%',ret:-5,prob:12,note:'Utilities and REITs-adjacent names feel pressure'}],
+  tax:{grade:'B',turnover:14,divYield:3.0,taxChar:'High qualified dividend yield — frequent income',etfEq:'VYM (0.06%)',recommendation:'The high dividend yield is a tax drag in taxable accounts — you\'re forced to realize income each quarter regardless of your plans. Best held in a tax-advantaged account (IRA, 401k). VYM is the ETF equivalent. In retirement, the income stream is a genuine feature, not a bug.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['JPMorgan Chase',3.2],['ExxonMobil',2.8],['Johnson & Johnson',2.6],['Broadcom',2.4],['Home Depot',2.2]],
+  principles:'Screens the US equity market for companies with above-average dividend yields, excluding REITs (which have their own fund). Heavy toward financials (22%), healthcare (19%), indu...',
+  badges:[['g','Defensive in downturns'],['g','3% income yield'],['w','Lags in bull markets'],['w','Dividend cut risk']],
+  riskDetail:'Maximum drawdown of only -12.1% in the 3Y window (vs -18%+ for S&P 500) demonstrates real defensive characteristics. The primary risks are: (1) dividend cuts in a recession, whe...',
+  prospects:'The 3% income yield provides a meaningful floor on total returns — even if price appreciation is flat, you collect 3% annually. Implied 10Y real return of ~8.5% is attractive. B...',
+  spark:[108,108,111,113,112,110,109,113,116,115,118,122,120,124,126,126,127,130,129,135,137,136,135,137,132,137,141,143,143,146,148,152,153,150,151,154]
+},
+{
+  ticker:'SCHD',name:'Schwab US Dividend Equity ETF',sub:'ETF · Morningstar Gold Medalist · all brokers',cat:'Dividend',
+  tracks:'Dow Jones US Dividend 100 Index (100 high-yield, high-quality US stocks)',exp:.06,min:'$0 (ETF)',aum:'$65B',
+  ret1:14.1,bmark:'Dow Jones US Dividend 100',bret:14.1,catAvg:12.9,
+  ret3:10.5,ret5:12.2,ret10:11.6,bestYr:'+26.8% (2021)',worstYr:'-5.9% (2022)',
+  sharpe:.78,sortino:1.08,maxDD:-11.6,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:3,overheat:4,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:18,fwdPE:14.6,impliedReturn:9.1,capeHist:36,capeNote:'SCHD\'s quality + value screen results in a portfolio cheaper than both the S&P 500 and the broad dividend universe. CAPE ~18x is among the cheapest in this tracker.',recentPCT:'36th'},
+  rateSens:{duration:null,plus50:-0.9,plus100:-1.8,plus200:-3.4,note:'The quality screen (strong balance sheets, consistent dividends) means SCHD holdings are less vulnerable to rate rises than pure yield-chasing funds.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Income + quality provides stability'},{name:'Recession 2026',ret:-11,prob:20,note:'Quality screen limits dividend cuts'},{name:'Stagflation',ret:0,prob:25,note:'Best-positioned domestic equity dividend fund'},{name:'Dollar collapse',ret:0,prob:10,note:'US-focused companies'},{name:'AI bubble burst',ret:+5,prob:8,note:'Strong rotation play — quality income vs speculative growth'},{name:'Rate spike +2%',ret:-4,prob:12,note:'Quality holdings more resilient than pure yield'}],
+  tax:{grade:'B',turnover:12,divYield:3.2,taxChar:'High qualified dividend yield',etfEq:'Is an ETF · SCHD',recommendation:'Same considerations as VHYAX — best held in tax-advantaged accounts due to high dividend income. However SCHD\'s ETF structure is inherently more tax-efficient than mutual fund equivalents. Arguably the most popular dividend ETF in the US among self-directed investors.'},
+  brokers:[['All major brokers',true],['Schwab',true],['Fidelity',false],['Vanguard',false],['Robinhood',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Broadcom',4.3],['AbbVie',4.1],['Chevron',3.9],['Home Depot',3.8],['Amgen',3.7]],
+  principles:'SCHD adds a quality filter on top of yield — it requires 10 consecutive years of dividend payments, strong cash flow relative to debt, return on equity, and dividend growth. The...',
+  badges:[['g','Quality + yield screen'],['g','Morningstar Gold'],['g','3.2% dividend yield'],['b','10yr dividend track record']],
+  riskDetail:'The quality screen significantly reduces the risk of dividend cuts in a recession — the holding requirement of 10+ years of payments eliminates most financially fragile companie...',
+  prospects:'Among the most compelling risk-adjusted investment options in this tracker right now. CAPE at 18x implies ~9.1% real 10Y return — the highest of any domestic equity fund here. 3...',
+  spark:[110,110,112,115,113,111,110,114,117,116,120,124,122,126,129,128,129,133,131,137,140,138,138,140,135,141,145,147,147,151,153,157,158,155,156,160]
+},
+{
+  ticker:'VIG',name:'Vanguard Dividend Appreciation ETF',sub:'ETF · dividend growth focus',cat:'Dividend',
+  tracks:'S&P US Dividend Growers Index (~340 stocks with 10+ yrs dividend growth)',exp:.06,min:'$0 (ETF)',aum:'$95B',
+  ret1:16.2,bmark:'S&P US Dividend Growers',bret:16.2,catAvg:12.9,
+  ret3:11.4,ret5:13.8,ret10:12.6,bestYr:'+28.0% (2021)',worstYr:'-10.1% (2022)',
+  sharpe:.82,sortino:1.14,maxDD:-13.8,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:28,fwdPE:20.1,impliedReturn:6.8,capeHist:58,capeNote:'Dividend growth companies tend to be high-quality growth-oriented businesses — priced between pure value and the S&P 500. CAPE ~28x.',recentPCT:'58th'},
+  rateSens:{duration:null,plus50:-1.5,plus100:-2.9,plus200:-5.4,note:'VIG leans more toward quality growth companies (Microsoft, Apple, Visa) than pure value, giving it moderate rate sensitivity.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:14,prob:35,note:'Quality growth with income — strong all-weather play'},{name:'Recession 2026',ret:-14,prob:20,note:'Some drawdown but dividends cushion'},{name:'Stagflation',ret:-4,prob:25,note:'Quality holds up better than speculative growth'},{name:'Dollar collapse',ret:-3,prob:10,note:'Domestically focused'},{name:'AI bubble burst',ret:-6,prob:8,note:'Less concentrated than QQQM but similar names'},{name:'Rate spike +2%',ret:-7,prob:12,note:'Growth tilt = more rate sensitivity than SCHD'}],
+  tax:{grade:'B+',turnover:11,divYield:1.7,taxChar:'Mostly qualified dividends, lower yield than SCHD/VHYAX',etfEq:'Is an ETF · VIG',recommendation:'More tax-friendly than VHYAX/SCHD due to lower dividend yield — less forced income. ETF structure adds further tax efficiency. Suitable for taxable accounts for investors in moderate tax brackets.'},
+  brokers:[['All major brokers',true],['Vanguard',true],['Fidelity',false],['Schwab',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Microsoft (MSFT)',4.8],['Apple (AAPL)',4.2],['Broadcom',3.6],['JPMorgan Chase',3.2],['UnitedHealth Group',3.0]],
+  principles:'VIG focuses on dividend growth rather than dividend yield — it owns companies that have consistently increased their dividend for 10+ consecutive years. This quality filter sele...',
+  badges:[['g','10yr dividend growth'],['g','Quality filter'],['w','Lower yield than SCHD'],['w','Valuation pricier than value']],
+  riskDetail:'VIG holds both quality growth companies (Microsoft, Apple) and traditional dividend growers (JPMorgan, J&J), making it more volatile than SCHD or VHYAX but less volatile than th...',
+  prospects:'A strong all-weather candidate. The dividend growth requirement creates a self-reinforcing quality filter — companies that raise dividends for 10+ years tend to be systematicall...',
+  spark:[102,102,106,110,108,104,102,108,112,112,116,121,119,123,127,126,127,131,129,139,142,140,139,143,136,143,148,151,151,156,159,163,166,161,164,167]
+},
+{
+  ticker:'SWTSX',name:'Schwab Total Stock Market Index Fund',sub:'No minimum · Schwab ecosystem',cat:'US Total Market',
+  tracks:'Dow Jones US Broad Stock Market Index (~3,000 stocks)',exp:.03,min:'$0',aum:'$22B',
+  ret1:19.0,bmark:'Dow Jones US Broad Stock Mkt',bret:19.0,catAvg:20.1,
+  ret3:12.3,ret5:14.1,ret10:null,bestYr:'+33.1% (2019)',worstYr:'-19.3% (2022)',
+  sharpe:.81,sortino:1.11,maxDD:-19.5,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:33,fwdPE:21.5,impliedReturn:5.8,capeHist:72,capeNote:'Tracks essentially the same universe as VTSAX — same valuation profile.',recentPCT:'72nd'},
+  rateSens:{duration:null,plus50:-2.1,plus100:-4.0,plus200:-7.5,note:'Same rate sensitivity as VTSAX — identical portfolio composition.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:12,prob:35,note:'Same as VTSAX'},{name:'Recession 2026',ret:-20,prob:20,note:'Full equity drawdown'},{name:'Stagflation',ret:-8,prob:25,note:'Margin compression + multiple contraction'},{name:'Dollar collapse',ret:-5,prob:10,note:'Relative headwind vs international'},{name:'AI bubble burst',ret:-15,prob:8,note:'Top-10 concentration risk'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Growth multiple compression'}],
+  tax:{grade:'A',turnover:3,divYield:1.4,taxChar:'Qualified dividends',etfEq:'SCHB (0.03%)',recommendation:'Excellent for taxable or retirement accounts. Schwab\'s version of VTSAX — same portfolio at lower cost (0.03% vs 0.04%). No minimum, no transaction fee at Schwab. Unlike Fidelity\'s FZROX, SWTSX tracks a public index and can be transferred in-kind to other brokers.'},
+  brokers:[['Schwab',true],['Some 401(k) plans',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Apple (AAPL)',6.8],['Microsoft (MSFT)',6.1],['NVIDIA (NVDA)',5.9],['Amazon (AMZN)',3.8],['Meta (META)',2.9]],
+  principles:'Schwab\'s answer to VTSAX — owns the entire US stock market, market-cap weighted, at the lowest cost of any non-zero expense ratio total market fund. 0.03% expense is cheaper th...',
+  badges:[['g','0.03% — cheapest non-zero'],['g','Transferable (unlike FZROX)'],['w','US only'],['w','Tech heavy']],
+  riskDetail:'Essentially identical to VTSAX in all material respects. The 0.03% vs 0.04% cost advantage is real but minor ($10/year per $100K). The key differentiator is broker ecosystem — S...',
+  prospects:'Same ~5.8% real implied 10Y return as VTSAX. Marginally cheaper. For Schwab account holders this is the clear default total market choice — lower cost than VTSAX and transferabl...',
+  spark:[101,102,107,112,108,104,101,109,113,112,116,122,119,124,128,127,128,133,130,142,145,143,141,145,136,143,148,150,149,155,157,162,165,160,163,165]
+},
+{
+  ticker:'SWPPX',name:'Schwab S&P 500 Index Fund',sub:'No minimum · cheapest S&P 500 at Schwab',cat:'US Large Cap',
+  tracks:'S&P 500 Index',exp:.02,min:'$0',aum:'$100B',
+  ret1:24.4,bmark:'S&P 500',bret:24.5,catAvg:23.1,
+  ret3:13.1,ret5:14.9,ret10:null,bestYr:'+31.5% (2021)',worstYr:'-18.2% (2022)',
+  sharpe:.91,sortino:1.24,maxDD:-18.2,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:5,overheat:2,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:35,fwdPE:22.1,impliedReturn:5.2,capeHist:78,capeNote:'Identical to VFIAX and FXAIX — same S&P 500 index.',recentPCT:'78th'},
+  rateSens:{duration:null,plus50:-2.5,plus100:-4.8,plus200:-8.8,note:'Identical rate sensitivity to VFIAX/FXAIX — same portfolio.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:13,prob:35,note:'Same as VFIAX'},{name:'Recession 2026',ret:-22,prob:20,note:'Average recession -34%'},{name:'Stagflation',ret:-9,prob:25,note:'Worst for growth-heavy large caps'},{name:'Dollar collapse',ret:-6,prob:10,note:'Relative underperformance vs international'},{name:'AI bubble burst',ret:-17,prob:8,note:'Top 10 = 35% of fund'},{name:'Rate spike +2%',ret:-11,prob:12,note:'Growth multiple compression'}],
+  tax:{grade:'A',turnover:2,divYield:1.3,taxChar:'Qualified dividends',etfEq:'SCHX (0.03%)',recommendation:'Excellent. At 0.02%, the cheapest major S&P 500 index fund available. No minimum. Tracks a public index so transferable in-kind. For Schwab account holders this is the optimal S&P 500 choice — cheaper than Vanguard\'s VFIAX (0.04%) and Fidelity\'s FXAIX (0.015%).'},
+  brokers:[['Schwab',true],['Some 401(k) plans',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Apple (AAPL)',7.0],['Microsoft (MSFT)',6.5],['NVIDIA (NVDA)',6.1],['Alphabet (GOOG)',4.2],['Amazon (AMZN)',4.0]],
+  principles:'The cheapest S&P 500 fund at any major broker — 0.02% vs Fidelity\'s 0.015% (essentially tied) and Vanguard\'s 0.04%. Tracks the same 500 companies as VFIAX and FXAIX. The only ...',
+  badges:[['g','0.02% — cheapest S&P at Schwab'],['g','Transferable in-kind'],['w','Mega-cap heavy'],['w','S&P 500 overvaluation']],
+  riskDetail:'Identical to VFIAX and FXAIX in all material respects. Same portfolio, same risks, same opportunities. The only differentiator is cost (0.02% vs 0.015% for FXAIX — trivial) and ...',
+  prospects:'Same ~5.2% real implied 10Y return as VFIAX. The 0.02% expense ratio is the lowest cost S&P 500 fund at Schwab. For Schwab users this is the obvious default large cap holding, e...',
+  spark:[103,103,108,114,109,105,102,111,116,115,120,126,123,128,133,131,132,137,134,147,150,148,146,150,141,149,155,157,156,162,165,170,173,167,171,173]
+},
+{
+  ticker:'VGSLX',name:'Vanguard Real Estate Index Fund',sub:'Admiral Shares · US REITs',cat:'Real Assets',
+  tracks:'MSCI US Investable Market Real Estate 25/50 Index (~170 REITs)',exp:.12,min:'$3,000',aum:'$75B',
+  ret1:8.2,bmark:'MSCI US REIT',bret:8.2,catAvg:7.8,
+  ret3:2.1,ret5:5.6,ret10:7.9,bestYr:'+41.2% (2021)',worstYr:'-26.2% (2022)',
+  sharpe:.28,sortino:.41,maxDD:-26.9,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:3,overheat:3,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:null,fwdPE:null,impliedReturn:6.8,capeHist:null,capeNote:'REITs are valued by FFO (Funds From Operations) yield, not P/E. Current implied yield ~6.8% — reasonable but rate-sensitive. Dividend yield ~3.8%.',recentPCT:null},
+  rateSens:{duration:5.2,plus50:-2.8,plus100:-5.4,plus200:-10.1,note:'REITs are among the most rate-sensitive equity-like assets. They borrow heavily to buy properties and compete with bonds for income investors. A 1% rate rise = ~5%+ price decline.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:10,prob:35,note:'Rate cuts would provide major tailwind'},{name:'Recession 2026',ret:-18,prob:20,note:'Commercial real estate vacancies rise'},{name:'Stagflation',ret:-8,prob:25,note:'Rate pressure + income inflation protection partially offsets'},{name:'Dollar collapse',ret:-2,prob:10,note:'US domestic assets'},{name:'AI bubble burst',ret:5,prob:8,note:'Capital rotates from tech to real assets'},{name:'Rate spike +2%',ret:-16,prob:12,note:'Maximum sensitivity — borrowing costs crush REIT profits'}],
+  tax:{grade:'C+',turnover:8,divYield:3.8,taxChar:'REIT dividends taxed as ordinary income (not qualified)',etfEq:'VNQ (0.13%)',recommendation:'REITs must distribute 90%+ of taxable income as dividends — those dividends are taxed as ordinary income (up to 37%), not the lower qualified dividend rate. Hold in a tax-advantaged account (IRA, 401k) or you\'ll lose a significant portion of the yield to taxes. VNQ is the ETF equivalent.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Prologis',9.8],['American Tower',7.2],['Equinix',6.4],['Welltower',4.8],['Public Storage',4.2]],
+  principles:'Real Estate Investment Trusts (REITs) are companies that own income-producing real estate — warehouses, cell towers, data centers, apartments, hospitals, offices. They must pay ...',
+  badges:[['r','Very rate sensitive'],['w','2022 peak drawdown -27%'],['b','3.8% dividend yield'],['b','Inflation hedge (partial)']],
+  riskDetail:'REITs were crushed in 2022 when rates rose from 0% to 4%+ — VGSLX fell -26.2% that year, its worst performance since 2008. The core problem: REITs borrow heavily to buy property...',
+  prospects:'The bull case depends on rate cuts. If the Fed cuts 150-200bps, REIT prices would surge as their dividends become more attractive relative to bonds. Data center REITs (Equinix, ...',
+  spark:[97,97,99,102,100,97,95,99,103,102,105,110,108,111,114,113,114,118,116,122,125,123,121,123,117,122,126,128,127,131,133,137,138,134,136,138]
+},
+{
+  ticker:'VAIPX',name:'Vanguard Inflation-Protected Securities',sub:'Admiral Shares · US TIPS fund',cat:'Real Assets',
+  tracks:'Bloomberg US Treasury Inflation-Protected Securities (TIPS) Index',exp:.10,min:'$3,000',aum:'$42B',
+  ret1:6.1,bmark:'Bloomberg US TIPS',bret:6.1,catAvg:5.8,
+  ret3:1.8,ret5:2.2,ret10:2.9,bestYr:'+10.9% (2020)',worstYr:'-11.9% (2022)',
+  sharpe:.22,sortino:.33,maxDD:-14.2,
+  us:0,intl:0,bond:100,
+  regimeScores:{goldilocks:2,overheat:4,stagflation:4,recession:2},currentRegimeScore:4,
+  valuation:{cape:null,fwdPE:null,impliedReturn:4.2,capeHist:null,capeNote:'Real yield ~2.1% above CPI. The "real yield" (yield after inflation) is what matters for TIPS — currently ~2.1%, the highest since 2009. A genuine positive real return is now available for the first time in years.',recentPCT:null},
+  rateSens:{duration:7.2,plus50:-3.6,plus100:-7.2,plus200:-14.4,note:'TIPS have duration risk just like nominal bonds — but unlike nominal bonds, their principal adjusts with CPI, so the inflation erosion component is eliminated. Rate rises still hurt price.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:4,prob:35,note:'Inflation falls, real yield stays positive — modest returns'},{name:'Recession 2026',ret:5,prob:20,note:'Some flight to safety, inflation falls too'},{name:'Stagflation',ret:7,prob:25,note:'The ideal TIPS scenario — inflation protection + rate stability'},{name:'Dollar collapse',ret:2,prob:10,note:'Inflation would likely rise — TIPS benefit'},{name:'AI bubble burst',ret:4,prob:8,note:'Modest flight to safety'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Duration risk — price falls even though inflation adjusts'}],
+  tax:{grade:'D',turnover:25,divYield:null,taxChar:'Inflation adjustments taxed as ordinary income annually even if not distributed — "phantom income" tax',etfEq:'SCHP (0.03%) or TIP (0.19%)',recommendation:'TIPS have a uniquely bad tax treatment in taxable accounts: the annual inflation adjustment to principal is taxed as ordinary income even though you don\'t receive it in cash ("phantom income" tax). This makes them almost unusable in taxable accounts. Hold ONLY in a tax-advantaged account (IRA, 401k). SCHP is the same exposure at lower cost.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['US TIPS 5Y',28.0],['US TIPS 10Y',34.0],['US TIPS 20Y+',25.0],['US TIPS 1–3Y',13.0]],
+  principles:'TIPS are US government bonds where the principal adjusts with CPI inflation. If inflation rises 3%, your bond\'s face value grows 3% too — protecting purchasing power. The trade...',
+  badges:[['g','Pure inflation protection'],['g','Scores 4/5 in stagflation'],['r','Phantom income tax'],['w','Still has duration risk']],
+  riskDetail:'TIPS provide genuine inflation protection that nominal bonds do not — this is their core value proposition. However they still carry duration risk: if real yields rise (not just...',
+  prospects:'TIPS are one of the most attractive holdings in the current stagflation/slowdown regime. Real yield at 2.1% is the highest since 2009 — you\'re getting paid 2.1% above inflation...',
+  spark:[97,98,99,101,100,99,98,99,101,100,102,103,102,103,104,104,105,106,105,107,108,107,107,108,107,109,110,111,112,113,114,116,117,116,117,118]
+},
+{
+  ticker:'VFSUX',name:'Vanguard Short-Term Investment-Grade',sub:'Admiral Shares · short duration bonds',cat:'Bond',
+  tracks:'Bloomberg US 1-5 Year Credit Bond Index',exp:.10,min:'$3,000',aum:'$65B',
+  ret1:5.8,bmark:'Bloomberg 1-5Y Credit',bret:5.8,catAvg:5.4,
+  ret3:3.2,ret5:2.8,ret10:2.4,bestYr:'+4.8% (2020)',worstYr:'-5.1% (2022)',
+  sharpe:.48,sortino:.68,maxDD:-6.2,
+  us:0,intl:0,bond:100,
+  regimeScores:{goldilocks:3,overheat:2,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:null,fwdPE:null,impliedReturn:5.4,capeHist:null,capeNote:'Yield to maturity ~5.4%. Duration ~2.7 years — less than half the rate sensitivity of VBTLX. The sweet spot between safety and return in the current rate environment.',recentPCT:null},
+  rateSens:{duration:2.7,plus50:-1.4,plus100:-2.7,plus200:-5.4,note:'Short duration = dramatically less rate sensitivity. A 1% rate rise = only ~2.7% price loss vs ~6.5% for VBTLX. The primary reason to hold short-duration bonds in the current environment.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:5,prob:35,note:'Stable income, modest price appreciation as rates fall'},{name:'Recession 2026',ret:6,prob:20,note:'Less upside than long bonds but more stable'},{name:'Stagflation',ret:3,prob:25,note:'Income yield compensates; minimal price risk'},{name:'Dollar collapse',ret:2,prob:10,note:'Less exposed than long bonds'},{name:'AI bubble burst',ret:5,prob:8,note:'Flight to safety — modest benefit'},{name:'Rate spike +2%',ret:-3,prob:12,note:'Much more resilient than VBTLX in a rate spike'}],
+  tax:{grade:'C',turnover:45,divYield:5.1,taxChar:'Interest income = ordinary income tax rates',etfEq:'VCSH (0.04%)',recommendation:'Like all bond funds, hold in a tax-advantaged account. Interest income taxed at ordinary rates. VCSH is the ETF equivalent at much lower cost (0.04%). However, the short duration advantage is meaningful in the current environment — in a taxable account, the after-tax yield is still competitive with money markets for investors willing to take modest credit risk.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Corp. bonds (1-3Y)',42.0],['Corp. bonds (3-5Y)',38.0],['Agency bonds (short)',15.0],['Other short credit',5.0]],
+  principles:'The key insight: not all bonds are equal. VBTLX\'s ~6.5-year duration was devastating in 2022 when rates rose sharply. VFSUX\'s ~2.7-year duration means dramatically less exposu...',
+  badges:[['g','Low duration (2.7Y)'],['g','5.1% income yield'],['g','Only -5% in worst year'],['b','Better than money market risk-adjusted']],
+  riskDetail:'The most defensible fixed income position in the current environment. In 2022, when VBTLX fell -13%, VFSUX fell only -5% — the short duration made a transformational difference....',
+  prospects:'In a world where the 10-year Treasury yields 4.5% and duration risk is elevated, short-duration investment-grade bonds are one of the more attractive risk-adjusted opportunities...',
+  spark:[99,99,100,101,100,100,100,101,102,102,103,104,104,105,105,105,106,107,106,107,108,108,108,109,108,110,111,112,112,113,114,115,115,115,116,116]
+},
+{
+  ticker:'VDIPX',name:'Vanguard Developed Markets Index Fund',sub:'Admiral Shares · international developed only (no EM)',cat:'Intl Developed',
+  tracks:'FTSE Developed All Cap ex US Index (~4,000 stocks)',exp:.07,min:'$3,000',aum:'$120B',
+  ret1:18.9,bmark:'FTSE Developed ex US',bret:18.9,catAvg:17.1,
+  ret3:9.2,ret5:10.8,ret10:7.1,bestYr:'+25.6% (2017)',worstYr:'-14.3% (2022)',
+  sharpe:.66,sortino:.91,maxDD:-14.3,
+  us:0,intl:100,bond:0,
+  regimeScores:{goldilocks:3,overheat:4,stagflation:3,recession:2},currentRegimeScore:3,
+  valuation:{cape:15,fwdPE:13.8,impliedReturn:9.2,capeHist:26,capeNote:'Developed international markets outside the US trade at ~15x CAPE — dramatically cheaper than the US at 35x. Europe at ~13x and Japan at ~18x are both attractively priced by historical standards.',recentPCT:'26th'},
+  rateSens:{duration:null,plus50:-1.0,plus100:-2.0,plus200:-3.8,note:'European and Japanese rate environments are distinct from the US. ECB and BoJ policies are not synchronized with the Fed, providing some natural rate diversification.'},
+  currencyDecomp:{localRet:11.4,fxContrib:7.5,total:18.9,note:'Approximately 7.5% of returns came from USD weakness. Local equity markets in Europe and Japan returned ~11.4% in their own currencies.'},
+  scenarios:[{name:'Soft landing',ret:10,prob:35,note:'Solid earnings in Europe + yen tailwind'},{name:'Recession 2026',ret:-11,prob:20,note:'European recession risk; lower starting valuation cushions'},{name:'Stagflation',ret:-2,prob:25,note:'Less rate-sensitive than US, commodity-linked economies help'},{name:'Dollar collapse',ret:+16,prob:10,note:'Major beneficiary — 100% international'},{name:'AI bubble burst',ret:-6,prob:8,note:'Much less tech concentration than US large cap'},{name:'Rate spike +2%',ret:-6,prob:12,note:'Mostly non-USD rate environment provides cushion'}],
+  tax:{grade:'B',turnover:4,divYield:2.9,taxChar:'Mix of qualified/ordinary; foreign withholding tax',etfEq:'VEA (0.06%)',recommendation:'Best in tax-advantaged accounts. Foreign withholding taxes (10–30% on dividends) apply. Foreign tax credit partially offsets in taxable accounts but creates complexity. VEA is the ETF equivalent at lower cost. Many investors use VTIAX for full international (including EM) or VDIPX for developed-only depending on their EM risk appetite.'},
+  brokers:[['Vanguard',true],['Fidelity (NTF)',false],['Schwab (NTF)',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Nestlé (CH)',1.3],['ASML (NL)',1.2],['LVMH (FR)',1.0],['Toyota (JP)',0.9],['Shell (UK)',0.8]],
+  principles:'Pure developed-market international exposure with zero emerging market risk. For investors who want international diversification but are uncomfortable with the political and re...',
+  badges:[['g','No EM risk'],['g','Best valuation (CAPE 15x)'],['w','Currency risk'],['w','European recession exposure']],
+  riskDetail:'Lower maximum drawdown than VTIAX (which includes EM) precisely because it excludes the more volatile emerging markets. European recession risk is real — Germany contracted in 2...',
+  prospects:'Stronger risk-adjusted case than VTIAX for conservative investors: same valuation discount vs US, without EM political risk. CAPE at ~15x implies ~9.2% real 10Y return. European...',
+  spark:[98,100,103,106,104,100,97,103,106,105,108,113,111,115,118,117,118,121,119,126,129,127,127,130,126,133,138,141,141,147,150,155,158,154,157,160]
+},
+{
+  ticker:'IAU',name:'iShares Gold Trust',sub:'ETF · physical gold backed · all brokers',cat:'Real Assets',
+  tracks:'Spot gold price (physical gold held in vaults)',exp:.25,min:'$0 (ETF)',aum:'$42B',
+  ret1:38.5,bmark:'Gold spot price',bret:38.5,catAvg:38.2,
+  ret3:22.1,ret5:15.8,ret10:9.4,bestYr:'+38.5% (2025)',worstYr:'-2.1% (2021)',
+  sharpe:.88,sortino:1.24,maxDD:-16.8,
+  us:0,intl:0,bond:0,
+  regimeScores:{goldilocks:1,overheat:4,stagflation:5,recession:3},currentRegimeScore:5,
+  valuation:{cape:null,fwdPE:null,impliedReturn:4.0,capeHist:null,capeNote:'Gold has no earnings yield — it pays no dividends, generates no cash flow. Returns are driven entirely by price appreciation. Long-term real returns of gold are close to 0% — it preserves purchasing power but doesn\'t generate wealth. Currently at all-time highs (~$3,100/oz).',recentPCT:null},
+  rateSens:{duration:null,plus50:-1.8,plus100:-3.5,plus200:-6.5,note:'Gold has an inverse relationship with real interest rates. Rising real rates (rate increases that exceed inflation) tend to hurt gold. Falling real rates or negative real rates (inflation exceeding rates) are gold\'s ideal environment.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:-8,prob:35,note:'Safe havens sell off when fear recedes'},{name:'Recession 2026',ret:12,prob:20,note:'Flight to safety — classic gold scenario'},{name:'Stagflation',ret:22,prob:25,note:'The ideal gold environment — scores 5/5'},{name:'Dollar collapse',ret:35,prob:10,note:'Maximum gold tailwind — USD debasement play'},{name:'AI bubble burst',ret:15,prob:8,note:'Risk-off rotation into safety assets'},{name:'Rate spike +2%',ret:-15,prob:12,note:'Rising real rates are gold\'s worst enemy'}],
+  tax:{grade:'C-',turnover:0,divYield:0,taxChar:'Physical commodity — taxed as collectible at 28% max rate (not 20% LTCG)',etfEq:'GLD (0.40%) · GLDM (0.10%)',recommendation:'Gold ETFs (IAU, GLD, GLDM) are taxed as collectibles — the long-term capital gains rate is capped at 28%, higher than the 20% max rate on stocks. This is a meaningful disadvantage in taxable accounts. Hold in an IRA if possible. IAU is cheaper than GLD (0.25% vs 0.40%). GLDM is even cheaper at 0.10%.'},
+  brokers:[['All major brokers',true],['Vanguard',false],['Fidelity',false],['Schwab',false],['Robinhood',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Physical gold (vaulted)',100.0]],
+  principles:'Gold is the oldest store of value in human history — and the only asset in this tracker with no counterparty risk. Unlike stocks (you rely on a company\'s management), bonds (yo...',
+  badges:[['g','Stagflation 5/5'],['g','No counterparty risk'],['r','28% collectible tax'],['w','At all-time highs']],
+  riskDetail:'Gold is at all-time nominal highs (~$3,100/oz as of Q1 2026), having surged ~38% in the trailing 12 months on a combination of: central bank buying (especially China, India), US...',
+  prospects:'Short-term: at all-time highs with strong momentum. The structural tailwinds (central bank diversification away from USD, de-dollarization trends, US fiscal deterioration) are r...',
+  spark:[96,97,98,101,100,98,97,101,104,103,106,111,109,112,115,114,116,120,118,126,130,128,127,131,128,138,147,153,155,164,170,182,188,183,189,196]
+},
+{
+  ticker:'FXNAX',name:'Fidelity US Bond Index Fund',sub:'No minimum · Fidelity ecosystem',cat:'Bond',
+  tracks:'Bloomberg US Aggregate Bond Index',exp:.025,min:'$0',aum:'$58B',
+  ret1:5.1,bmark:'Bloomberg US Aggregate',bret:5.2,catAvg:4.8,
+  ret3:1.1,ret5:0.7,ret10:null,bestYr:'+8.6% (2020)',worstYr:'-13.1% (2022)',
+  sharpe:.30,sortino:.43,maxDD:-16.8,
+  us:0,intl:0,bond:100,
+  regimeScores:{goldilocks:3,overheat:1,stagflation:1,recession:5},currentRegimeScore:1,
+  valuation:{cape:null,fwdPE:null,impliedReturn:4.8,capeHist:null,capeNote:'Same index as VBTLX — Bloomberg US Aggregate. Yield to maturity ~4.8%, duration ~6.4 years. 0.025% expense vs VBTLX\'s 0.05%.',recentPCT:null},
+  rateSens:{duration:6.4,plus50:-3.2,plus100:-6.4,plus200:-12.8,note:'Nearly identical to VBTLX in rate sensitivity. Same duration, same holdings. The expense ratio advantage (0.025% vs 0.05%) is the only meaningful difference.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:7,prob:35,note:'Fed cuts, bond prices rise'},{name:'Recession 2026',ret:9,prob:20,note:'Flight to safety — bonds fulfill hedge role'},{name:'Stagflation',ret:-4,prob:25,note:'Worst scenario — inflation erodes and prices fall'},{name:'Dollar collapse',ret:-2,prob:10,note:'Foreign investors flee USD bonds'},{name:'AI bubble burst',ret:5,prob:8,note:'Modest flight to safety'},{name:'Rate spike +2%',ret:-13,prob:12,note:'Duration × rate = severe loss'}],
+  tax:{grade:'C',turnover:48,divYield:3.9,taxChar:'Interest income = ordinary income rates',etfEq:'AGG (0.03%) or BND (0.03%)',recommendation:'Hold only in tax-advantaged accounts. Same rationale as VBTLX — bond interest taxed at ordinary income rates. FXNAX is the Fidelity-native equivalent of VBTLX, with a meaningful cost advantage (0.025% vs 0.05%). For Fidelity users, FXNAX is strictly preferable to buying VBTLX.'},
+  brokers:[['Fidelity',true],['Some 401(k) plans',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['US Treasuries',42.0],['Mortgage-backed (MBS)',26.0],['Corp. bonds (IG)',26.0],['Agency bonds',5.0],['Other',1.0]],
+  principles:'Fidelity\'s version of the aggregate US bond market — functionally identical to VBTLX but half the cost. Tracks the Bloomberg US Aggregate, the standard benchmark for US investm...',
+  badges:[['r','Duration risk'],['r','Broken hedge 22–24'],['w','Fiscal headwinds'],['g','0.025% — cheapest bond at Fidelity']],
+  riskDetail:'Essentially identical to VBTLX in all material respects. Same Bloomberg Agg index, same duration (~6.4 years), same credit quality mix, same rate and inflation risks. The 0.025%...',
+  prospects:'Same outlook as VBTLX — context-dependent. Base case (growth slowdown + Fed cuts): 7–9% total return. Stagflation: -4%. The cost advantage vs VBTLX compounds over decades on lar...',
+  spark:[97,99,98,99,100,99,98,99,101,100,101,102,101,102,103,104,104,105,104,106,107,106,105,106,105,107,108,109,109,110,111,112,112,111,112,113]
+},
+{
+  ticker:'FSMAX',name:'Fidelity Extended Market Index Fund',sub:'No minimum · Fidelity small + mid cap',cat:'US Small/Mid Cap',
+  tracks:'Dow Jones US Completion Total Stock Market Index (~3,100 small/mid cap stocks)',exp:.035,min:'$0',aum:'$28B',
+  ret1:11.2,bmark:'Dow Jones US Completion',bret:11.2,catAvg:13.5,
+  ret3:7.8,ret5:12.4,ret10:null,bestYr:'+31.8% (2019)',worstYr:'-19.9% (2022)',
+  sharpe:.58,sortino:.80,maxDD:-19.9,
+  us:100,intl:0,bond:0,
+  regimeScores:{goldilocks:4,overheat:3,stagflation:2,recession:2},currentRegimeScore:2,
+  valuation:{cape:22,fwdPE:16.1,impliedReturn:8.0,capeHist:44,capeNote:'Extended market (small + mid cap) trades at ~22x CAPE — same as VSMAX, significantly cheaper than large cap. The "completion index" captures everything the S&P 500 excludes.',recentPCT:'44th'},
+  rateSens:{duration:null,plus50:-2.4,plus100:-4.7,plus200:-8.9,note:'Small/mid caps have higher rate sensitivity due to more leverage and less pricing power than mega-cap large caps.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:15,prob:35,note:'Small/mid leads recovery — size premium kicks in'},{name:'Recession 2026',ret:-23,prob:20,note:'Worse than large cap in downturns'},{name:'Stagflation',ret:-10,prob:25,note:'Credit tightening hits smaller companies harder'},{name:'Dollar collapse',ret:-2,prob:10,note:'More domestic revenue than large caps'},{name:'AI bubble burst',ret:-8,prob:8,note:'Less AI concentration than S&P 500'},{name:'Rate spike +2%',ret:-12,prob:12,note:'Small co. debt costs amplify rate shock'}],
+  tax:{grade:'B',turnover:16,divYield:1.2,taxChar:'Mix of qualified dividends and short-term gains from higher turnover',etfEq:'VXF (0.06%)',recommendation:'Good for both account types but turnover is higher than large cap index funds. When combined with FXAIX in an 80/20 or 90/10 ratio, you can replicate the total US stock market at a lower blended cost than buying FZROX alone — and maintain individual control of your size allocation.'},
+  brokers:[['Fidelity',true],['Some 401(k) plans',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Various small/mid caps',0.3],['Tech sector ~18%',0.2],['Industrials ~17%',0.2],['Healthcare ~15%',0.2],['Financials ~13%',0.2]],
+  principles:'The "completion index" — it owns everything in the US stock market except the S&P 500. Combining FXAIX (80%) + FSMAX (20%) replicates the total US market at a lower blended cost...',
+  badges:[['g','Cheapest small/mid at Fidelity'],['g','Replicates total market w/ FXAIX'],['w','Underperformed 2018–24'],['b','Small-cap premium potential']],
+  riskDetail:'Same risks as VSMAX — higher volatility than large cap, more sensitive to rate hikes and credit tightening, and a multi-year stretch of underperformance relative to mega-cap tec...',
+  prospects:'Same forward return case as VSMAX (~8% real 10Y implied). The "small cap premium" requires patience but is historically validated. Best used as a complement to FXAIX — the combi...',
+  spark:[97,98,102,106,104,100,97,104,108,107,111,116,114,118,121,120,121,125,123,131,134,132,131,134,127,134,139,141,141,145,147,152,153,149,151,153]
+},
+{
+  ticker:'VBIAX',name:'Vanguard Balanced Index Fund',sub:'Admiral Shares · 60% stocks / 40% bonds',cat:'Balanced',
+  tracks:'60% CRSP US Total Market + 40% Bloomberg US Aggregate Bond Index',exp:.07,min:'$3,000',aum:'$55B',
+  ret1:14.2,bmark:'60/40 Blended Benchmark',bret:14.2,catAvg:13.6,
+  ret3:8.4,ret5:9.8,ret10:9.2,bestYr:'+21.9% (2019)',worstYr:'-16.9% (2022)',
+  sharpe:.76,sortino:1.06,maxDD:-16.9,
+  us:60,intl:0,bond:40,
+  regimeScores:{goldilocks:4,overheat:2,stagflation:1,recession:3},currentRegimeScore:1,
+  valuation:{cape:25,fwdPE:19.2,impliedReturn:5.9,capeHist:50,capeNote:'Blended valuation: 60% US equity (CAPE ~33x) + 40% bonds (yield 4.8%). The bond allocation provides a genuine income floor; the equity provides growth.',recentPCT:'50th'},
+  rateSens:{duration:2.6,plus50:-1.3,plus100:-2.6,plus200:-5.2,note:'The 40% bond allocation contributes duration risk. A 1% rate rise impacts the bond portion ~6.5% = 2.6% drag on the blended portfolio.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:11,prob:35,note:'Equity gains + bond appreciation'},{name:'Recession 2026',ret:-10,prob:20,note:'Bond allocation cushions equity drawdown significantly'},{name:'Stagflation',ret:-9,prob:25,note:'Both equity and bonds under pressure simultaneously — the 60/40\'s worst enemy'},{name:'Dollar collapse',ret:-4,prob:10,note:'No international exposure'},{name:'AI bubble burst',ret:-9,prob:8,note:'US equity concentration with bond cushion'},{name:'Rate spike +2%',ret:-12,prob:12,note:'Both components hurt: equity multiples compress, bonds fall'}],
+  tax:{grade:'C+',turnover:6,divYield:2.2,taxChar:'Mix of equity dividends and bond interest (ordinary income)',etfEq:'No direct ETF — use VTSAX + VBTLX',recommendation:'The bond component generates ordinary income taxed at high rates. Best held in a tax-advantaged account. In a taxable account, consider holding VTSAX and VBTLX separately — you can place the bond portion in a retirement account and hold only equities in taxable, significantly improving after-tax returns.'},
+  brokers:[['Vanguard',true],['Some 401(k) plans',false]],
+  targetDate:null,fundTags:['auto-rebalancing'],
+  holdings:[['CRSP US Total Market (60%)',60.0],['Bloomberg US Agg Bonds (40%)',40.0]],
+  principles:'The classic 60/40 portfolio in a single fund. 60% US total stock market provides growth potential; 40% US aggregate bonds provides income and (historically) acts as a hedge duri...',
+  badges:[['g','Auto-rebalances'],['r','Stagflation 1/5'],['w','No international'],['b','Classic 60/40']],
+  riskDetail:'The 60/40 portfolio had its worst year in 2022 when both stocks (-18%) and bonds (-13%) fell simultaneously — stagflation broke the traditional negative correlation. VBIAX fell ...',
+  prospects:'The 60/40 is back to working — 2025 delivered a strong year with both components positive. Blended implied return of ~5.9% real over 10Y. However, the lack of international expo...',
+  spark:[101,101,104,107,105,103,101,105,109,108,111,115,113,116,119,118,119,122,121,128,130,129,128,130,124,130,134,136,136,139,141,145,146,143,145,148]
+},
+{
+  ticker:'SCHP',name:'Schwab US TIPS ETF',sub:'ETF · cheapest TIPS fund · all brokers',cat:'Real Assets',
+  tracks:'Bloomberg US Treasury Inflation-Protected Securities (TIPS) Index',exp:.03,min:'$0 (ETF)',aum:'$22B',
+  ret1:6.2,bmark:'Bloomberg US TIPS',bret:6.1,catAvg:5.8,
+  ret3:1.9,ret5:2.3,ret10:null,bestYr:'+11.0% (2020)',worstYr:'-11.7% (2022)',
+  sharpe:.23,sortino:.34,maxDD:-14.0,
+  us:0,intl:0,bond:100,
+  regimeScores:{goldilocks:2,overheat:4,stagflation:4,recession:2},currentRegimeScore:4,
+  valuation:{cape:null,fwdPE:null,impliedReturn:4.2,capeHist:null,capeNote:'Same Bloomberg TIPS index as VAIPX. Real yield ~2.1% above CPI. At 0.03% expense ratio vs VAIPX\'s 0.10%, SCHP is 3x cheaper for the same exposure.',recentPCT:null},
+  rateSens:{duration:7.2,plus50:-3.6,plus100:-7.2,plus200:-14.4,note:'Same duration and rate sensitivity as VAIPX — same underlying index.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:4,prob:35,note:'Inflation falls, real yield stays — modest'},{name:'Recession 2026',ret:5,prob:20,note:'Some flight to safety'},{name:'Stagflation',ret:7,prob:25,note:'Ideal TIPS environment — inflation protection'},{name:'Dollar collapse',ret:2,prob:10,note:'Inflation rise = TIPS benefit'},{name:'AI bubble burst',ret:4,prob:8,note:'Modest safety benefit'},{name:'Rate spike +2%',ret:-10,prob:12,note:'Duration risk even in TIPS'}],
+  tax:{grade:'D',turnover:20,divYield:null,taxChar:'Phantom income tax on inflation adjustments — hold only in retirement accounts',etfEq:'Is an ETF · SCHP',recommendation:'Same phantom income tax problem as VAIPX — hold only in tax-advantaged accounts. SCHP is 3x cheaper than VAIPX (0.03% vs 0.10%) for the same Bloomberg TIPS exposure. The ETF structure also adds marginal tax efficiency. For Schwab and non-Vanguard users, SCHP is the best TIPS vehicle available.'},
+  brokers:[['All major brokers',true],['Schwab',true],['Fidelity',false],['Vanguard',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['US TIPS 5Y',28.0],['US TIPS 10Y',34.0],['US TIPS 20Y+',25.0],['US TIPS 1–3Y',13.0]],
+  principles:'The cheapest way to own the Bloomberg TIPS index — 0.03% vs VAIPX\'s 0.10%. ETFs are generally more tax-efficient than mutual funds, though the phantom income tax makes both TIP...',
+  badges:[['g','0.03% — cheapest TIPS fund'],['g','Stagflation 4/5'],['r','Phantom income tax (all accounts)'],['b','Real yield 2.1%']],
+  riskDetail:'Identical to VAIPX in all material respects except cost — same index, same duration, same rate sensitivity. The 0.07% cost advantage (0.03% vs 0.10%) compounds meaningfully over...',
+  prospects:'Same as VAIPX. The best-priced inflation hedge in the tracker. Real yield at 2.1% is the highest since 2009. In a stagflation or dollar-debasement scenario, TIPS are one of the ...',
+  spark:[97,98,99,101,100,99,98,99,101,100,102,103,102,103,104,104,105,106,105,107,108,107,107,108,107,109,110,111,112,113,114,116,117,116,117,118]
+},
+{
+  ticker:'VWENX',name:'Vanguard Wellington Fund',sub:'Admiral Shares · oldest US balanced fund · active',cat:'Balanced',
+  tracks:'Active: ~65% US equity (quality focus) + ~35% US investment-grade bonds',exp:.17,min:'$50,000',aum:'$110B',
+  ret1:14.8,bmark:'60/40 Blended Benchmark',bret:14.2,catAvg:13.6,
+  ret3:8.9,ret5:10.2,ret10:9.8,bestYr:'+22.8% (2019)',worstYr:'-14.1% (2022)',
+  sharpe:.79,sortino:1.10,maxDD:-14.1,
+  us:65,intl:0,bond:35,
+  regimeScores:{goldilocks:4,overheat:2,stagflation:2,recession:3},currentRegimeScore:2,
+  valuation:{cape:27,fwdPE:20.1,impliedReturn:6.2,capeHist:55,capeNote:'Active quality-tilt means the equity portfolio trades at a premium to the broad market but with better quality. Bond portfolio is active and slightly higher quality than the Agg.',recentPCT:'55th'},
+  rateSens:{duration:2.2,plus50:-1.1,plus100:-2.2,plus200:-4.4,note:'The active bond management has historically maintained slightly shorter duration than VBTLX, providing marginally less rate sensitivity.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:12,prob:35,note:'Quality equity + bond appreciation'},{name:'Recession 2026',ret:-9,prob:20,note:'Quality equity cushions drawdown vs S&P 500'},{name:'Stagflation',ret:-7,prob:25,note:'Quality bias helps; bond component still hurts'},{name:'Dollar collapse',ret:-5,prob:10,note:'No international exposure'},{name:'AI bubble burst',ret:-7,prob:8,note:'Quality selection avoids worst speculative names'},{name:'Rate spike +2%',ret:-9,prob:12,note:'Bond component creates duration drag'}],
+  tax:{grade:'C',turnover:28,divYield:2.4,taxChar:'Mix of ordinary bond income and equity dividends; active management generates more taxable events',etfEq:'No ETF equivalent — mutual fund only',recommendation:'Active management creates more taxable events than passive funds. Hold in a tax-advantaged account. The $50,000 minimum is a barrier for many investors. If you qualify, Wellington has a long track record of modest outperformance vs passive 60/40 — though past active performance is no guarantee of future results.'},
+  brokers:[['Vanguard',true],['Some TIAA plans',false]],
+  targetDate:null,fundTags:['auto-rebalancing'],
+  holdings:[['Active US equity portfolio',65.0],['Active US bond portfolio',35.0]],
+  principles:'America\'s oldest balanced fund, founded in 1929. Managed by Wellington Management, one of the most respected institutional asset managers globally. Unlike VBIAX (passive 60/40)...',
+  badges:[['g','95-year track record'],['g','Outperforms passive 60/40 (historically)'],['w','$50K minimum'],['w','Active fee vs passive']],
+  riskDetail:'The primary risk is the same as any active fund: active managers underperform after fees over long periods in most studies. Wellington has been an exception — it has marginally ...',
+  prospects:'Wellington\'s consistent quality bias and active bond management have historically added ~0.5–1% annual return over passive 60/40, partially justifying the 0.17% fee. The 95-yea...',
+  spark:[101,101,104,107,105,103,101,105,109,108,111,115,113,116,120,119,119,123,121,128,131,129,128,131,125,131,135,137,137,141,143,147,148,145,147,149]
+},
+{
+  ticker:'QUAL',name:'iShares MSCI USA Quality Factor ETF',sub:'ETF · smart beta · quality factor',cat:'Factor',
+  tracks:'MSCI USA Sector Neutral Quality Index (~125 high-quality US stocks)',exp:.15,min:'$0 (ETF)',aum:'$42B',
+  ret1:20.4,bmark:'MSCI USA Quality',bret:20.4,catAvg:23.1,
+  ret3:13.8,ret5:16.2,ret10:null,bestYr:'+36.1% (2023)',worstYr:'-15.2% (2022)',
+  sharpe:.89,sortino:1.22,maxDD:-15.2,
+  us:97,intl:3,bond:0,
+  regimeScores:{goldilocks:5,overheat:3,stagflation:3,recession:3},currentRegimeScore:3,
+  valuation:{cape:32,fwdPE:21.8,impliedReturn:5.5,capeHist:70,capeNote:'Quality companies typically command a premium — CAPE ~32x sits between the broad market and pure growth. The premium reflects superior balance sheets and earnings stability.',recentPCT:'70th'},
+  rateSens:{duration:null,plus50:-2.2,plus100:-4.2,plus200:-7.8,note:'Quality companies have stronger balance sheets and less debt than the average company, making them somewhat less sensitive to rate rises than the broad market.'},
+  currencyDecomp:null,
+  scenarios:[{name:'Soft landing',ret:17,prob:35,note:'Quality outperforms in sustained growth'},{name:'Recession 2026',ret:-14,prob:20,note:'Quality drawdowns are smaller than broad market'},{name:'Stagflation',ret:-5,prob:25,note:'Strong balance sheets + pricing power helps quality companies'},{name:'Dollar collapse',ret:-4,prob:10,note:'Mostly US domestic'},{name:'AI bubble burst',ret:-8,prob:8,note:'Quality filter reduces worst speculative exposure'},{name:'Rate spike +2%',ret:-8,prob:12,note:'Lower leverage = less sensitive than market-cap weighted'}],
+  tax:{grade:'A-',turnover:18,divYield:0.9,taxChar:'Low dividends, mostly capital appreciation at LTCG rates',etfEq:'Is an ETF · QUAL',recommendation:'Tax-efficient in taxable accounts — low dividend yield means minimal forced income. ETF structure adds further efficiency. The higher turnover vs pure index funds creates some taxable events but the low yield minimizes ongoing tax drag.'},
+  brokers:[['All major brokers',true],['Fidelity',false],['Schwab',false],['Vanguard',false]],
+  targetDate:null,fundTags:[],
+  holdings:[['Apple (AAPL)',9.2],['Microsoft (MSFT)',8.8],['NVIDIA (NVDA)',7.4],['Meta (META)',5.1],['Alphabet (GOOG)',4.8]],
+  principles:'"Factor investing" — also called smart beta — is the academic middle ground between passive and active. Instead of owning every stock by market cap, QUAL selects stocks based on...',
+  badges:[['g','Smaller drawdowns than S&P 500'],['g','Quality premium (academic)'],['w','0.15% — higher than pure index'],['w','Still tech-heavy']],
+  riskDetail:'QUAL\'s quality screen has historically provided genuine downside protection — in every major drawdown since inception, QUAL has fallen less than the S&P 500. However it remains...',
+  prospects:'The academic case for quality factor investing is strong and well-documented — Novy-Marx\'s 2013 paper on profitability showed quality is a persistent, economically meaningful r...',
+  spark:[102,102,106,110,108,105,103,109,113,113,117,123,121,126,130,129,130,135,133,143,147,145,144,148,140,148,154,157,157,163,166,172,175,169,173,176]
+}
+];
+
+const charts={};
+let sortCol=null,sortDir=1,activeCat='all',searchQ='',currentView='table',sparkPeriod='5y';
+
+const REGIME_COLORS={goldilocks:'#00c97b',overheat:'#f0a500',stagflation:'#ff5252',recession:'#4da6ff'};
+const REGIME_LABELS={goldilocks:'GOLDILOCKS',overheat:'OVERHEATING',stagflation:'STAGFLATION',recession:'RECESSION'};
+const SCORE_COLORS=['#ff5252','#f0a500','#f0a500','#00c97b','#00c97b'];
+
+function scoreColor(s){return SCORE_COLORS[Math.max(0,Math.min(4,s-1))];}
+
+function sparkData(f){
+  if(sparkPeriod==='1y') return f.spark.slice(-12);
+  return f.spark;
+}
+
+function spark(f,w=108,h=36){
+  const data=sparkData(f);
+  const mn=Math.min(...data),mx=Math.max(...data),r=mx-mn||1;
+  const pts=data.map((v,i)=>{
+    const x=(i/(data.length-1))*w;
+    const y=h-((v-mn)/r)*(h-4)-2;
+    return x.toFixed(1)+','+y.toFixed(1);
+  }).join(' ');
+  const up=data[data.length-1]>=data[0];
+  const col=up?'#00c97b':'#ff5252';
+  const lx=w, ly=h-((data[data.length-1]-mn)/r)*(h-4)-2;
+  return`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block;overflow:visible"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.5" fill="${col}"/></svg>`;
+}
+
+function rv(v,sign=true){
+  const cl=v>0?'pos':v<0?'neg':'neu';
+  const s=sign&&v>0?'+':'';
+  return`<span class="mv ${cl}">${s}${v.toFixed(1)}%</span>`;
+}
+function expSpan(v){
+  if(v===0) return`<span class="mv exp-free">FREE</span>`;
+  if(v>0.2) return`<span class="mv exp-hi">${v.toFixed(3)}%</span>`;
+  return`<span class="mv exp-lo">${v.toFixed(3)}%</span>`;
+}
+function bHtml(bs){
+  const m={w:'b-w',r:'b-r',g:'b-g',b:'b-b'};
+  return'<div class="badges2">'+bs.map(([t,l])=>`<span class="badge2 ${m[t]}">${l}</span>`).join('')+'</div>';
+}
+function regimeScore(s){
+  return'<div class="regime-score">'+Array.from({length:5},(_,i)=>`<div class="rs-dot ${i<s?'':'rs-empty'}" style="${i<s?'background:'+scoreColor(s):''}"></div>`).join('')+'</div>';
+}
+function holdBars(hlds){
+  const mx=Math.max(...hlds.map(h=>h[1]));
+  return hlds.map(([n,p])=>`<div class="hrow"><span class="hn">${n}</span><div class="hbw"><div class="hbf" style="width:${((p/mx)*100).toFixed(0)}%"></div></div><span class="hpc">${p.toFixed(1)}%</span></div>`).join('');
+}
+function allocBar(f){
+  const segs=[];
+  if(f.us>0) segs.push([f.us,'#4da6ff','US equity']);
+  const devI=f.cat==='International'?f.intl*.77:f.intl, emI=f.cat==='International'?f.intl*.23:0;
+  if(devI>0) segs.push([devI,'#00c97b','Intl developed']);
+  if(emI>1) segs.push([Math.round(emI),'#f0a500','Emerging mkts']);
+  if(f.bond>0) segs.push([f.bond,'#9a9690','Bonds']);
+  const bar=segs.map(([p,c])=>`<div style="flex:${p};background:${c};min-width:2px"></div>`).join('');
+  const leg=segs.map(([p,c,l])=>`<span><span class="adot" style="background:${c}"></span>${l} ${p.toFixed(0)}%</span>`).join('');
+  return`<div class="abar">${bar}</div><div class="aleg">${leg}</div>`;
+}
+
+function renderDetail(f){
+  const id='det-'+f.ticker.replace(/\s/g,'_');
+  const delta=f.ret1-f.bret, vscat=f.ret1-f.catAvg;
+  const brokHtml=f.brokers.map(([n,p])=>`<span class="bpill ${p?'primary':''}">${n}</span>`).join('');
+
+  function valBarHtml(){
+    if(!f.valuation.cape) return`<div class="val-gauge"><div class="big" style="color:var(--text2)">N/A</div><div class="sub">Bond fund — use yield metrics</div></div>`;
+    const p=f.valuation.capeHist;
+    const cl=p>70?'var(--red)':p>50?'var(--amber)':'var(--green)';
+    return`<div class="val-gauge"><div class="big" style="color:${cl}">${f.valuation.cape}x</div><div class="sub">${f.valuation.recentPCT} PERCENTILE VS HISTORY</div></div><div class="val-hist"><div class="val-hist-fill" style="width:${p}%;background:${cl}"></div><div class="val-hist-dot" style="left:${p}%;background:${cl}"></div></div><div class="val-hist-labels"><span>Cheap</span><span>Median</span><span>Expensive</span></div>`;
+  }
+  function rateHtml(){
+    return`<div class="rate-impact"><div class="ri-card"><div class="ri-val neg">${f.rateSens.plus50.toFixed(1)}%</div><div class="ri-lbl">+50bps rate shock</div></div><div class="ri-card"><div class="ri-val neg">${f.rateSens.plus100.toFixed(1)}%</div><div class="ri-lbl">+100bps shock</div></div><div class="ri-card"><div class="ri-val neg">${f.rateSens.plus200.toFixed(1)}%</div><div class="ri-lbl">+200bps shock</div></div></div><div class="dtxt" style="margin-top:8px;font-size:10px">${f.rateSens.note}</div>`;
+  }
+  function currHtml(){
+    if(!f.currencyDecomp) return`<div class="dtxt" style="font-size:10px;color:var(--text3)">N/A — domestic fund, no currency impact</div>`;
+    return`<div class="cdecomp"><div class="cd-seg"><div class="cd-val pos">+${f.currencyDecomp.localRet.toFixed(1)}%</div><div class="cd-lbl">Local equity returns</div></div><div class="cd-seg"><div class="cd-val pos">+${f.currencyDecomp.fxContrib.toFixed(1)}%</div><div class="cd-lbl">USD currency tailwind</div></div><div class="cd-seg"><div class="cd-val pos">+${f.currencyDecomp.total.toFixed(1)}%</div><div class="cd-lbl">Total 1Y return</div></div></div><div class="dtxt" style="margin-top:8px;font-size:10px">${f.currencyDecomp.note}</div>`;
+  }
+  function regimeSc(){
+    const cur=MACRO.regime;
+    return Object.entries(f.regimeScores).map(([r,s])=>{
+      const isCur=r===cur;
+      const stars=Array.from({length:5},(_,i)=>`<div class="rstar" style="background:${i<s?scoreColor(s):'var(--bg5)'}"></div>`).join('');
+      return`<div class="regime-row" style="${isCur?'background:var(--bg4);border-radius:3px;padding:5px 6px':''}"><span class="regime-name" style="color:${REGIME_COLORS[r]}">${isCur?'▶ ':''} ${REGIME_LABELS[r]}</span><div class="regime-stars">${stars}</div><span class="regime-note">${s}/5${isCur?' ← NOW':''}</span></div>`;
+    }).join('');
+  }
+  function scenH(){
+    const rows=f.scenarios.map(sc=>{
+      const cl=sc.ret>0?'pos':sc.ret<0?'neg':'neu';
+      const sign=sc.ret>0?'+':'';
+      const pb=`<div class="prob-bar"><div class="prob-fill" style="width:${sc.prob*2}%;background:${sc.prob>30?'#00c97b':sc.prob>15?'#f0a500':'#5c5a56'}"></div></div>`;
+      return`<tr><td>${sc.name}</td><td class="tr"><span class="mv ${cl}">${sign}${sc.ret}%</span></td><td style="font-size:9px;color:var(--text2)">${sc.note}</td><td class="tr" style="white-space:nowrap"><span style="font-family:var(--mono);font-size:9px;color:var(--text2)">${sc.prob}%</span>${pb}</td></tr>`;
+    }).join('');
+    return`<table class="scenario-table"><thead><tr><th>Scenario</th><th class="tr">Est. return</th><th>Key driver</th><th class="tr">Prob.</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  function mpHtml(){
+    const fmt=v=>v===null?'N/A':(v>0?'+':'')+v.toFixed(1)+'%';
+    const cl=v=>v===null?'neu':v>0?'pos':'neg';
+    return`<div class="mperiod"><div class="mp-cell"><div class="mp-val ${cl(f.ret1)}">${fmt(f.ret1)}</div><div class="mp-lbl">1 YEAR</div></div><div class="mp-cell"><div class="mp-val ${cl(f.ret3)}">${fmt(f.ret3)}</div><div class="mp-lbl">3 YEAR ANN.</div></div><div class="mp-cell"><div class="mp-val ${cl(f.ret5)}">${fmt(f.ret5)}</div><div class="mp-lbl">5 YEAR ANN.</div></div><div class="mp-cell"><div class="mp-val ${cl(f.ret10)}">${fmt(f.ret10)}</div><div class="mp-lbl">10 YEAR ANN.</div></div></div><div style="display:flex;gap:8px;margin-top:8px"><div class="dc" style="flex:1"><div class="dlbl">BEST CALENDAR YEAR</div><span class="mv pos">${f.bestYr}</span></div><div class="dc" style="flex:1"><div class="dlbl">WORST CALENDAR YEAR</div><span class="mv neg">${f.worstYr}</span></div><div class="dc" style="flex:1"><div class="dlbl">MAX DRAWDOWN (3Y)</div><span class="mv neg">${f.maxDD !== null ? f.maxDD.toFixed(1) + '%' : 'N/A'}</span></div></div>`;
+  }
+
+  return`
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('${id}','overview',this)">Overview</button>
+    <button class="tab" onclick="switchTab('${id}','valuation',this)">Valuation & Macro</button>
+    <button class="tab" onclick="switchTab('${id}','risk',this)">Risk Profile</button>
+    <button class="tab" onclick="switchTab('${id}','scenarios',this)">Stress Tests</button>
+    <button class="tab" onclick="switchTab('${id}','tax',this)">Tax & Structure</button>
+  </div>
+  <div class="tab-panel on" id="${id}-overview">
+    <div class="dp2">
+      <div class="dc"><div class="dlbl">Index tracked &amp; philosophy</div><div class="iname">${f.tracks}</div><div class="dtxt">${f.principles}</div><div style="margin-top:12px"><div class="dlbl">Available at</div>${brokHtml}</div></div>
+      <div class="dc"><div class="dlbl">Top 5 holdings</div>${holdBars(f.holdings)}<div style="margin-top:12px"><div class="dlbl">Portfolio allocation</div>${allocBar(f)}</div></div>
+    </div>
+    <div class="dp3">
+      <div class="dc"><div class="dlbl">Key metrics</div>
+        <div class="kv"><span class="k">AUM</span><span class="v" style="color:var(--teal)">${f.aum}</span></div>
+        <div class="kv"><span class="k">Min. investment</span><span class="v">${f.min}</span></div>
+        <div class="kv"><span class="k">Expense ratio</span><span class="v" style="color:${f.exp===0?'var(--green)':f.exp>0.2?'var(--red)':'var(--text)'}">${f.exp===0?'FREE':f.exp.toFixed(3)+'%'}</span></div>
+        <div class="kv"><span class="k">vs benchmark (1Y)</span><span class="v" style="color:${delta>=0?'var(--green)':'var(--red)'}">${delta>=0?'+':''}${delta.toFixed(1)}% vs ${f.bmark}</span></div>
+        <div class="kv"><span class="k">vs category avg</span><span class="v" style="color:${vscat>=0?'var(--green)':'var(--red)'}">${vscat>=0?'+':''}${vscat.toFixed(1)}%</span></div>
+        <div class="kv"><span class="k">Sharpe ratio (3Y)</span><span class="v">${f.sharpe.toFixed(2)}</span></div>
+        <div class="kv"><span class="k">Sortino ratio (3Y)</span><span class="v">${f.sortino.toFixed(2)}</span></div>
+        <div class="kv"><span class="k">Max drawdown (3Y)</span><span class="v neg">${f.maxDD.toFixed(1)}%</span></div>
+      </div>
+      <div class="dc"><div class="dlbl">Multi-period returns</div>${mpHtml()}</div>
+      <div class="dc"><div class="dlbl">1Y vs benchmark (${f.bmark})</div><div class="chw"><canvas id="${id}-chart"></canvas></div></div>
+    </div>
+    <div class="dp2">
+      <div class="dc"><div class="dlbl">Risk analysis — current market context</div><div style="margin-bottom:8px">${bHtml(f.badges)}</div><div class="dtxt">${f.riskDetail}</div></div>
+      <div class="dc"><div class="dlbl">Future prospects — macro outlook 2026–2035</div><div class="dtxt">${f.prospects}</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="${id}-valuation">
+    <div class="dp3">
+      <div class="dc"><div class="dlbl">CAPE ratio (Shiller PE)</div>${valBarHtml()}<div class="dtxt" style="margin-top:8px;font-size:10px">${f.valuation.capeNote}</div></div>
+      <div class="dc"><div class="dlbl">Forward PE (12M consensus)</div>${f.valuation.fwdPE?`<div class="val-gauge"><div class="big" style="color:${f.valuation.fwdPE>25?'var(--red)':f.valuation.fwdPE>20?'var(--amber)':'var(--green)'}">${f.valuation.fwdPE}x</div><div class="sub">CONSENSUS EPS ESTIMATE</div></div><div class="dtxt" style="font-size:10px;margin-top:8px">In a recession, consensus estimates typically fall 20–30% — so the realized forward PE could be much higher than consensus.</div>`:'<div class="val-gauge"><div class="big" style="color:var(--text2)">N/A</div></div>'}</div>
+      <div class="dc"><div class="dlbl">Implied 10Y real return</div><div class="val-gauge"><div class="big" style="color:${f.valuation.impliedReturn>7?'var(--green)':f.valuation.impliedReturn>5?'var(--amber)':'var(--red)'}">${f.valuation.impliedReturn.toFixed(1)}%</div><div class="sub">ANNUALIZED REAL (AFTER INFLATION)</div></div><div class="dtxt" style="font-size:10px;margin-top:8px">Derived from CAPE earnings yield + mean reversion. Base-rate calibrated estimate. Not a prediction.</div></div>
+    </div>
+    <div class="dp2">
+      <div class="dc"><div class="dlbl">Regime performance expectations</div>${regimeSc()}</div>
+      <div class="dc"><div class="dlbl">Currency decomposition (trailing 12M)</div>${currHtml()}<div style="margin-top:14px"><div class="dlbl">Rate sensitivity</div>${rateHtml()}</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="${id}-risk">
+    <div class="dp4">
+      <div class="dc" style="text-align:center"><div class="dlbl">Sharpe ratio (3Y)</div><div class="big" style="font-family:var(--mono);font-size:22px;font-weight:500;color:${f.sharpe>0.8?'var(--green)':f.sharpe>0.5?'var(--amber)':'var(--red)'}">${f.sharpe.toFixed(2)}</div><div class="dtxt" style="font-size:10px;margin-top:4px">&gt;1.0 excellent · 0.5–1.0 good · &lt;0.5 poor</div></div>
+      <div class="dc" style="text-align:center"><div class="dlbl">Sortino ratio (3Y)</div><div class="big" style="font-family:var(--mono);font-size:22px;font-weight:500;color:${f.sortino>1.0?'var(--green)':f.sortino>0.6?'var(--amber)':'var(--red)'}">${f.sortino.toFixed(2)}</div><div class="dtxt" style="font-size:10px;margin-top:4px">Downside volatility only — better for retirement investors</div></div>
+      <div class="dc" style="text-align:center"><div class="dlbl">Max drawdown (3Y)</div><div class="big" style="font-family:var(--mono);font-size:22px;font-weight:500;color:var(--red)">${f.maxDD.toFixed(1)}%</div><div class="dtxt" style="font-size:10px;margin-top:4px">Worst peak-to-trough loss you would have experienced</div></div>
+      <div class="dc" style="text-align:center"><div class="dlbl">Implied 10Y return</div><div class="big" style="font-family:var(--mono);font-size:22px;font-weight:500;color:${f.valuation.impliedReturn>7?'var(--green)':f.valuation.impliedReturn>5?'var(--amber)':'var(--red)'}">${f.valuation.impliedReturn.toFixed(1)}%</div><div class="dtxt" style="font-size:10px;margin-top:4px">Real annualized return implied by current valuation</div></div>
+    </div>
+    <div class="dp2"><div class="dc"><div class="dlbl">Historical return record</div>${mpHtml()}</div><div class="dc"><div class="dlbl">Rate shock impact${f.rateSens.duration?` (duration: ${f.rateSens.duration}Y)`:''}</div>${rateHtml()}</div></div>
+  </div>
+  <div class="tab-panel" id="${id}-scenarios">
+    <div class="dc" style="margin-bottom:14px"><div class="dlbl">Stress test — estimated 12M returns under named macro scenarios</div>${scenH()}<div class="dtxt" style="margin-top:10px;font-size:10px">Estimates are calibrated from historical regime performance and current valuations. Probabilities are rough consensus estimates. Not predictions — use as a sensitivity framework.</div></div>
+    <div class="dp2"><div class="dc"><div class="dlbl">Bull case thesis</div><div class="dtxt">${f.prospects}</div></div><div class="dc"><div class="dlbl">Regime shift triggers to watch</div>${MACRO.triggers.map(t=>`<div class="trigger-item">${t}</div>`).join('')}</div></div>
+  </div>
+  <div class="tab-panel" id="${id}-tax">
+    <div class="dp3">
+      <div class="dc"><div class="dlbl">Tax efficiency grade</div><div class="tax-row"><div class="tax-grade" style="background:${f.tax.grade.startsWith('A')?'var(--green2)':f.tax.grade.startsWith('B')?'var(--amber2)':'var(--red2)'};color:${f.tax.grade.startsWith('A')?'var(--green)':f.tax.grade.startsWith('B')?'var(--amber)':'var(--red)'}">${f.tax.grade}</div><div><div class="kv"><span class="k">Annual turnover</span><span class="v">${f.tax.turnover!==null?f.tax.turnover+'%':'Variable'}</span></div><div class="kv"><span class="k">Dividend yield</span><span class="v">${f.tax.divYield!==null?f.tax.divYield+'%':'N/A'}</span></div><div class="kv"><span class="k">Tax character</span><span class="v" style="font-size:9px">${f.tax.taxChar}</span></div><div class="kv"><span class="k">ETF equivalent</span><span class="v" style="color:var(--teal)">${f.tax.etfEq}</span></div></div></div></div>
+      <div class="dc" style="grid-column:span 2"><div class="dlbl">Tax strategy recommendation</div><div class="dtxt">${f.tax.recommendation}</div></div>
+    </div>
+  </div>`;
+}
+
+function fundTypeCell(f){
+  const TAG_CFG = {
+    'lifecycle':      { cls:'ftag-lc', label:'lifecycle',        tip:'Glide path: allocation automatically shifts from aggressive to conservative as the target date approaches.' },
+    'auto-rebalancing':{ cls:'ftag-ar', label:'auto-rebalancing', tip:'The fund rebalances itself internally — you never need to manually adjust the mix of stocks and bonds.' },
+    'all-in-one':     { cls:'ftag-ai', label:'all-in-one',        tip:'A single fund that handles your entire retirement allocation — no need to hold separate equity and bond funds.' },
+  };
+  if(!f.targetDate && f.fundTags.length===0){
+    return`<div class="ftype-cell"><span class="ftype-none">—</span></div>`;
+  }
+  const dateHtml = f.targetDate ? `<span class="ftype-date">${f.targetDate}</span>` : '';
+  const tagsHtml = f.fundTags.map(t=>{
+    const cfg=TAG_CFG[t]||{cls:'b-b',label:t,tip:''};
+    return`<span class="ftag ${cfg.cls}" title="${cfg.tip}">${cfg.label}</span>`;
+  }).join('');
+  return`<div class="ftype-cell">${dateHtml}<div class="ftype-tags">${tagsHtml}</div></div>`;
+}
+
+function renderRow(f,i){
+  const id='det-'+f.ticker.replace(/\s/g,'_');
+  const delta=f.ret1-f.bret;
+  const sc=f.currentRegimeScore;
+  const regCol=scoreColor(sc);
+  return`<div class="fund-row" id="${id}-row">
+    <div class="fmain" onclick="T.toggle('${id}','${f.ticker}')">
+      <div class="regime-bar" style="background:${regCol}"></div>
+      <div class="fcell col-pin-ticker"><span class="ticker">${f.ticker}</span></div>
+      <div class="fcell fcell-top col-pin-name" style="flex-direction:column;align-items:flex-start;gap:0"><div class="fn"><p>${f.name}</p><small>${f.sub}</small></div></div>
+      <div class="fcell tr col-pin-exp">${expSpan(f.exp)}</div>
+      <div class="fcell tr col-pin-ret">${rv(f.ret1)}</div>
+      <div class="fcell tr col-sec">
+        <div class="vs-cell">
+          ${rv(delta)}
+          <span class="vs-bm-label">vs ${f.bmark}</span>
+        </div>
+      </div>
+      <div class="fcell tc col-sec"><div class="spark-wrap">${spark(f)}</div></div>
+      <div class="fcell tr col-sec"><span class="mv ${f.sharpe>0.8?'pos':f.sharpe>0.5?'neu':'neg'}">${f.sharpe.toFixed(2)}</span></div>
+      <div class="fcell col-sec">${bHtml(f.badges)}</div>
+      <div class="fcell col-sec">${fundTypeCell(f)}</div>
+      <div class="fcell tc">${regimeScore(sc)}</div>
+      <div class="fcell tc"><button class="xbtn" id="${id}-btn">▾</button></div>
+    </div>
+    <div class="fdet" id="${id}-det">${renderDetail(f)}</div>
+  </div>`;
+}
+
+function initChart(f){
+  const id='det-'+f.ticker.replace(/\s/g,'_');
+  const canvas=document.getElementById(id+'-chart');
+  if(!canvas||charts[id]) return;
+  charts[id]=new Chart(canvas.getContext('2d'),{
+    type:'bar',
+    data:{labels:['This fund','Benchmark','Category avg'],datasets:[{data:[f.ret1,f.bret,f.catAvg],backgroundColor:['rgba(0,201,123,.85)','rgba(77,166,255,.7)','rgba(90,88,86,.6)'],borderColor:['#00c97b','#4da6ff','#5c5a56'],borderWidth:1,borderRadius:3,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#21262b',borderColor:'rgba(255,255,255,.1)',borderWidth:1,titleColor:'#9a9690',bodyColor:'#ddd9d2',callbacks:{label:c=>' '+c.parsed.y.toFixed(1)+'%'}}},
+      scales:{y:{min:Math.min(f.ret1,f.bret,f.catAvg)*.88,ticks:{callback:v=>v+'%',font:{family:'IBM Plex Mono',size:9},color:'#4e4c49'},grid:{color:'rgba(255,255,255,.04)'},border:{color:'rgba(255,255,255,.07)'}},x:{ticks:{font:{family:'IBM Plex Mono',size:9},color:'#4e4c49'},grid:{display:false},border:{color:'rgba(255,255,255,.07)'}}}}
+  });
+}
+
+function renderCompare(fd){
+  const metrics=[
+    ['Category',f=>f.cat],
+    ['Fund type / target date',f=>fundTypeCell(f)],
+    ['Risk flags',f=>bHtml(f.badges)],
+    ['Index tracked',f=>f.tracks.split('(')[0].trim()],
+    ['Expense ratio',f=>f.exp===0?'FREE':f.exp.toFixed(3)+'%'],
+    ['1Y return',f=>rv(f.ret1)],
+    ['vs benchmark',f=>rv(f.ret1-f.bret)+`<br><span style="font-size:8px;color:var(--text3)">vs ${f.bmark}</span>`],
+    ['3Y ann. return',f=>rv(f.ret3)],
+    ['5Y ann. return',f=>rv(f.ret5)],
+    ['10Y ann. return',f=>f.ret10===null?'<span style="color:var(--text3)">N/A</span>':rv(f.ret10)],
+    ['Sharpe (3Y)',f=>`<span class="mv ${f.sharpe>0.8?'pos':f.sharpe>0.5?'neu':'neg'}">${f.sharpe.toFixed(2)}</span>`],
+    ['Max drawdown',f=>`<span class="mv neg">${f.maxDD.toFixed(1)}%</span>`],
+    ['Implied 10Y real return',f=>`<span class="mv ${f.valuation.impliedReturn>7?'pos':f.valuation.impliedReturn>5?'neu':'neg'}">${f.valuation.impliedReturn.toFixed(1)}%</span>`],
+    ['CAPE / valuation',f=>f.valuation.cape?f.valuation.cape+'x ('+f.valuation.recentPCT+' pctile)':'See yield'],
+    ['Regime score (now)',f=>regimeScore(f.currentRegimeScore)+` ${f.currentRegimeScore}/5`],
+    ['US exposure',f=>f.us+'%'],
+    ['Intl exposure',f=>f.intl+'%'],
+    ['Bond exposure',f=>f.bond+'%'],
+    ['Tax grade',f=>f.tax.grade],
+    ['Min. investment',f=>f.min],
+    ['AUM',f=>f.aum],
+  ];
+  const header='<tr><th>METRIC</th>'+fd.map(f=>`<th><span class="cmp-ticker">${f.ticker}</span></th>`).join('')+'</tr>';
+  const rows=metrics.map(([label,fn])=>{
+    const cells=fd.map(f=>`<td>${fn(f)}</td>`).join('');
+    return`<tr><td>${label}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('cmp-table').innerHTML=`<thead>${header}</thead><tbody>${rows}</tbody>`;
+}
+
+function getFiltered(){
+  let fd=[...FUNDS];
+  if(activeCat!=='all') fd=fd.filter(f=>f.cat===activeCat);
+  if(searchQ){const q=searchQ.toLowerCase();fd=fd.filter(f=>f.ticker.toLowerCase().includes(q)||f.name.toLowerCase().includes(q)||f.tracks.toLowerCase().includes(q)||f.cat.toLowerCase().includes(q)||f.brokers.some(([n])=>n.toLowerCase().includes(q)));}
+  if(sortCol){
+    fd.sort((a,b)=>{
+      if(sortCol==='ticker') return sortDir*a.ticker.localeCompare(b.ticker);
+      if(sortCol==='name') return sortDir*a.name.localeCompare(b.name);
+      const gv=f=>sortCol==='vs'?f.ret1-f.bret:sortCol==='sharpe'?f.sharpe:f[sortCol];
+      return sortDir*(gv(a)-gv(b));
+    });
+  }
+  return fd;
+}
+function destroyCharts(){Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}});for(const k in charts)delete charts[k];}
+
+const T={
+  render(){
+    destroyCharts();
+    const fd=getFiltered();
+    document.getElementById('count-lbl').textContent=`${fd.length} of ${FUNDS.length} funds`;
+    const empty=document.getElementById('empty-state');
+    const list=document.getElementById('fund-list');
+    if(fd.length===0){list.innerHTML='';empty.classList.remove('hidden');}
+    else{empty.classList.add('hidden');list.innerHTML=fd.map((f,i)=>renderRow(f,i)).join('');}
+    document.querySelectorAll('.th[data-col]').forEach(th=>{
+      const c=th.dataset.col;th.classList.toggle('sorted',c===sortCol);
+      const si=document.getElementById('si-'+c);
+      if(si)si.textContent=c===sortCol?(sortDir===1?'↑':'↓'):'↕';
+    });
+    if(currentView==='compare') renderCompare(fd);
+  },
+  sort(col){if(sortCol===col){sortDir*=-1}else{sortCol=col;sortDir=1;}this.render();},
+  setCat(btn){document.querySelectorAll('.catbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');activeCat=btn.dataset.cat;this.render();},
+  filter(){searchQ=document.getElementById('search').value;this.render();},
+  setSpark(p,btn){sparkPeriod=p;document.querySelectorAll('.sptbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');this.render();},
+  setView(v,btn){
+    currentView=v;
+    document.querySelectorAll('.vtbtn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const tp=document.getElementById('table-panel');
+    const cp=document.getElementById('compare-panel');
+    if(v==='table'){tp.style.display='';cp.style.display='none';}
+    else{tp.style.display='none';cp.style.display='block';renderCompare(getFiltered());}
+  },
+  toggleCols(btn){
+    const tp=document.getElementById('table-panel');
+    const isMobile=window.innerWidth<=1200;
+    if(isMobile){
+      // Mobile: default is compact. Clear desktop override before toggling mobile state.
+      tp.classList.remove('cols-compact');
+      const expanded=!tp.classList.contains('cols-expanded');
+      tp.classList.toggle('cols-expanded',expanded);
+      btn.classList.toggle('compact',!expanded);
+      btn.textContent=expanded?'⊟ compact':'⊞ expand';
+    } else {
+      // Desktop: default is expanded. Clear mobile override before toggling desktop state.
+      tp.classList.remove('cols-expanded');
+      const compact=!tp.classList.contains('cols-compact');
+      tp.classList.toggle('cols-compact',compact);
+      btn.classList.toggle('compact',compact);
+      btn.textContent=compact?'⊞ expand':'⊟ compact';
+    }
+  },
+  toggle(id,ticker){
+    const det=document.getElementById(id+'-det');
+    const btn=document.getElementById(id+'-btn');
+    if(!det)return;
+    const was=det.classList.contains('open');
+    document.querySelectorAll('.fdet').forEach(d=>d.classList.remove('open'));
+    document.querySelectorAll('.xbtn').forEach(b=>{b.classList.remove('open');b.textContent='▾';});
+    if(!was){
+      det.classList.add('open');btn.classList.add('open');btn.textContent='▴';
+      const f=FUNDS.find(f=>f.ticker===ticker);
+      if(f)setTimeout(()=>initChart(f),80);
+      setTimeout(()=>det.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+    }
+  }
+};
+
+function switchTab(baseId,tab,btn){
+  document.querySelectorAll(`#${baseId}-det .tab`).forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll(`#${baseId}-det .tab-panel`).forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(`${baseId}-${tab}`).classList.add('on');
+}
+
+function buildMacroDash(){
+  
+  const hs=[MACRO.signals[0],MACRO.signals[1],MACRO.signals[3],MACRO.signals[4],MACRO.signals[6],MACRO.signals[7]];
+  document.getElementById('header-signals').innerHTML=hs.map(s=>{
+    const tip=SIGNAL_TIPS[s.label];
+    const tc=s.changeDir>0?'var(--green)':s.changeDir<0?'var(--red)':'var(--amber)';
+    const attrs=tip?`data-ttl="${tip.title}" data-tbd="${tip.body.replace(/"/g,'&quot;')}"` :'';
+    return`<div class="hsig" ${attrs} style="${attrs?'cursor:help':''}">
+      <div class="val" style="color:${tc}">${s.val}</div>
+      <div class="lbl">${s.label}</div>
+    </div>`;
+  }).join('');
+
+  
+  const chip=document.getElementById('regime-chip');
+  chip.textContent=MACRO.regimeLabel;
+  chip.style.cssText='background:var(--stagflation2);border-color:var(--stagflation);color:var(--stagflation)';
+
+  
+  document.getElementById('signals-grid').innerHTML=MACRO.signals.map(s=>{
+    const tip=SIGNAL_TIPS[s.label];
+    const tc=s.changeDir>0?'var(--green)':s.changeDir<0?'var(--red)':'var(--amber)';
+    const attrs=tip?`data-ttl="${tip.title}" data-tbd="${tip.body.replace(/"/g,'&quot;')}"` :'';
+    return`<div class="signal-card" ${attrs}>
+      <div class="signal-label">${s.label} <span class="signal-label-q">ⓘ</span></div>
+      <div class="signal-val" style="color:${tc}">${s.val}</div>
+      <div class="signal-change" style="color:${s.changeDir>0?'var(--green)':s.changeDir<0?'var(--red)':'var(--text3)'}">${s.change}</div>
+      <div class="signal-bar"><div class="signal-bar-fill" style="width:${s.barPct}%;background:${s.barColor}"></div></div>
+    </div>`;
+  }).join('');
+
+  
+  document.getElementById('regime-narrative').innerHTML=`<h3>Current regime: ${MACRO.regimeLabel}</h3><p>${MACRO.narrative}</p><div class="triggers"><h4>REGIME SHIFT SIGNALS TO WATCH</h4>${MACRO.triggers.map(t=>`<div class="trigger-item">${t}</div>`).join('')}</div>`;
+
+  buildCorrTable();
+}
+
+function buildCorrTable(){
+  const tickers=MACRO.corrTickers, data=MACRO.corrData;
+  const hdr='<tr><th></th>'+tickers.map(t=>`<th style="color:var(--teal)">${t}</th>`).join('')+'</tr>';
+  const rows=tickers.map((r,i)=>`<tr><td class="rn">${r}</td>`+tickers.map((c,j)=>{
+    if(i===j)return`<td class="diag">1.00</td>`;
+    const v=data[i][j],alpha=Math.abs(v);
+    const bg=v>0.7?`rgba(255,82,82,${(alpha*.8).toFixed(2)})`:v>0.4?`rgba(240,165,0,${(alpha*.6).toFixed(2)})`:v<0.2?`rgba(0,201,123,${(alpha*1.5).toFixed(2)})`:`rgba(90,88,86,${alpha.toFixed(2)})`;
+    const tc=v>0.5?'var(--red)':v>0.3?'var(--amber)':'var(--green)';
+    const interp=v>.85?'Very high — essentially the same exposure':v>.65?'High — limited diversification benefit':v>.4?'Moderate — some diversification':v>.2?'Low — meaningful diversification':'Very low — strong diversification benefit';
+    const tipBody=`${v.toFixed(2)} — ${interp}. Scale: −1.0 (perfect inverse) → 0 (unrelated) → +1.0 (move identically). Values above 0.7 mean holding both funds gives little protection in a downturn.`;
+    return`<td style="background:${bg};color:${tc}" data-ttl="${r} \u00d7 ${c}" data-tbd="${tipBody}">${v.toFixed(2)}</td>`;
+  }).join('')+'</tr>').join('');
+  document.getElementById('corr-table').innerHTML=`<thead>${hdr}</thead><tbody>${rows}</tbody>`;
+}
+
+function toggleMacro(){
+  const body=document.getElementById('macro-body');
+  const tog=document.getElementById('macro-tog');
+  const open=!body.classList.contains('open');
+  body.classList.toggle('open',open);
+  tog.classList.toggle('open',open);
+  document.querySelector('.tog-hint').textContent=open?'— click to collapse':'— click to expand';
+}
+
+function syncColToggleButton(){
+  const btn=document.getElementById('coltogbtn');
+  const tp=document.getElementById('table-panel');
+  if(!btn||!tp) return;
+
+  const isMobile=window.innerWidth<=1200;
+  if(isMobile){
+    // Mobile default is compact; desktop override cannot coexist.
+    tp.classList.remove('cols-compact');
+    const expanded=tp.classList.contains('cols-expanded');
+    btn.textContent=expanded?'⊟ compact':'⊞ expand';
+    btn.classList.toggle('compact',!expanded);
+  } else {
+    // Desktop default is expanded; mobile override cannot coexist.
+    tp.classList.remove('cols-expanded');
+    const compact=tp.classList.contains('cols-compact');
+    btn.textContent=compact?'⊞ expand':'⊟ compact';
+    btn.classList.toggle('compact',compact);
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildMacroDash();
+  T.render();
+  syncColToggleButton();
+});
+
+window.addEventListener('resize',syncColToggleButton);
+
+(function(){
+  const tip=document.createElement('div');
+  tip.id='ftip';
+  tip.innerHTML='<span class="ftip-title" id="ftip-title"></span><span class="ftip-body" id="ftip-body"></span>';
+  document.body.appendChild(tip);
+
+  const TW=250, MARGIN=10, ARROW_OFF=18;
+
+  function show(el,e){
+    const t=el.dataset.ttl||'', b=el.dataset.tbd||'';
+    if(!t&&!b) return;
+    document.getElementById('ftip-title').textContent=t;
+    document.getElementById('ftip-body').innerHTML=b;
+    tip.classList.add('visible');
+    place(e);
+  }
+
+  function place(e){
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const tw=TW, th=tip.offsetHeight||120;
+    let x=e.clientX, y=e.clientY;
+
+    
+    let left=x - tw/2;
+    if(left<MARGIN) left=MARGIN;
+    if(left+tw>vw-MARGIN) left=vw-tw-MARGIN;
+
+    
+    const spaceAbove=y, spaceBelow=vh-y;
+    let top, dir;
+    if(spaceAbove>th+MARGIN+20){
+      top=y-th-MARGIN;
+      dir='up';
+    } else {
+      top=y+MARGIN+16;
+      dir='down';
+    }
+
+    
+    const arrowX=Math.min(Math.max(x-left, ARROW_OFF), tw-ARROW_OFF);
+    tip.style.cssText=`left:${left}px;top:${top}px;--arrow-x:${arrowX}px`;
+    tip.className='visible dir-'+dir;
+  }
+
+  function hide(){tip.className='';}
+
+  document.addEventListener('mouseover',function(e){
+    const el=e.target.closest('[data-ttl]');
+    if(el) show(el,e); else hide();
+  });
+  document.addEventListener('mousemove',function(e){
+    if(tip.classList.contains('visible')) place(e);
+  });
+  document.addEventListener('mouseout',function(e){
+    if(!e.relatedTarget||!e.relatedTarget.closest('[data-ttl]')) hide();
+  });
+})();
+
+const GLOSSARY=[
+  {section:'Fund basics',terms:[
+    {term:'Index fund',def:'A fund that doesn\'t try to pick winning stocks — it simply buys every stock in a predefined list (the "index") and h...'},
+    {term:'ETF (Exchange-Traded Fund)',def:'A type of fund that trades on a stock exchange just like a share of Apple or Tesla — you can buy or sell it any time ...'},
+    {term:'Mutual fund',def:'A pooled investment vehicle where you send money to the fund company and they invest it on your behalf. Unlike ETFs, ...'},
+    {term:'Expense ratio',def:'The annual fee a fund charges, expressed as a percentage of your investment. An expense ratio of 0.04% means you pay ...'},
+    {term:'AUM (Assets Under Management)',def:'The total dollar value of all money invested in a fund. A larger AUM generally means more liquidity, more institution...'},
+    {term:'Admiral Shares',def:'Vanguard\'s lower-cost share class for investors who meet a minimum investment threshold (typically $3,000). The same...'},
+    {term:'Benchmark',def:'The index a fund is measured against. VFIAX benchmarks against the S&P 500 — if the fund returns 12% and the S&P 500 ...'},
+    {term:'Glide path',def:'The predetermined schedule by which a target-date fund shifts from aggressive (mostly stocks) to conservative (mostly...'},
+    {term:'Target date fund',def:'A single fund designed to be your entire retirement portfolio. You pick the fund with the year closest to when you pl...'},
+    {term:'Auto-rebalancing',def:'Automatically adjusting a portfolio back to its target mix when markets move it off course. Without this, most invest...'},
+    {term:'Market cap weighting',def:'The most common index structure — each company is weighted by its total market value. Apple at $3 trillion gets a muc...'},
+    {term:'NTF (No Transaction Fee)',def:'When a brokerage lets you buy a fund without charging a trading commission. Brokerages sometimes charge $20–50 to buy...'},
+  ]},
+  {section:'Return metrics',terms:[
+    {term:'Annualized return (1Y / 3Y / 5Y / 10Y)',def:'How much the fund returned per year on average over that time period. "Annualized" converts multi-year performance to...'},
+    {term:'Total return',def:'The complete gain from an investment including both price appreciation and any dividends or interest paid. A fund tha...'},
+    {term:'vs Benchmark',def:'How much more (or less) the fund returned compared to its target index. An index fund should be very close to 0% — it...'},
+    {term:'vs Category average',def:'How the fund performed compared to other similar funds. If the "US Large Cap" category averaged 20% and VFIAX returne...'},
+    {term:'Real return',def:'Your return after subtracting inflation. If a fund returned 8% but inflation was 3%, your real return was about 5% — ...'},
+    {term:'Trailing return',def:'Returns measured backwards from today. "Trailing 12 months" means the past year. Different from calendar year returns...'},
+  ]},
+  {section:'Risk metrics',terms:[
+    {term:'Sharpe ratio',def:'How much return you get per unit of risk. Calculated as: (fund return − risk-free rate) ÷ volatility. Above 1.0 is ex...'},
+    {term:'Sortino ratio',def:'Like the Sharpe ratio, but only penalizes downside volatility — bad surprises, not good ones. More relevant for retir...'},
+    {term:'Max drawdown',def:'The worst peak-to-trough loss in a given period. If a fund hit $100 then fell to $67, the max drawdown is −33%. This ...'},
+    {term:'Volatility',def:'How much a fund\'s returns jump around. High volatility = wild swings (up 30% one year, down 25% the next). Low volat...'},
+    {term:'Duration (bonds)',def:'How sensitive a bond fund is to interest rate changes. Measured in years. VBTLX has a duration of ~6.5 years, meaning...'},
+    {term:'Rate shock',def:'A sudden, significant rise in interest rates. The 2022 rate shock saw the Fed raise rates from 0% to 4%+ in 12 months...'},
+  ]},
+  {section:'Valuation metrics',terms:[
+    {term:'CAPE / Shiller P/E',def:'Compares a market\'s current price to its average earnings over the past 10 years (adjusted for inflation). Smoothing...'},
+    {term:'Forward P/E (Price-to-Earnings)',def:'How much investors pay today for each dollar of expected earnings over the next 12 months. A P/E of 22x means the mar...'},
+    {term:'Implied 10-year real return',def:'An estimate of what a fund is likely to return per year over the next decade, after inflation, based on its current v...'},
+    {term:'Earnings yield',def:'The inverse of P/E: earnings ÷ price. If the S&P 500 P/E is 22x, the earnings yield is 4.5% (1 ÷ 22). It\'s the "inte...'},
+    {term:'Historical percentile',def:'Where a fund\'s current valuation sits relative to all past valuations. The 78th percentile means the market has been...'},
+  ]},
+  {section:'Macro indicators',terms:[
+    {term:'Federal Funds Rate',def:'The interest rate the Federal Reserve sets for overnight loans between banks. The most powerful lever in the economy ...'},
+    {term:'10-Year Treasury Yield',def:'The annual interest rate the US government pays to borrow money for 10 years. The global benchmark for "risk-free" re...'},
+    {term:'Yield curve (2s10s spread)',def:'The difference between the 10-year and 2-year Treasury yields. Normally positive — lenders demand more for longer com...'},
+    {term:'Core PCE',def:'The Federal Reserve\'s preferred inflation gauge — measures price changes for consumer goods and services, excluding ...'},
+    {term:'DXY (US Dollar Index)',def:'Measures the US dollar against a basket of major currencies. A falling DXY means the dollar is weakening — a tailwind...'},
+    {term:'High-yield credit spread',def:'The extra interest that "junk" bonds (issued by risky companies) pay above safe US Treasuries. When spreads widen sha...'},
+    {term:'GDP (Gross Domestic Product)',def:'The total value of all goods and services produced in a country. The broadest measure of economic health. Positive GD...'},
+    {term:'Term premium',def:'The extra return investors demand for lending money long-term rather than rolling over short-term loans. Higher term ...'},
+    {term:'MSCI EM vs S&P 500',def:'A comparison of Emerging Market stocks (China, India, Brazil, Korea, etc.) vs US large-cap stocks. When EM is outperf...'},
+  ]},
+  {section:'Macro regimes',terms:[
+    {term:'Goldilocks',def:'The ideal economic environment: growth is strong, inflation is low, the central bank is accommodative. US equities, t...'},
+    {term:'Overheating',def:'The economy grows strongly but inflation is rising — the central bank starts to worry. Commodities, real assets, ener...'},
+    {term:'Stagflation',def:'The worst of both worlds: slow growth AND high inflation. Neither stocks nor bonds work well. Gold, TIPS, commodities...'},
+    {term:'Recession',def:'Economic contraction: GDP is shrinking, unemployment rising, corporate earnings falling. Counterintuitively, this is ...'},
+    {term:'Inflation',def:'The general rise in prices over time. Mild inflation (~2%) is considered healthy. Too much erodes purchasing power — ...'},
+    {term:'Disinflation',def:'Inflation that is still positive but slowing down — prices are still rising, just less quickly. Different from deflat...'},
+  ]},
+  {section:'Portfolio concepts',terms:[
+    {term:'Diversification',def:'Spreading investments across different assets so a loss in one doesn\'t destroy everything. VTWAX owns ~10,000 stocks...'},
+    {term:'Correlation',def:'How similarly two investments move together, from −1.0 to +1.0. A correlation of 1.0 = perfect lockstep, zero diversi...'},
+    {term:'Asset allocation',def:'How you divide your portfolio between stocks, bonds, and cash. The classic "60/40" portfolio holds 60% stocks and 40%...'},
+    {term:'Rebalancing',def:'Periodically selling what has grown too large and buying what has shrunk, to restore your target allocation. If stock...'},
+    {term:'Equity (stocks)',def:'Ownership in a company. When you own a share of Apple, you own a tiny piece of Apple — you benefit when it grows and ...'},
+    {term:'Fixed income (bonds)',def:'Loans you make to governments or companies in exchange for regular interest payments. More predictable than stocks, l...'},
+    {term:'Emerging markets (EM)',def:'Countries developing economically — China, India, Brazil, South Korea, Taiwan. Higher growth potential than developed...'},
+    {term:'TIPS (Treasury Inflation-Protected Securities)',def:'US government bonds where the principal adjusts with inflation. If inflation rises 3%, your principal increases 3% to...'},
+  ]},
+  {section:'Tax concepts',terms:[
+    {term:'Qualified dividends',def:'Dividend payments taxed at the lower long-term capital gains rate (0%, 15%, or 20%) rather than your ordinary income ...'},
+    {term:'Ordinary income tax',def:'The tax rate on wages, salary, and certain investment income like bond interest. Rates range from 10% to 37%. Bond fu...'},
+    {term:'Capital gains',def:'The profit when you sell an investment for more than you paid. Short-term (held under 1 year) = taxed as ordinary inc...'},
+    {term:'Tax drag',def:'The annual return lost to taxes. In a taxable account, a bond paying 4% interest where you\'re in the 37% bracket lea...'},
+    {term:'Turnover rate',def:'The percentage of a fund\'s holdings replaced in a year. VTSAX at 3% = almost nothing traded, very tax-efficient. VBT...'},
+    {term:'Tax-advantaged account',def:'Accounts like IRAs and 401(k)s where investments grow tax-free or tax-deferred. In a Roth IRA, you pay tax now and ne...'},
+    {term:'In-kind transfer',def:'Moving investments from one brokerage to another without selling first. Avoids triggering capital gains taxes. ETFs c...'},
+    {term:'Foreign withholding tax',def:'Tax that foreign governments automatically withhold from dividends paid to non-residents. Germany withholds ~26%, Jap...'},
+  ]},
+];
+
+let glossaryBuilt = false;
+
+function buildGlossary(){
+  glossaryBuilt = true;
+  filterGlossary('');
+}
+
+function filterGlossary(q){
+  const query = q.trim().toLowerCase();
+  const grid = document.getElementById('gloss-grid');
+  const countEl = document.getElementById('gloss-count');
+
+  // Collect all matching terms across all sections
+  const matches = [];
+  GLOSSARY.forEach(sec => {
+    sec.terms.forEach(t => {
+      if(!query || t.term.toLowerCase().includes(query) || t.def.toLowerCase().includes(query)){
+        matches.push({ section: sec.section, term: t.term, def: t.def });
+      }
+    });
+  });
+
+  if(countEl) countEl.textContent = query ? `${matches.length} result${matches.length!==1?'s':''} for "${q}"` : `${matches.length} terms across ${GLOSSARY.length} sections`;
+
+  if(query){
+    // Search mode: flat single-column list with section label, highlight matches
+    const hl = str => {
+      const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+      return str.replace(re, '<mark style="background:rgba(240,165,0,0.25);color:var(--amber);border-radius:2px;padding:0 1px">$1</mark>');
+    };
+    grid.innerHTML = matches.length === 0
+      ? `<div style="padding:32px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text3)">No terms match "${q}"</div>`
+      : `<div style="display:flex;flex-direction:column;gap:1px">`
+        + matches.map(m => `
+          <div style="padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;margin-bottom:4px">
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:4px">
+              <span style="font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text)">${hl(m.term)}</span>
+              <span style="font-family:var(--mono);font-size:8px;color:var(--teal);letter-spacing:.4px">${m.section.toUpperCase()}</span>
+            </div>
+            <div style="font-size:10px;color:var(--text2);line-height:1.65">${hl(m.def)}</div>
+          </div>`).join('')
+        + `</div>`;
+  } else {
+    // Default mode: grouped 3-column grid
+    let html = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:4px">`;
+    GLOSSARY.forEach(sec => {
+      html += `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+        <div style="background:var(--bg3);padding:8px 14px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:9px;letter-spacing:.7px;color:var(--teal)">${sec.section.toUpperCase()}</div>
+        <div>`;
+      sec.terms.forEach(t => {
+        html += `<div style="padding:9px 14px;border-bottom:0.5px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text);margin-bottom:4px">${t.term}</div>
+          <div style="font-size:10px;color:var(--text2);line-height:1.65">${t.def}</div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+    grid.innerHTML = html;
+  }
+}
+
+function toggleGlossary(){
+  const body = document.getElementById('glossary-body');
+  const tog  = document.getElementById('gloss-tog');
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  tog.style.transform = isOpen ? '' : 'rotate(180deg)';
+  if(!isOpen && !glossaryBuilt) buildGlossary();
+  if(!isOpen) document.getElementById('gloss-search')?.focus();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const tw=document.getElementById('table-panel');
+  if(tw) tw.addEventListener('scroll',()=>{
+    tw.classList.toggle('table-scrolled', tw.scrollLeft > 8);
+  });
+});
+</script>
+
+<style>@media (max-width:1100px){.macro-grid{grid-template-columns:1fr}.signals-row{grid-template-columns:repeat(2,1fr)}.header-signals{display:none}.quadrant{aspect-ratio:unset;height:260px}}@media (max-width:900px){.site-header{padding:14px 16px}.macro-inner{padding:14px 16px}.controls-bar{padding:10px 16px;gap:6px}.table-wrap{padding:0 16px 32px}.glossary-section-inner{padding:0 16px 32px}.th-row,.fmain{grid-template-columns:4px 60px 160px 50px 68px 100px 100px 66px 110px 80px 74px 22px}#compare-panel{margin:16px 16px 32px}.dp2,.dp3,.dp4{grid-template-columns:1fr}.detail-grid-gloss{grid-template-columns:1fr}}@media (max-width:700px){.signals-row{grid-template-columns:1fr 1fr}.macro-grid{gap:14px}.controls-bar{gap:4px}.catbtn{font-size:9px;padding:3px 7px}.brand h1{font-size:16px}#glossary-section{padding:0 12px 24px}}@media (max-width:500px){.signals-row{grid-template-columns:1fr}.vtog{display:none}}@media (max-width:1100px){#gloss-grid>div{grid-template-columns:repeat(2,1fr) !important}}@media (max-width:700px){#gloss-grid>div{grid-template-columns:1fr !important}}</style>
+
+<style id="table-width-system">
+#table-panel{
+  --w-bar:4px;
+  --w-ticker:72px;
+  --w-name:220px;
+  --w-exp:64px;
+  --w-ret1:78px;
+  --w-vs:minmax(132px,1.05fr);
+  --w-trend:minmax(118px,.95fr);
+  --w-sharpe:76px;
+  --w-risk:minmax(150px,1.2fr);
+  --w-type:minmax(112px,.95fr);
+  --w-regime:88px;
+  --w-expand:28px;
+  --grid-expanded:var(--w-bar) var(--w-ticker) var(--w-name) var(--w-exp) var(--w-ret1) var(--w-vs) var(--w-trend) var(--w-sharpe) var(--w-risk) var(--w-type) var(--w-regime) var(--w-expand);
+  --grid-compact:var(--w-bar) var(--w-ticker) var(--w-name) var(--w-exp) var(--w-ret1) var(--w-regime) var(--w-expand);
+  --left-ticker:var(--w-bar);
+  --left-name:calc(var(--w-bar) + var(--w-ticker));
+  --left-exp:calc(var(--w-bar) + var(--w-ticker) + var(--w-name));
+  --left-ret:calc(var(--w-bar) + var(--w-ticker) + var(--w-name) + var(--w-exp));
+}
+#table-panel .th-row,
+#table-panel .fmain{grid-template-columns:var(--grid-expanded);}
+#table-panel.cols-compact .th-row,
+#table-panel.cols-compact .fmain{grid-template-columns:var(--grid-compact);}
+@media(max-width:1200px){
+  #table-panel:not(.cols-expanded) .th-row,
+  #table-panel:not(.cols-expanded) .fmain{grid-template-columns:var(--grid-compact);}
+}
+#table-panel .col-pin-ticker{left:var(--left-ticker);}
+#table-panel .th-row .col-pin-name{left:var(--left-name);}
+#table-panel .th-row .col-pin-exp{left:var(--left-exp);}
+#table-panel .th-row .col-pin-ret{left:var(--left-ret);}
+@media(max-width:900px){
+  #table-panel{
+    --w-ticker:64px;
+    --w-name:184px;
+    --w-exp:56px;
+    --w-ret1:72px;
+    --w-vs:minmax(112px,.95fr);
+    --w-trend:minmax(104px,.85fr);
+    --w-sharpe:70px;
+    --w-risk:minmax(132px,1.05fr);
+    --w-type:minmax(96px,.85fr);
+    --w-regime:78px;
+    --w-expand:24px;
+  }
+}
+@media(max-width:700px){
+  #table-panel{
+    --w-ticker:60px;
+    --w-name:168px;
+    --w-exp:52px;
+    --w-ret1:68px;
+    --w-vs:minmax(104px,.9fr);
+    --w-trend:minmax(96px,.8fr);
+    --w-sharpe:66px;
+    --w-risk:minmax(120px,1fr);
+    --w-type:minmax(88px,.8fr);
+    --w-regime:74px;
+    --w-expand:22px;
+  }
+}
+</style>
+
+</body>
+</html>
